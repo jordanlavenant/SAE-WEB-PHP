@@ -1,24 +1,42 @@
-<?php
-$fic = "./data/data.yml";
-$data = fopen($fic, "r");
-$albums = array();
-$line = fgets($data);
+<!DOCTYPE html>
 
-while ($line != NULL){
-    $truc = explode(": ", $line);
-    if ($truc[0] == "- by"){
-        $cle = $truc[1];
-    }
-    if ($truc[0] == "  title"){
-        $albums[$cle] = $donne;
-    }
-    $donne = $truc[1];
-    $line = fgets($data);
-}
+<html lang="fr">
 
-fclose($data);
-echo $albums["X"];
-var_dump($albums);
-foreach($albums as $key => $value){
-    echo $value;
-}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Spotiut'o</title>
+    </head>
+    <body>
+
+        <h1>test</h1>
+
+        <?php
+            require_once('Classes/Provider/Dataloader.php');
+            require 'Classes/Autoloader.php';
+
+            Autoloader::register();
+
+            $dataloader = new Dataloader("data/data.yml");
+            $data = $dataloader->getData();
+
+            print_r($data[6]);
+            echo $data[6][3];
+
+            // Tableau d'objet
+            $data_objects = array();
+            foreach($data as $content) {
+                array_push($data_objects,new Album(
+                    $content[0],
+                    $content[1],
+                    $content[2],
+                    $content[3],
+                    $content[4],
+                    $content[5],
+                    $content[6]
+                ));
+            }
+        ?>
+    </body>
+</html>

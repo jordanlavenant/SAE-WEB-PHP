@@ -1,15 +1,23 @@
 <?php
-namespace Classes;
-class Album {
-    private $nomGroupe;
-    private $entryId;
-    private $genre;
-    private $img;
-    private $parent;
-    private $releaseYear;
-    private $title;
+declare(strict_types=1);
 
-    function __construct(){
-        
+use GenericAlbum;
+
+class Album extends GenericAlbum
+{
+    function render(): string {
+        return sprintf(
+            "<div class='album'>
+                <img src='%s' alt='%s'>
+                <div class='album-info'>
+                    <h3>%s</h3>
+                    <p>%s</p>
+                </div>
+            </div>",
+            $this->getImg(),
+            $this->getTitle(),
+            $this->getTitle(),
+            $this->getNomGroupe()  
+        );
     }
 }
