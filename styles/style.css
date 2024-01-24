@@ -30,7 +30,7 @@ p {
 .Container {
     width: min(100%, 80rem);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 2rem 2rem;
 }
 
 
@@ -43,6 +43,9 @@ p {
 
     & .album {
         border: 1px solid black;
-        padding: 1%;
+
+        & .album-info {
+            padding: 1%;
+        }
     }
 }
