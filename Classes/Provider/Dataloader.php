@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once 'vendor/autoload.php';
+
 class Dataloader {
 
     private $path;
@@ -10,22 +12,8 @@ class Dataloader {
     }
 
     function getData() {
-
-        $album = array();
-        $data = array();
-
-        $file = fopen($this->path, "r");         
-        while (($line = fgets($file)) !== false) {
-            $parts = explode(":", $line,2);
-            if ($parts[0] == '- by') {
-                if (!empty($album)) {
-                    $data[] = $album;
-                    $album = array();
-                }
-            }
-            $album[] = $parts[1];
-        }
-        fclose($file);
+        $ymlContent = file_get_contents($this->path);
+        $data = Symfony\Component\Yaml\Yaml::parse($ymlContent);
         return $data;
     }
 }

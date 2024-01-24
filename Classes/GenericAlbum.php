@@ -6,8 +6,8 @@ abstract class GenericAlbum implements RenderAlbumInterface
 {
     protected string $nomGroupe;
     protected int $entryId;
-    protected string $genre;
-    protected string $img;
+    protected array $genre;
+    protected string $img = "data/images/";
     protected string $parent;
     protected int $releaseYear;
     protected string $title;
@@ -15,16 +15,17 @@ abstract class GenericAlbum implements RenderAlbumInterface
     function __construct(
         string $nomGroupe, 
         int $entryId, 
-        string $genre, 
+        array $genre, 
         string $img,
         string $parent, 
         int $releaseYear,
+        string $title
     )
     {
         $this->nomGroupe = $nomGroupe;
         $this->entryId = $entryId;
         $this->genre = $genre;
-        $this->img = $img;
+        $this->img .= $img;
         $this->parent = $parent;
         $this->releaseYear = $releaseYear;
         $this->title = $title;
@@ -42,7 +43,7 @@ abstract class GenericAlbum implements RenderAlbumInterface
         return $this->entryId;
     }
 
-    function getGenre(): string {
+    function getGenre(): array {
         return $this->genre;
     }
 

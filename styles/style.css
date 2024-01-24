@@ -1,0 +1,48 @@
+* {
+    min-width: 0;
+    font: inherit;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, svg {
+    display: block;
+    height: 220px;
+    width: 220px;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+.Container {
+    width: min(100%, 80rem);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+
+
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+
+    & .album {
+        border: 1px solid black;
+        padding: 1%;
+    }
+}
