@@ -18,7 +18,7 @@
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData();
 
-            // Tableau d'objet
+            // Tableau d'objet Album
             $data_objects = array();
             foreach($data as $content) {
                 array_push($data_objects,new Album(
