@@ -17,7 +17,7 @@
 
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData();
-
+            
             // Tableau d'objet Album
             $data_objects = array();
             foreach($data as $content) {
@@ -25,7 +25,7 @@
                     $content['by'],
                     $content['entryId'],
                     $content['genre'],
-                    $content['img'] == null ? "default.jpg" : $content['img'],
+                    $content['img'] == "null" ? "default.jpg" : $content['img'],
                     $content['parent'],
                     $content['releaseYear'],
                     $content['title']

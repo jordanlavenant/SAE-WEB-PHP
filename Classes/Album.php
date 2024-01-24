@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use GenericAlbum;
-
 class Album extends GenericAlbum
 {
     function render(): string {
