@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-require_once 'vendor/autoload.php';
-
 class Dataloader {
 
     private $path;
