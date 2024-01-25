@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace DisplayAlbum;
+
 class DisplayAlbums {
 
     private array $data_objects;

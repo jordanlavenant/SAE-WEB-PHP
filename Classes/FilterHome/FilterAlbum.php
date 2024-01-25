@@ -1,7 +1,7 @@
 <?php
-
-
 declare(strict_types=1);
+
+namespace FilterHome;
 
 class FilterAlbum {
 
@@ -26,5 +26,14 @@ class FilterAlbum {
             }
         }
         return $filtered_albums;
+    }
+
+    function getAlbum(int $entryId) {
+        foreach($this->data_objects as $album) {
+            if($album->getId() === $entryId) {
+                return $album;
+            }
+        }
+        return null;
     }
 }

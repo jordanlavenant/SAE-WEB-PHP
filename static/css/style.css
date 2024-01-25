@@ -99,4 +99,8 @@ p {
             max-width: 220px;
         }
     }
+
+    & p {
+        text-decoration: none;
+    }
 }

@@ -11,9 +11,20 @@
     <body>
         <?php
             require_once('Classes/Provider/Dataloader.php');
-            require 'Classes/Autoloader.php';
 
+            require 'Classes/autoloader.php';
             Autoloader::register();
+
+            use SingleAlbum\SelectedAlbum;
+            use SingleAlbum\Details;
+
+            use FilterHome\FilterAlbum;
+            use FilterHome\SearchBar;
+
+            use DisplayAlbum\GenericAlbum;
+            use DisplayAlbum\Album;
+            use DisplayAlbum\DisplayAlbums;
+            use DisplayAlbum\RenderAlbumInterface;
 
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData(); 
@@ -32,29 +43,41 @@
                 ));
             }
 
-
-
+            // echo phpinfo(INFO_VARIABLES);
 
             echo "<div class='Container'>";
-
-                require 'Classes/SearchBar.php';
-                if (isset($_POST['search'])) {
-                    $search = $_POST['search'];
+                
+                if ($_REQUEST['id'] != null) {
+                    // Obtenir l'objet de l'album sélectionné
+                    $selectedAlbum = new SelectedAlbum($data_objects);
+                    $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
+                    // Render l'objet
+                    $displayAlbum = new Details($album);
+                    echo $displayAlbum->render();
                 } else {
-                    $search = "";
-                }
-                if ($search != "") {
-                    $filter = new FilterAlbum($data_objects,$search);
-                    $data_objects = $filter->filterAlbums();
-                    echo "<div id='search-props'>";
-                        echo "<h3>votre recherche : $search</h3>";
-                        echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
-                    echo "</div>";
-                }
+                    // Barre de recherche
+                    $searchBar = new SearchBar();
+                    echo $searchBar->render();
+                    if (isset($_POST['search'])) {
+                        $search = $_POST['search'];
+                    } else {
+                        $search = "";
+                    }
 
-                require 'Classes/DisplayAlbums.php';
-                $albums = new DisplayAlbums($data_objects);
-                $albums->buildAlbums();
+                    // Filtrage des albums
+                    if ($search != "") {
+                        $filter = new FilterAlbum($data_objects,$search);
+                        $data_objects = $filter->filterAlbums();
+                        echo "<div id='search-props'>";
+                            echo "<h3>votre recherche : $search</h3>";
+                            echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
+                        echo "</div>";
+                    }
+
+                    // Display des albums
+                    $albums = new DisplayAlbums($data_objects);
+                    $albums->buildAlbums();
+                }
 
             echo "</div>";
         ?>

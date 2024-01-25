@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace DisplayAlbum;
+
 abstract class GenericAlbum implements RenderAlbumInterface
 {
     protected string $nomGroupe;
