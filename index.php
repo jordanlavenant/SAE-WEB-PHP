@@ -32,12 +32,16 @@
                 ));
             }
 
+
+
+
             echo "<div class='Container'>";
-                echo "<div class='albums'>";
-                foreach($data_objects as $album) {
-                    echo $album->render();
-                }
-                echo "</div>";
+
+                require 'Classes/SearchBar.php';
+                require 'Classes/DisplayAlbums.php';
+                $albums = new DisplayAlbums($data_objects);
+                $albums->buildAlbums();
+
             echo "</div>";
 
         ?>
