@@ -27,6 +27,9 @@
 * {
     min-width: 0;
     font: inherit;
+    font-variant: small-caps;
+    scroll-behavior: smooth;
+    font-family: medium-italic;
 }
 
 *, *::before, *::after {
