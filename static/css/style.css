@@ -1,0 +1,99 @@
+@font-face {
+    font-family: light;
+    src: url(../fonts/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: regular;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: medium-italic;
+    src: url(../fonts/Poppins-MediumItalic.ttf);
+}
+
+@font-face {
+    font-family: black-italic;
+    src: url(../fonts/Poppins-BlackItalic.ttf);
+}
+
+@font-face {
+    font-family: gilda;
+    src: url(../fonts/GildaDisplay-Regular.ttf);
+}
+
+
+* {
+    min-width: 0;
+    font: inherit;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, svg {
+    display: block;
+    height: 220px;
+    width: 220px;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+.Container {
+    width: min(100%, 80rem);
+    margin: 0 auto;
+    padding: 2rem 2rem;
+}
+
+#searchbar {
+    padding: 1%;
+    display: flex;
+    gap: 20px;
+
+    & input[type="text"] {
+        flex-basis: 80%;
+        padding: 15px;
+    }
+
+    & input[type="submit"] {
+        flex-basis: 20%;
+        padding: 1%;
+    }
+}
+
+#search-props {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+
+    & .album {
+        border: 1px solid black;
+
+        & .album-info {
+            text-align: center;
+            padding: 1%;
+            max-width: 220px;
+        }
+    }
+}

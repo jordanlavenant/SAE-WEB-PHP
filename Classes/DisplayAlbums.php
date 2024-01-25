@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class DisplayAlbums {
 
-    private $data_objects;
+    private array $data_objects;
 
     function __construct(array $data_objects) {
         $this->data_objects = $data_objects;

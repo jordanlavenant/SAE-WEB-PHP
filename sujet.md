@@ -8,11 +8,11 @@ Le fichier fixtures.zip contient quelques albums et artistes avec des pochettes 
 
 Fonctionalités attendues
 Modèle de la BD de musiques  
-Affichage des albums
+^Affichage des albums
 Détail des albums
 Détail d'un artiste avec ses albums
 Edition d'un album
-Recherche un peu plus avancée dans les albums (par artiste, année, genre, etc.)
+^Recherche un peu plus avancée dans les albums (par artiste, année, genre, etc.)
 
 Fonctionalités souhaitées
 Edition/Suppression/Update Albums

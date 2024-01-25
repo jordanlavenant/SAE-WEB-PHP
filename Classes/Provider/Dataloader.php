@@ -26,7 +26,7 @@ class Dataloader {
 
             // Transformer les strings en array pour les genres
             if ($cle == "genre") {
-                $string = substr($element[1],2,-3);
+                $string = substr($element[1],2,-2);
                 $arrayGenre = explode(",", $string);
                 $album[$cle] = $arrayGenre;
             // Transformer les ids en string en intergers
