@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace DisplayAlbum;
-use DisplayAlbum\GenericAlbum;
+namespace AllAlbum;
+use AllAlbum\GenericAlbum;
 
 class Album extends GenericAlbum
 {

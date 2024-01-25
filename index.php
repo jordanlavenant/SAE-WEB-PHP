@@ -18,13 +18,13 @@
             use SingleAlbum\SelectedAlbum;
             use SingleAlbum\Details;
 
-            use FilterHome\FilterAlbum;
-            use FilterHome\SearchBar;
+            use Filter\FilterAlbum;
+            use Filter\SearchBar;
 
-            use DisplayAlbum\GenericAlbum;
-            use DisplayAlbum\Album;
-            use DisplayAlbum\DisplayAlbums;
-            use DisplayAlbum\RenderAlbumInterface;
+            use AllAlbum\GenericAlbum;
+            use AllAlbum\Album;
+            use AllAlbum\DisplayAlbums;
+            use AllAlbum\RenderAlbumInterface;
 
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData(); 
