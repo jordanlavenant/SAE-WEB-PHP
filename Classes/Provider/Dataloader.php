@@ -30,10 +30,10 @@ class Dataloader {
                 $arrayGenre = explode(",", $string);
                 $album[$cle] = $arrayGenre;
             // Transformer les ids en string en intergers
-            } else if ($cle == "entryId") {
+            } else if ($cle == "entryId" || $cle == "releaseYear") {
                 $album[$cle] = intval($element[1]);
             } else {
-                $album[$cle] = substr($element[1],1,-2);
+                $album[$cle] = substr($element[1],1,-1);
             }
         }
         fclose($file);

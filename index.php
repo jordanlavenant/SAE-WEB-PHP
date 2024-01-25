@@ -16,8 +16,8 @@
             Autoloader::register();
 
             $dataloader = new Dataloader("data/data.yml");
-            $data = $dataloader->getData();
-            
+            $data = $dataloader->getData(); 
+
             // Tableau d'objet Album
             $data_objects = array();
             foreach($data as $content) {
