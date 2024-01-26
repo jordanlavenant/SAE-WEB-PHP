@@ -12,6 +12,8 @@ function creerBd(){
     creerTableAlbum($bd);
     creerTableGenres($bd);
     creerTableGenresAlbum($bd);
+    creerUser($bd);
+    creerFavoris($bd);
     $bd = null;
 
 }
@@ -45,6 +47,26 @@ function creerTableGenresAlbum($bd){
         PRIMARY KEY (entryId, idG),
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
         FOREIGN KEY (idG) REFERENCES GENRES (idG)
+        )";
+    $bd->exec($requette);
+}
+
+function creerUser($bd){
+    $requette = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
+        idU INTEGER,
+        nomU TEXT,
+        prenomU TEXT,
+        PRIMARY KEY (idU AUTOINCREMENT)
+        )";
+    $bd->exec($requette);
+}
+
+function creerFavoris($bd){
+    $requette = "CREATE TABLE IF NOT EXISTS FAVORIS(
+        idU INTEGER,
+        entryId INTEGER,
+        FOREIGN KEY (idI) REFERENCES UTILISATEURS (idU),
+        FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId)
         )";
     $bd->exec($requette);
 }
@@ -111,6 +133,52 @@ function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title
         echo "Erreur lors de l'insertion de l'album";
         echo $ex->getMessage();
     } 
+}
+
+function getEntryId($title){
+    $requette = "SELECT entryId FROM ALBUM WHERE title = :title";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requette);
+    $stm -> bindParam(":title",$title, PDO::PARAM_STR);
+    $stm -> execute();
+    $entryId = $stm->fetchColumn();
+    $bd = null;
+    return $entryId;
+}
+
+function insererUtilisateur($nom, $prenom){
+    $requette = "INSERT INTO UTILISATEUR (idU, nomU, prenomU) VALUES (NULL, :nomU, :prenomU)";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requette);
+    $stm->bindParam(":nomU", $nom, PDO::PARAM_STR);
+    $stm->bindParam(":prenomU", $prenom, PDO::PARAM_STR);
+    $stm->execute();
+    $bd = null;
+}
+
+function getIdUser($nom, $prenom){
+    $requette = "SELECT idU FROM UTILISATEUR WHERE nomU = :nomU and prenomU = :prenomU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requette);
+    $stm -> bindParam(':nomU', $nom, PDO::PARAM_STR);
+    $stm -> bindParam(':prenomU', $prenom, PDO::PARAM_STR);
+    $stm-> execute();
+    $idU = $stm->fetchColumn();
+    $bd = null;
+    return $idU;
+}
+
+function ajouterFavori($nom, $prenom, $title){
+    $idU = getIdUser($nom, $prenom);
+    $entryId = getEntryId($title);
+    
+    $requette = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requette);
+    $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm->execute();
+    $bd=null;
 }
 // creerBd();
 insererAlbum("Superdrag", 67913, ["Rock", "Punk"], "Superdrag-Stereo_360_Sound.jpg", "Superdrag", 1998, "Stereo 360 Sound");
