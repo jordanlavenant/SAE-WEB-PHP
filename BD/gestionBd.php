@@ -21,21 +21,19 @@ function creerBd(){
 function creerTableAlbum($bd){
     $requette = "CREATE TABLE IF NOT EXISTS ALBUMS(
         by TEXT,
-        entryId INTEGER,
+        entryId INTEGER PRIMARY KEY,
         img TEXT,
         parent TEXT,
         releaseYear INTEGER,
-        title TEXT,
-        PRIMARY KEY (entryId)
+        title TEXT
         )";
     $bd->exec($requette);
 }
 
 function creerTableGenres($bd){
     $requette = "CREATE TABLE IF NOT EXISTS GENRES(
-        idG INTEGER,
-        nomG TEXT,
-        PRIMARY KEY (idG AUTOINCREMENT)
+        idG INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomG TEXT
         )";
     $bd->exec($requette);
 }
@@ -44,7 +42,6 @@ function creerTableGenresAlbum($bd){
     $requette = "CREATE TABLE IF NOT EXISTS GENRESALBUM(
         entryId INTEGER,
         idG INTEGER,
-        PRIMARY KEY (entryId, idG),
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
         FOREIGN KEY (idG) REFERENCES GENRES (idG)
         )";
@@ -53,10 +50,9 @@ function creerTableGenresAlbum($bd){
 
 function creerUser($bd){
     $requette = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
-        idU INTEGER,
+        idU INTEGER PRIMARY KEY AUTOINCREMENT,
         nomU TEXT,
-        prenomU TEXT,
-        PRIMARY KEY (idU AUTOINCREMENT)
+        prenomU TEXT
         )";
     $bd->exec($requette);
 }
@@ -65,7 +61,7 @@ function creerFavoris($bd){
     $requette = "CREATE TABLE IF NOT EXISTS FAVORIS(
         idU INTEGER,
         entryId INTEGER,
-        FOREIGN KEY (idI) REFERENCES UTILISATEURS (idU),
+        FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU),
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId)
         )";
     $bd->exec($requette);
