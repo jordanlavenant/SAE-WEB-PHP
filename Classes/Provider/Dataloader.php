@@ -33,7 +33,7 @@ class Dataloader {
             } else if ($cle == "entryId") {
                 $album[$cle] = intval($element[1]);
             } else {
-                $album[$cle] = substr($element[1],1,-2);
+                $album[$cle] = substr($element[1],1,-1);
             }
         }
         fclose($file);

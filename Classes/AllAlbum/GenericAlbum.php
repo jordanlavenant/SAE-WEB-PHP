@@ -11,7 +11,7 @@ abstract class GenericAlbum implements RenderAlbumInterface
     protected array $genre;
     protected string $img = "data/images/";
     protected string $parent;
-    protected int $releaseYear;
+    protected string $releaseYear;
     protected string $title;
 
     function __construct(
@@ -20,7 +20,7 @@ abstract class GenericAlbum implements RenderAlbumInterface
         array $genre, 
         string $img,
         string $parent, 
-        int $releaseYear,
+        string $releaseYear,
         string $title
     )
     {
@@ -57,7 +57,7 @@ abstract class GenericAlbum implements RenderAlbumInterface
         return $this->parent;
     }
 
-    function getReleaseYear(): int {
+    function getReleaseYear(): string {
         return $this->releaseYear;
     }
 

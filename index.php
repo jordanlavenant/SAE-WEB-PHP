@@ -12,7 +12,7 @@
         <?php
             require_once('Classes/Provider/Dataloader.php');
 
-            require 'Classes/autoloader.php';
+            require 'Classes/Autoloader.php';
             Autoloader::register();
 
             use SingleAlbum\SelectedAlbum;
@@ -46,7 +46,7 @@
             // echo phpinfo(INFO_VARIABLES);
 
             echo "<div class='Container'>";
-                
+
                 if ($_REQUEST['id'] != null) {
                     // Obtenir l'objet de l'album sélectionné
                     $selectedAlbum = new SelectedAlbum($data_objects);
