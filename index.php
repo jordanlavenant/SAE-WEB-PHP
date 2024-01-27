@@ -46,8 +46,7 @@
             // echo phpinfo(INFO_VARIABLES);
 
             echo "<div class='Container'>";
-
-                if ($_REQUEST['id'] != null) {
+                if (in_array('id',$_REQUEST) or $_REQUEST['id'] != null) {
                     // Obtenir l'objet de l'album sélectionné
                     $selectedAlbum = new SelectedAlbum($data_objects);
                     $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
