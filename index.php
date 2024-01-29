@@ -29,7 +29,12 @@
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData(); 
 
-            // echo "<a href='connexion.php'>Connexion</a>";
+            phpinfo(INFO_VARIABLES);
+
+            require 'Actions/login.php';
+            $login = new Login();
+            $login->buildLogin();
+            echo "<a href='Actions/connexion.php'>Connexion</a>";
 
             // Tableau d'objet Album
             $data_objects = array();
