@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 class Login {
 
-    function buildLogin() {
+    function buildLogin() { 
+
         echo "<div class='Container'>";
             echo "<div class='Login'>";
-                echo "<form action='index.php' method='post'>";
+                echo "<form action='index.php?action=home.php' method='post'>";
                     echo "<label for='email'>email</label>";
                     echo "<input type='text' id='email' name='email' placeholder='email'>";
                     echo "<label for='password'>mot de passe</label>";
@@ -15,5 +16,6 @@ class Login {
                     echo "<input type='submit' value='se connecter'>";
                 echo "</form>";
             echo "</div>";
+        echo "</div>";
     }
 }

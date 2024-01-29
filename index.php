@@ -6,87 +6,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/css/style.css">
-        <title>Spotiut'o</title>
+        <title>Spotiut'O</title>
     </head>
     <body>
         <?php
-            require_once('Classes/Provider/Dataloader.php');
 
-            require 'Classes/Autoloader.php';
-            Autoloader::register();
-
-            use SingleAlbum\SelectedAlbum;
-            use SingleAlbum\Details;
-
-            use Filter\FilterAlbum;
-            use Filter\SearchBar;
-
-            use AllAlbum\GenericAlbum;
-            use AllAlbum\Album;
-            use AllAlbum\DisplayAlbums;
-            use AllAlbum\RenderAlbumInterface;
-
-            $dataloader = new Dataloader("data/data.yml");
-            $data = $dataloader->getData(); 
-
-            phpinfo(INFO_VARIABLES);
-
-            require 'Actions/login.php';
-            $login = new Login();
-            $login->buildLogin();
-            echo "<a href='Actions/connexion.php'>Connexion</a>";
-
-            // Tableau d'objet Album
-            $data_objects = array();
-            foreach($data as $content) {
-                array_push($data_objects,new Album(
-                    $content['by'],
-                    $content['entryId'],
-                    $content['genre'],
-                    $content['img'] == "null" ? "default.jpg" : $content['img'],
-                    $content['parent'],
-                    $content['releaseYear'],
-                    $content['title']
-                ));
+            if ($_REQUEST['action'] == null) {
+                require 'Actions/login.php';
+                $login = new Login();
+                $login->buildLogin();
+            } else {
+                require 'Actions/home.php';
             }
 
-            // echo phpinfo(INFO_VARIABLES);
-
-            echo "<div class='Container'>";
-                
-                if ($_REQUEST['id'] != null) {
-                    // Obtenir l'objet de l'album sélectionné
-                    $selectedAlbum = new SelectedAlbum($data_objects);
-                    $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
-                    // Render l'objet
-                    $displayAlbum = new Details($album);
-                    echo $displayAlbum->render();
-                } else {
-                    // Barre de recherche
-                    $searchBar = new SearchBar();
-                    echo $searchBar->render();
-                    if (isset($_POST['search'])) {
-                        $search = $_POST['search'];
-                    } else {
-                        $search = "";
-                    }
-
-                    // Filtrage des albums
-                    if ($search != "") {
-                        $filter = new FilterAlbum($data_objects,$search);
-                        $data_objects = $filter->filterAlbums();
-                        echo "<div id='search-props'>";
-                            echo "<h3>votre recherche : $search</h3>";
-                            echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
-                        echo "</div>";
-                    }
-
-                    // Display des albums
-                    $albums = new DisplayAlbums($data_objects);
-                    $albums->buildAlbums();
-                }
-
-            echo "</div>";
         ?>
     </body>
 </html>
