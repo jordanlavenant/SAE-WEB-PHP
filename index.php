@@ -12,7 +12,7 @@
         <?php
             require_once('Classes/Provider/Dataloader.php');
 
-            require 'Classes/autoloader.php';
+            require 'Classes/Autoloader.php';
             Autoloader::register();
 
             use SingleAlbum\SelectedAlbum;
@@ -29,7 +29,7 @@
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData(); 
 
-            echo "<a href='connexion.php'>Connexion</a>";
+            // echo "<a href='connexion.php'>Connexion</a>";
 
             // Tableau d'objet Album
             $data_objects = array();

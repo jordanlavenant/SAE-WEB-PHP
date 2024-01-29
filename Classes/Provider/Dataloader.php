@@ -26,14 +26,17 @@ class Dataloader {
 
             // Transformer les strings en array pour les genres
             if ($cle == "genre") {
-                $string = substr($element[1],2,-3);
+                $string = substr($element[1],2,-2);
                 $arrayGenre = explode(",", $string);
                 $album[$cle] = $arrayGenre;
             // Transformer les ids en string en intergers
             } else if ($cle == "entryId") {
                 $album[$cle] = intval($element[1]);
+            // Transformer les releaseYear en string en intergers
+            } else if ($cle == "releaseYear") {
+                $album[$cle] = intval($element[1]);
             } else {
-                $album[$cle] = substr($element[1],1,-2);
+                $album[$cle] = substr($element[1],1,-1);
             }
         }
         fclose($file);
