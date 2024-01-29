@@ -1,69 +1,71 @@
 <?php
-require_once('Classes/Provider/Dataloader.php');
+    require_once('Classes/Provider/Dataloader.php');
 
-require 'Classes/Autoloader.php';
-Autoloader::register();
+    require 'Classes/Autoloader.php';
+    Autoloader::register();
 
-use SingleAlbum\SelectedAlbum;
-use SingleAlbum\Details;
+    use SingleAlbum\SelectedAlbum;
+    use SingleAlbum\Details;
 
-use Filter\FilterAlbum;
-use Filter\SearchBar;
+    use Filter\FilterAlbum;
+    use Filter\SearchBar;
 
-use AllAlbum\GenericAlbum;
-use AllAlbum\Album;
-use AllAlbum\DisplayAlbums;
-use AllAlbum\RenderAlbumInterface;
+    use AllAlbum\GenericAlbum;
+    use AllAlbum\Album;
+    use AllAlbum\DisplayAlbums;
+    use AllAlbum\RenderAlbumInterface;
 
-$dataloader = new Dataloader("data/data.yml");
-$data = $dataloader->getData(); 
+    $dataloader = new Dataloader("data/data.yml");
+    $data = $dataloader->getData(); 
 
-// Tableau d'objet Album
-$data_objects = array();
-foreach($data as $content) {
-    array_push($data_objects,new Album(
-        $content['by'],
-        $content['entryId'],
-        $content['genre'],
-        $content['img'] == "null" ? "default.jpg" : $content['img'],
-        $content['parent'],
-        $content['releaseYear'],
-        $content['title']
-    ));
-}
+    phpinfo(INFO_VARIABLES);
 
-echo "<div class='Container'>";
-    
-    if ($_REQUEST['id'] != null) {
-        // Obtenir l'objet de l'album sélectionné
-        $selectedAlbum = new SelectedAlbum($data_objects);
-        $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
-        // Render l'objet
-        $displayAlbum = new Details($album);
-        echo $displayAlbum->render();
-    } else {
-        // Barre de recherche
-        $searchBar = new SearchBar();
-        echo $searchBar->render();
-        if (isset($_POST['search'])) {
-            $search = $_POST['search'];
-        } else {
-            $search = "";
-        }
-
-        // Filtrage des albums
-        if ($search != "") {
-            $filter = new FilterAlbum($data_objects,$search);
-            $data_objects = $filter->filterAlbums();
-            echo "<div id='search-props'>";
-                echo "<h3>votre recherche : $search</h3>";
-                echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
-            echo "</div>";
-        }
-
-        // Display des albums
-        $albums = new DisplayAlbums($data_objects);
-        $albums->buildAlbums();
+    // Tableau d'objet Album
+    $data_objects = array();
+    foreach($data as $content) {
+        array_push($data_objects,new Album(
+            $content['by'],
+            $content['entryId'],
+            $content['genre'],
+            $content['img'] == "null" ? "default.jpg" : $content['img'],
+            $content['parent'],
+            $content['releaseYear'],
+            $content['title']
+        ));
     }
 
-echo "</div>";
+    echo "<div class='Container'>";
+        
+        if ($_REQUEST['id'] != null) {
+            // Obtenir l'objet de l'album sélectionné
+            $selectedAlbum = new SelectedAlbum($data_objects);
+            $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
+            // Render l'objet
+            $displayAlbum = new Details($album);
+            echo $displayAlbum->render();
+        } else {
+            // Barre de recherche
+            $searchBar = new SearchBar();
+            echo $searchBar->render();
+            if (isset($_POST['search'])) {
+                $search = $_POST['search'];
+            } else {
+                $search = "";
+            }
+
+            // Filtrage des albums
+            if ($search != "") {
+                $filter = new FilterAlbum($data_objects,$search);
+                $data_objects = $filter->filterAlbums();
+                echo "<div id='search-props'>";
+                    echo "<h3>votre recherche : $search</h3>";
+                    echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
+                echo "</div>";
+            }
+
+            // Display des albums
+            $albums = new DisplayAlbums($data_objects);
+            $albums->buildAlbums();
+        }
+
+    echo "</div>";

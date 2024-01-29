@@ -1,7 +1,5 @@
 <?php
 
-
-
 function getConnexion(){
     $dbPath = 'BD/bd.sqlite';
     $file_db = new PDO('sqlite:' . $dbPath);
@@ -21,7 +19,7 @@ function creerBd(){
 }
 
 function creerTableAlbum($bd){
-    $requette = "CREATE TABLE IF NOT EXISTS ALBUMS(
+    $requete = "CREATE TABLE IF NOT EXISTS ALBUMS(
         by TEXT,
         entryId INTEGER PRIMARY KEY,
         img TEXT,
@@ -29,52 +27,52 @@ function creerTableAlbum($bd){
         releaseYear INTEGER,
         title TEXT
         )";
-    $bd->exec($requette);
+    $bd->exec($requete);
 }
 
 function creerTableGenres($bd){
-    $requette = "CREATE TABLE IF NOT EXISTS GENRES(
+    $requete = "CREATE TABLE IF NOT EXISTS GENRES(
         idG INTEGER PRIMARY KEY AUTOINCREMENT,
         nomG TEXT
         )";
-    $bd->exec($requette);
+    $bd->exec($requete);
 }
 
 function creerTableGenresAlbum($bd){
-    $requette = "CREATE TABLE IF NOT EXISTS GENRESALBUM(
+    $requete = "CREATE TABLE IF NOT EXISTS GENRESALBUM(
         entryId INTEGER,
         idG INTEGER,
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
         FOREIGN KEY (idG) REFERENCES GENRES (idG)
         )";
-    $bd->exec($requette);
+    $bd->exec($requete);
 }
 
 function creerUser($bd){
-    $requette = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
-        idU INTEGER PRIMARY KEY AUTOINCREMENT,
-        nomU TEXT,
-        prenomU TEXT,
-        mdpU TEXT
+    $requete = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
+        idU INTEGER,
+        emailU TEXT,
+        mdpU TEXT,
+        PRIMARY KEY (idU, emailU)
         )";
-    $bd->exec($requette);
+    $bd->exec($requete);
 }
 
 function creerFavoris($bd){
-    $requette = "CREATE TABLE IF NOT EXISTS FAVORIS(
+    $requete = "CREATE TABLE IF NOT EXISTS FAVORIS(
         idU INTEGER,
         entryId INTEGER,
         FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU),
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId)
         )";
-    $bd->exec($requette);
+    $bd->exec($requete);
 }
 
 function insererGenre($genre){
     try{
         $bd = getConnexion();
-        $requette = "INSERT INTO GENRES (idG, nomG) VALUES (NULL, :nomG)";
-        $stm = $bd->prepare($requette);
+        $requete = "INSERT INTO GENRES (idG, nomG) VALUES (NULL, :nomG)";
+        $stm = $bd->prepare($requete);
         $stm ->bindParam(':nomG',$genre , PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
@@ -102,9 +100,9 @@ function getIdGenre($nomG){
 
 function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title){
     try{
-        $requette = "INSERT INTO ALBUMS (by, entryId, img, parent, releaseYear, title) VALUES (:by, :entryId, :img, :parent, :releaseYear, :title)";
+        $requete = "INSERT INTO ALBUMS (by, entryId, img, parent, releaseYear, title) VALUES (:by, :entryId, :img, :parent, :releaseYear, :title)";
         $bd = getConnexion();
-        $stm = $bd->prepare($requette);
+        $stm = $bd->prepare($requete);
         $stm->bindParam(':by', $by, PDO::PARAM_STR);
         $stm->bindParam(':entryId', $entryId, PDO::PARAM_INT);
         $stm->bindParam(':img', $img, PDO::PARAM_STR);
@@ -135,9 +133,9 @@ function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title
 }
 
 function getEntryId($title){
-    $requette = "SELECT entryId FROM ALBUMS WHERE title = :title";
+    $requete = "SELECT entryId FROM ALBUMS WHERE title = :title";
     $bd = getConnexion();
-    $stm = $bd->prepare($requette);
+    $stm = $bd->prepare($requete);
     $stm -> bindParam(":title",$title, PDO::PARAM_STR);
     $stm -> execute();
     $entryId = $stm->fetchColumn();
@@ -145,22 +143,28 @@ function getEntryId($title){
     return $entryId;
 }
 
-function insererUtilisateur($nom, $prenom, $mdp){
+function insererUtilisateur($email, $mdp){
     $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
-    $requette = "INSERT INTO UTILISATEURS (idU, nomU, prenomU, mdpU) VALUES (NULL, :nomU, :prenomU, :mdpU)";
+    $requete = "INSERT INTO UTILISATEURS (idU, emailU, mdpU) VALUES (:idU, :emailU, :mdpU)";
     $bd = getConnexion();
-    $stm = $bd->prepare($requette);
-    $stm->bindParam(":nomU", $nom, PDO::PARAM_STR);
-    $stm->bindParam(":prenomU", $prenom, PDO::PARAM_STR);
+    
+    $maxIdQuery = "SELECT MAX(idU) AS max_id FROM UTILISATEURS";
+    $result = $bd->query($maxIdQuery);
+    $maxId = $result->fetch(PDO::FETCH_ASSOC)['max_id'];
+    $newId = ($maxId === null) ? 1 : $maxId + 1;
+
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":idU", $newId, PDO::PARAM_INT);
+    $stm->bindParam(":emailU", $email, PDO::PARAM_STR);
     $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
     $stm->execute();
     $bd = null;
 }
 
 function getIdUser($nom, $prenom){
-    $requette = "SELECT idU FROM UTILISATEURS WHERE nomU = :nomU and prenomU = :prenomU";
+    $requete = "SELECT idU FROM UTILISATEURS WHERE nomU = :nomU and prenomU = :prenomU";
     $bd = getConnexion();
-    $stm = $bd->prepare($requette);
+    $stm = $bd->prepare($requete);
     $stm -> bindParam(':nomU', $nom, PDO::PARAM_STR);
     $stm -> bindParam(':prenomU', $prenom, PDO::PARAM_STR);
     $stm-> execute();
@@ -170,9 +174,9 @@ function getIdUser($nom, $prenom){
 }
 
 function verificationMdpUser($idU, $mdp){
-    $requette = "SELECT mdpU FROM UTILISATEURS WHERE idU = :idU";
+    $requete = "SELECT mdpU FROM UTILISATEURS WHERE idU = :idU";
     $bd = getConnexion();
-    $stm =  $bd->prepare($requette);
+    $stm =  $bd->prepare($requete);
     $stm-> bindParam(':idU', $idU, PDO::PARAM_INT);
     $stm-> execute();
     $mdpU = $stm->fetchColumn();
@@ -184,9 +188,9 @@ function ajouterFavori($nom, $prenom, $title){
     $idU = getIdUser($nom, $prenom);
     $entryId = getEntryId($title);
     
-    $requette = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
+    $requete = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
     $bd = getConnexion();
-    $stm = $bd->prepare($requette);
+    $stm = $bd->prepare($requete);
     $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
     $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
     $stm->execute();
