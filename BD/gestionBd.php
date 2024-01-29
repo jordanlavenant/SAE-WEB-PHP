@@ -1,5 +1,7 @@
 <?php
 
+
+
 function getConnexion(){
     $dbPath = 'BD/bd.sqlite';
     $file_db = new PDO('sqlite:' . $dbPath);
@@ -52,7 +54,8 @@ function creerUser($bd){
     $requette = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
         idU INTEGER PRIMARY KEY AUTOINCREMENT,
         nomU TEXT,
-        prenomU TEXT
+        prenomU TEXT,
+        mdpU TEXT
         )";
     $bd->exec($requette);
 }
@@ -132,7 +135,7 @@ function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title
 }
 
 function getEntryId($title){
-    $requette = "SELECT entryId FROM ALBUM WHERE title = :title";
+    $requette = "SELECT entryId FROM ALBUMS WHERE title = :title";
     $bd = getConnexion();
     $stm = $bd->prepare($requette);
     $stm -> bindParam(":title",$title, PDO::PARAM_STR);
@@ -142,18 +145,20 @@ function getEntryId($title){
     return $entryId;
 }
 
-function insererUtilisateur($nom, $prenom){
-    $requette = "INSERT INTO UTILISATEUR (idU, nomU, prenomU) VALUES (NULL, :nomU, :prenomU)";
+function insererUtilisateur($nom, $prenom, $mdp){
+    $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
+    $requette = "INSERT INTO UTILISATEURS (idU, nomU, prenomU, mdpU) VALUES (NULL, :nomU, :prenomU, :mdpU)";
     $bd = getConnexion();
     $stm = $bd->prepare($requette);
     $stm->bindParam(":nomU", $nom, PDO::PARAM_STR);
     $stm->bindParam(":prenomU", $prenom, PDO::PARAM_STR);
+    $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
     $stm->execute();
     $bd = null;
 }
 
 function getIdUser($nom, $prenom){
-    $requette = "SELECT idU FROM UTILISATEUR WHERE nomU = :nomU and prenomU = :prenomU";
+    $requette = "SELECT idU FROM UTILISATEURS WHERE nomU = :nomU and prenomU = :prenomU";
     $bd = getConnexion();
     $stm = $bd->prepare($requette);
     $stm -> bindParam(':nomU', $nom, PDO::PARAM_STR);
@@ -162,6 +167,17 @@ function getIdUser($nom, $prenom){
     $idU = $stm->fetchColumn();
     $bd = null;
     return $idU;
+}
+
+function verificationMdpUser($idU, $mdp){
+    $requette = "SELECT mdpU FROM UTILISATEURS WHERE idU = :idU";
+    $bd = getConnexion();
+    $stm =  $bd->prepare($requette);
+    $stm-> bindParam(':idU', $idU, PDO::PARAM_INT);
+    $stm-> execute();
+    $mdpU = $stm->fetchColumn();
+    $bd = null;
+    return password_verify($mdp, $mdpU);
 }
 
 function ajouterFavori($nom, $prenom, $title){
@@ -177,4 +193,6 @@ function ajouterFavori($nom, $prenom, $title){
     $bd=null;
 }
 // creerBd();
-insererAlbum("Superdrag", 67913, ["Rock", "Punk"], "Superdrag-Stereo_360_Sound.jpg", "Superdrag", 1998, "Stereo 360 Sound");
+// insererUtilisateur("Pilet", "Colin", "toto");
+// echo verificationMdpUser(6, "toto");
+// insererAlbum("Superdrag", 67913, ["Rock", "Punk"], "Superdrag-Stereo_360_Sound.jpg", "Superdrag", 1998, "Stereo 360 Sound");

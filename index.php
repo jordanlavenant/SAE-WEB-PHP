@@ -29,6 +29,8 @@
             $dataloader = new Dataloader("data/data.yml");
             $data = $dataloader->getData(); 
 
+            echo "<a href='connexion.php'>Connexion</a>";
+
             // Tableau d'objet Album
             $data_objects = array();
             foreach($data as $content) {
