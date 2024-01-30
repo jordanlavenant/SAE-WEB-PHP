@@ -20,6 +20,16 @@ class Register {
                     echo "</div>";
 
                     echo "<div class='input'>";
+                    echo "<label for='nom'>nom</label>";
+                    echo "<input type='text' id='nom' name='nom' placeholder='nom' required>";
+                    echo "</div>";
+
+                    echo "<div class='input'>";
+                    echo "<label for='prenom'>prénom</label>";
+                    echo "<input type='text' id='prenom' name='prenom' placeholder='prenom' required>";
+                    echo "</div>";
+
+                    echo "<div class='input'>";
                     echo "<label for='email'>email</label>";
                     echo "<input type='text' id='email' name='emailRegister' placeholder='email' required>";
                     echo "</div>";

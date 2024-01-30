@@ -19,7 +19,7 @@ function creerBd(){
 }
 
 function creerTableAlbum($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS ALBUMS(
+    $requette = "CREATE TABLE IF NOT EXISTS ALBUMS(
         by TEXT,
         entryId INTEGER PRIMARY KEY,
         img TEXT,
@@ -27,52 +27,52 @@ function creerTableAlbum($bd){
         releaseYear INTEGER,
         title TEXT
         )";
-    $bd->exec($requete);
+    $bd->exec($requette);
 }
 
 function creerTableGenres($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS GENRES(
+    $requette = "CREATE TABLE IF NOT EXISTS GENRES(
         idG INTEGER PRIMARY KEY AUTOINCREMENT,
         nomG TEXT
         )";
-    $bd->exec($requete);
+    $bd->exec($requette);
 }
 
 function creerTableGenresAlbum($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS GENRESALBUM(
+    $requette = "CREATE TABLE IF NOT EXISTS GENRESALBUM(
         entryId INTEGER,
         idG INTEGER,
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
         FOREIGN KEY (idG) REFERENCES GENRES (idG)
         )";
-    $bd->exec($requete);
+    $bd->exec($requette);
 }
 
 function creerUser($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
-        idU INTEGER,
-        emailU TEXT,
-        mdpU TEXT,
-        PRIMARY KEY (idU, emailU)
+    $requette = "CREATE TABLE IF NOT EXISTS UTILISATEURS(
+        emailU TEXT PRIMARY KEY,
+        nomU TEXT,
+        prenomU TEXT,
+        mdpU TEXT
         )";
-    $bd->exec($requete);
+    $bd->exec($requette);
 }
 
 function creerFavoris($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS FAVORIS(
+    $requette = "CREATE TABLE IF NOT EXISTS FAVORIS(
         idU INTEGER,
         entryId INTEGER,
         FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU),
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId)
         )";
-    $bd->exec($requete);
+    $bd->exec($requette);
 }
 
 function insererGenre($genre){
     try{
         $bd = getConnexion();
-        $requete = "INSERT INTO GENRES (idG, nomG) VALUES (NULL, :nomG)";
-        $stm = $bd->prepare($requete);
+        $requette = "INSERT INTO GENRES (idG, nomG) VALUES (NULL, :nomG)";
+        $stm = $bd->prepare($requette);
         $stm ->bindParam(':nomG',$genre , PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
@@ -100,9 +100,9 @@ function getIdGenre($nomG){
 
 function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title){
     try{
-        $requete = "INSERT INTO ALBUMS (by, entryId, img, parent, releaseYear, title) VALUES (:by, :entryId, :img, :parent, :releaseYear, :title)";
+        $requette = "INSERT INTO ALBUMS (by, entryId, img, parent, releaseYear, title) VALUES (:by, :entryId, :img, :parent, :releaseYear, :title)";
         $bd = getConnexion();
-        $stm = $bd->prepare($requete);
+        $stm = $bd->prepare($requette);
         $stm->bindParam(':by', $by, PDO::PARAM_STR);
         $stm->bindParam(':entryId', $entryId, PDO::PARAM_INT);
         $stm->bindParam(':img', $img, PDO::PARAM_STR);
@@ -133,9 +133,9 @@ function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title
 }
 
 function getEntryId($title){
-    $requete = "SELECT entryId FROM ALBUMS WHERE title = :title";
+    $requette = "SELECT entryId FROM ALBUMS WHERE title = :title";
     $bd = getConnexion();
-    $stm = $bd->prepare($requete);
+    $stm = $bd->prepare($requette);
     $stm -> bindParam(":title",$title, PDO::PARAM_STR);
     $stm -> execute();
     $entryId = $stm->fetchColumn();
@@ -143,32 +143,25 @@ function getEntryId($title){
     return $entryId;
 }
 
-function insererUtilisateur($email, $mdp){
+function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
     try {
         $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
-        $requete = "INSERT INTO UTILISATEURS (idU, emailU, mdpU) VALUES (:idU, :emailU, :mdpU)";
+        $requette = "INSERT INTO UTILISATEURS (emailU, nomU, prenomU, mdpU) VALUES (:emailU, :nomU, :prenomU, :mdpU)";
         $bd = getConnexion();
-        $maxIdQuery = "SELECT MAX(idU) AS max_id FROM UTILISATEURS";
-        $result = $bd->query($maxIdQuery);
-        $maxId = $result->fetch(PDO::FETCH_ASSOC)['max_id'];
-        $newId = ($maxId === null) ? 1 : $maxId + 1;
-
-        $stm = $bd->prepare($requete);
-        $stm->bindParam(":idU", $newId, PDO::PARAM_INT);
-        $stm->bindParam(":emailU", $email, PDO::PARAM_STR);
+        $stm = $bd->prepare($requette);
+        $stm->bindParam(":emailU", $emailU, PDO::PARAM_STR);
+        $stm->bindParam(":nomU", $nomU, PDO::PARAM_STR);
+        $stm->bindParam(":prenomU", $prenomU, PDO::PARAM_STR);
         $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
-    } catch (PDOException $ex) {
-        echo "Erreur lors de l'insertion de l'utilisateur";
-        echo $ex->getMessage();
-    }
+    } catch(PDOException $ex){}
 }
 
 function getIdUser($nom, $prenom){
-    $requete = "SELECT idU FROM UTILISATEURS WHERE nomU = :nomU and prenomU = :prenomU";
+    $requette = "SELECT idU FROM UTILISATEURS WHERE nomU = :nomU and prenomU = :prenomU";
     $bd = getConnexion();
-    $stm = $bd->prepare($requete);
+    $stm = $bd->prepare($requette);
     $stm -> bindParam(':nomU', $nom, PDO::PARAM_STR);
     $stm -> bindParam(':prenomU', $prenom, PDO::PARAM_STR);
     $stm-> execute();
@@ -177,11 +170,11 @@ function getIdUser($nom, $prenom){
     return $idU;
 }
 
-function verificationMdpUser($email, $mdp){
-    $requete = "SELECT mdpU FROM UTILISATEURS WHERE emailU = :emailU";
+function verificationMdpUser($idU, $mdp){
+    $requette = "SELECT mdpU FROM UTILISATEURS WHERE idU = :idU";
     $bd = getConnexion();
-    $stm =  $bd->prepare($requete);
-    $stm-> bindParam(':emailU', $email, PDO::PARAM_STR);
+    $stm =  $bd->prepare($requette);
+    $stm-> bindParam(':idU', $idU, PDO::PARAM_INT);
     $stm-> execute();
     $mdpU = $stm->fetchColumn();
     $bd = null;
@@ -192,15 +185,11 @@ function ajouterFavori($nom, $prenom, $title){
     $idU = getIdUser($nom, $prenom);
     $entryId = getEntryId($title);
     
-    $requete = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
+    $requette = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
     $bd = getConnexion();
-    $stm = $bd->prepare($requete);
+    $stm = $bd->prepare($requette);
     $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
     $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
     $stm->execute();
     $bd=null;
 }
-// creerBd();
-// insererUtilisateur("Pilet", "Colin", "toto");
-// echo verificationMdpUser(6, "toto");
-// insererAlbum("Superdrag", 67913, ["Rock", "Punk"], "Superdrag-Stereo_360_Sound.jpg", "Superdrag", 1998, "Stereo 360 Sound");

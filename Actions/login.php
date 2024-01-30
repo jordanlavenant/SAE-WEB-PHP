@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require 'BD/gestionBd.php';
+creerBd();
 
 class Login {
 
@@ -41,12 +42,12 @@ class Login {
         if ($_POST['passwordRegister'] != $_POST['passwordConfirmRegister']) {
             header('Location: index.php?action=register');
         } else {
-            insererUtilisateur($_POST['emailRegister'],$_POST['passwordRegister']);
+            insererUtilisateur($_POST['emailRegister'], $_POST['nom'], $_POST['prenom'], $_POST['passwordRegister']);
         }
 
         // Verification de la connexion
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            verificationMdpUser($_GET['email'], $_GET['password']);
-        }
+        // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        //     verificationMdpUser($_GET['email'], $_GET['password']);
+        // }
     }
 }

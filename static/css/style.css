@@ -166,7 +166,7 @@ p {
 
             & input[type="submit"] {
                 background-color: var(--accent);
-                color: var(--secondary);
+                color: var(--background);
                 border: 1px var(--accent) solid;
                 font-size: 25px;
                 padding: 10px 50px;
@@ -193,7 +193,7 @@ p {
         
                 &:hover {
                     background-color: var(--accent);  
-                    color: var(--secondary);
+                    color: var(--background);
                 }
             }
         }
