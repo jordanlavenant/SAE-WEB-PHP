@@ -63,11 +63,17 @@ p {
     --background: #060e0e;
     --accent: #4b50b4; */
 
-    --primary: #99d8d4;
+    /* --primary: #99d8d4;
     --secondary: #287974;
     --text: #deeeed;
     --background: #081211;
-    --accent: #44cbc3;
+    --accent: #44cbc3; */
+
+    --primary: #24ff00;
+    --secondary: #00f5ff;
+    --text: #ff0000;
+    --background: #f6ff00;
+    --accent: #ff0083;
 }
 
 .Container {
