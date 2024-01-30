@@ -28,12 +28,14 @@ class Login {
             echo "</div>";
         echo "</div>";
 
+        // Forcer l'utilisateur à rester dans la template d'inscription si les mots de passe ne correspondent pas
         if ($_POST['passwordRegister'] != $_POST['passwordConfirmRegister']) {
             header('Location: index.php?action=register');
         } else {
             insererUtilisateur($_POST['emailRegister'],$_POST['passwordRegister']);
         }
 
+        // Verification de la connexion
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             verificationMdpUser($_GET['email'], $_GET['password']);
         }
