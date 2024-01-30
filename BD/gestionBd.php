@@ -144,21 +144,25 @@ function getEntryId($title){
 }
 
 function insererUtilisateur($email, $mdp){
-    $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
-    $requete = "INSERT INTO UTILISATEURS (idU, emailU, mdpU) VALUES (:idU, :emailU, :mdpU)";
-    $bd = getConnexion();
-    
-    $maxIdQuery = "SELECT MAX(idU) AS max_id FROM UTILISATEURS";
-    $result = $bd->query($maxIdQuery);
-    $maxId = $result->fetch(PDO::FETCH_ASSOC)['max_id'];
-    $newId = ($maxId === null) ? 1 : $maxId + 1;
+    try {
+        $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
+        $requete = "INSERT INTO UTILISATEURS (idU, emailU, mdpU) VALUES (:idU, :emailU, :mdpU)";
+        $bd = getConnexion();
+        $maxIdQuery = "SELECT MAX(idU) AS max_id FROM UTILISATEURS";
+        $result = $bd->query($maxIdQuery);
+        $maxId = $result->fetch(PDO::FETCH_ASSOC)['max_id'];
+        $newId = ($maxId === null) ? 1 : $maxId + 1;
 
-    $stm = $bd->prepare($requete);
-    $stm->bindParam(":idU", $newId, PDO::PARAM_INT);
-    $stm->bindParam(":emailU", $email, PDO::PARAM_STR);
-    $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
-    $stm->execute();
-    $bd = null;
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(":idU", $newId, PDO::PARAM_INT);
+        $stm->bindParam(":emailU", $email, PDO::PARAM_STR);
+        $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $ex) {
+        echo "Erreur lors de l'insertion de l'utilisateur";
+        echo $ex->getMessage();
+    }
 }
 
 function getIdUser($nom, $prenom){
@@ -173,11 +177,11 @@ function getIdUser($nom, $prenom){
     return $idU;
 }
 
-function verificationMdpUser($idU, $mdp){
-    $requete = "SELECT mdpU FROM UTILISATEURS WHERE idU = :idU";
+function verificationMdpUser($email, $mdp){
+    $requete = "SELECT mdpU FROM UTILISATEURS WHERE emailU = :emailU";
     $bd = getConnexion();
     $stm =  $bd->prepare($requete);
-    $stm-> bindParam(':idU', $idU, PDO::PARAM_INT);
+    $stm-> bindParam(':emailU', $email, PDO::PARAM_STR);
     $stm-> execute();
     $mdpU = $stm->fetchColumn();
     $bd = null;

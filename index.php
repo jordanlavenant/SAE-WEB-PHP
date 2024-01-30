@@ -11,12 +11,18 @@
     <body>
         <?php
 
-            if ($_REQUEST['action'] == null) {
+            if ($_REQUEST['action'] == null || $_REQUEST['action'] == "login") {
                 require 'Actions/login.php';
                 $login = new Login();
                 $login->buildLogin();
-            } else {
+            } else if ($_REQUEST['action'] == "register") {
+                require 'Actions/register.php';
+                $register = new Register();
+                $register->buildRegister();
+            } else if ($_REQUEST['action'] == "home") {
                 require 'Actions/home.php';
+            } else {
+                require 'Actions/unkown.php';
             }
 
         ?>

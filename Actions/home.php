@@ -18,8 +18,6 @@
     $dataloader = new Dataloader("data/data.yml");
     $data = $dataloader->getData(); 
 
-    phpinfo(INFO_VARIABLES);
-
     // Tableau d'objet Album
     $data_objects = array();
     foreach($data as $content) {

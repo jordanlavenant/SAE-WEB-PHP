@@ -62,6 +62,22 @@ p {
     padding: 2rem 2rem;
 }
 
+.Login, .Register { 
+    
+
+    & .input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }   
+
+    & input[type="submit"] {
+        margin-top: 10px;
+    }
+}
+
+
 #searchbar {
     padding: 1%;
     display: flex;
