@@ -41,7 +41,7 @@ class Login {
         // Forcer l'utilisateur à rester dans la template d'inscription si les mots de passe ne correspondent pas
         if ($_POST['passwordRegister'] != $_POST['passwordConfirmRegister']) {
             header('Location: index.php?action=register');
-        } else {
+        } else if (isset($_POST['emailRegister']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['passwordRegister'])) {
             insererUtilisateur($_POST['emailRegister'], $_POST['nom'], $_POST['prenom'], $_POST['passwordRegister']);
         }
 
