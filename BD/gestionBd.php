@@ -179,12 +179,11 @@ function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
     } catch(PDOException $ex){}
 }
 
-function getIdUser($nom, $prenom){
-    $requete = "SELECT idU FROM UTILISATEURS WHERE nomU = :nomU and prenomU = :prenomU";
+function getIdUser($email){
+    $requete = "SELECT idU FROM UTILISATEURS WHERE emailU = :emailU";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
-    $stm -> bindParam(':nomU', $nom, PDO::PARAM_STR);
-    $stm -> bindParam(':prenomU', $prenom, PDO::PARAM_STR);
+    $stm -> bindParam(':emailU', $email, PDO::PARAM_STR);
     $stm-> execute();
     $idU = $stm->fetchColumn();
     $bd = null;

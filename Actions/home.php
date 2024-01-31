@@ -10,6 +10,9 @@
         exit();
     }
 
+    session_start();
+    $_SESSION['idU'] = getIdUser($_POST['email']);
+
     require 'Classes/Autoloader.php';
     Autoloader::register();
 

@@ -23,7 +23,7 @@ class Details {
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
             $this->singleData->getTitle(),
-            $this->singleData->getNomGroupe()  
+            $this->singleData->getNomGroupe()
         );
     }
 }
