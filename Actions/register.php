@@ -50,6 +50,12 @@ class Register {
 
                 echo "</form>";
             echo "</div>";
+
+            // if (isset($_REQUEST['warning-message'])) {
+            //     echo "<div id='warning'>{$_REQUEST['warning-message']}</div>";
+            //     unset($_REQUEST['warning-message']); // Clear the warning message after displaying it
+            // }
+
         echo "</div>";
     }
 }

@@ -243,3 +243,10 @@ p {
         text-decoration: none;
     }
 }
+
+#warning {
+    font-family: medium-italic;
+    font-size: 25px;
+    color: red;
+    text-align: center;
+}

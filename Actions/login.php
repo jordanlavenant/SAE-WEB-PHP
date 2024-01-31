@@ -3,11 +3,26 @@
 declare(strict_types=1);
 
 require 'BD/gestionBd.php';
-creerBd();
 
 class Login {
 
     function buildLogin() { 
+
+        // Si les mots de passes ne correspondent pas
+        if ($_POST['passwordRegister'] != $_POST['passwordConfirmRegister']) {
+            $_REQUEST['warning-message'] = "Les mots de passe doivent correspondre";
+            header('Location: index.php?action=register');
+            exit();
+        } 
+
+        // Insertion
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'
+                && isset($_POST['emailRegister']) 
+                && isset($_POST['nom']) 
+                && isset($_POST['prenom']) 
+                && isset($_POST['passwordRegister'])) {
+            insererUtilisateur($_POST['emailRegister'], $_POST['nom'], $_POST['prenom'], $_POST['passwordRegister']);
+        }
 
         echo "<div class='Container'>";
             echo "<div class='Login'>";
@@ -37,17 +52,5 @@ class Login {
                 echo "</form>";
             echo "</div>";
         echo "</div>";
-
-        // Forcer l'utilisateur à rester dans la template d'inscription si les mots de passe ne correspondent pas
-        if ($_POST['passwordRegister'] != $_POST['passwordConfirmRegister']) {
-            header('Location: index.php?action=register');
-        } else if (isset($_POST['emailRegister']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['passwordRegister'])) {
-            insererUtilisateur($_POST['emailRegister'], $_POST['nom'], $_POST['prenom'], $_POST['passwordRegister']);
-        }
-
-        // Verification de la connexion
-        // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        //     verificationMdpUser($_GET['email'], $_GET['password']);
-        // }
     }
 }

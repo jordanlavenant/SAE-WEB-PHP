@@ -1,10 +1,16 @@
 <?php
     require_once('Classes/Provider/Dataloader.php');
+    require('BD/gestionBd.php');
+
+    if (!verifLogin($_POST['email'], $_POST['password'])) {
+        header('Location: index.php?action=login');
+        exit();
+    }
 
     require 'Classes/Autoloader.php';
     Autoloader::register();
 
-    use SingleAlbum\SelectedAlbum;
+    use SingleAlbum\SelectedAlbum;  
     use SingleAlbum\Details;
 
     use Filter\FilterAlbum;
