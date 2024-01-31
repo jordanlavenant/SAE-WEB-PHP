@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php
-        
+            error_reporting(E_ERROR | E_PARSE);
             if ($_REQUEST['action'] == null || $_REQUEST['action'] == "login") {
                 require 'Actions/login.php';
                 $login = new Login();

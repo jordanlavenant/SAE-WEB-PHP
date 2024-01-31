@@ -1,7 +1,7 @@
 <?php
 
     require_once('Classes/Provider/Dataloader.php');
-    require('BD/gestionBd.php');
+    require_once('BD/gestionBd.php');
 
     if (isset($_POST['email']) 
             && isset($_POST['password']) 
@@ -28,7 +28,8 @@
     use AllAlbum\RenderAlbumInterface;
 
     $dataloader = new Dataloader("data/data.yml");
-    $data = $dataloader->getData(); 
+    $data = $dataloader->getData();
+    $dataloader->insererData(); 
 
     // Tableau d'objet Album
     $data_objects = array();
