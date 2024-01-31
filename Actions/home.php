@@ -1,5 +1,6 @@
 <?php
 
+
     require_once('Classes/Provider/Dataloader.php');
     require('BD/gestionBd.php');
 
@@ -10,8 +11,11 @@
         exit();
     }
 
-    $_SESSION['idU'] = getIdUser($_POST['email']);
-
+    // On set l'id de l'utilisateur dans la variable de session
+    if (!$_SESSION['idU']) {
+        $_SESSION['idU'] = getIdUser($_POST['email']);
+    }
+    
     require 'Classes/Autoloader.php';
     Autoloader::register();
 
