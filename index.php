@@ -10,8 +10,10 @@
     </head>
     <body>
         <?php
-        
+
+            error_reporting(E_ERROR | E_PARSE);
             session_start();
+
 
             if ($_REQUEST['action'] == null || $_REQUEST['action'] == "login") {
                 require 'Actions/login.php';

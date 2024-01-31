@@ -133,6 +133,38 @@ function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title
     } 
 }
 
+function getAlbum(){
+    try{
+        $data = array();
+        $album = array();
+        $requete = "SELECT by, entryId, img, parent, releaseYear, title FROM ALBUMS";
+        $getGenre = "SELECT nomG FROM GENRES NATURAL JOIN GENRESALBUM WHERE entryId=:entryId";
+        $bd = getConnexion();
+        foreach ($bd->query($requete) as $row){
+            $album["by"] = $row['by'];
+            $album["entryId"] = $row['entryId'];
+            $genres = array();
+            $stm = $bd->prepare($getGenre);
+            $stm->bindParam(':entryId', $row['entryId'], PDO::PARAM_INT);
+            $stm->execute();
+            while($g = $stm->fetch()){
+                array_push($genres,$g[0]);
+            }
+            $album["genre"] = $genres;
+            $album["img"] = $row['img'];
+            $album["parent"] = $row['parent'];
+            $album["releaseYear"] = $row['releaseYear'];
+            $album["title"] = $row['title'];
+            $data[] = $album;
+            $album = array();
+        }
+        $bd = null;
+        return $data;
+    } catch(PDOException $ex){
+        echo $ex->getMessage();
+    } 
+}
+
 function getEntryId($title){
     $requete = "SELECT entryId FROM ALBUMS WHERE title = :title";
     $bd = getConnexion();

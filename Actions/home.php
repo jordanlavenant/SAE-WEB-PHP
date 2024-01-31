@@ -2,7 +2,7 @@
 
 
     require_once('Classes/Provider/Dataloader.php');
-    require('BD/gestionBd.php');
+    require_once('BD/gestionBd.php');
 
     if (isset($_POST['email']) 
             && isset($_POST['password']) 
@@ -35,8 +35,9 @@
     use AsideHome\Aside;
 
     $dataloader = new Dataloader("data/data.yml");
-    $data = $dataloader->getData(); 
-    
+    // $data = $dataloader->getData();
+    $data = $dataloader->getDataBd();
+
     // Tableau d'objet Album
     $data_objects = array();
     foreach($data as $content) {
