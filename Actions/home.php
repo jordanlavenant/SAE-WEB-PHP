@@ -12,8 +12,9 @@
     }
 
     // On set l'id de l'utilisateur dans la variable de session
-    if (!$_SESSION['idU']) {
+    if (!$_SESSION['idU'] && !$_SESSION['nomU']) {
         $_SESSION['idU'] = getIdUser($_POST['email']);
+        $_SESSION['nomU'] = getNomUser($_POST['email']);
     }
     
     require 'Classes/Autoloader.php';
@@ -49,45 +50,48 @@
         ));
     }
 
+    echo '<div class="Container">';
 
-    // Aside
-    $aside = new Aside();
-    echo $aside->buildAside();
+        // Aside
+        $aside = new Aside();
+        echo $aside->buildAside();
 
-    echo "<div class='Container'>";
-        
-        if ($_REQUEST['id'] != null) {
-            // Obtenir l'objet de l'album sélectionné
-            $selectedAlbum = new SelectedAlbum($data_objects);
-            $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
-            // Render l'objet
-            $displayAlbum = new Details($album);
-            echo $displayAlbum->render();
-        } else {
-            echo "<main>";
-            // Barre de recherche
-            $searchBar = new SearchBar();
-            echo $searchBar->render();
-            if (isset($_POST['search'])) {
-                $search = $_POST['search'];
+        // Main
+        echo "<main>";
+
+            echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
+            
+            if ($_REQUEST['id'] != null) {
+                // Obtenir l'objet de l'album sélectionné
+                $selectedAlbum = new SelectedAlbum($data_objects);
+                $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
+                // Render l'objet
+                $displayAlbum = new Details($album);
+                echo $displayAlbum->render();
             } else {
-                $search = "";
+                // Barre de recherche
+                $searchBar = new SearchBar();
+                echo $searchBar->render();
+                if (isset($_POST['search'])) {
+                    $search = $_POST['search'];
+                } else {
+                    $search = "";
+                }
+
+                // Filtrage des albums
+                if ($search != "") {
+                    $filter = new FilterAlbum($data_objects,$search);
+                    $data_objects = $filter->filterAlbums();
+                    echo "<div id='search-props'>";
+                        echo "<h3>votre recherche : $search</h3>";
+                        echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
+                    echo "</div>";
+                }
+
+                // Display des albums
+                $albums = new DisplayAlbums($data_objects);
+                $albums->buildAlbums();
             }
 
-            // Filtrage des albums
-            if ($search != "") {
-                $filter = new FilterAlbum($data_objects,$search);
-                $data_objects = $filter->filterAlbums();
-                echo "<div id='search-props'>";
-                    echo "<h3>votre recherche : $search</h3>";
-                    echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
-                echo "</div>";
-            }
-
-            // Display des albums
-            $albums = new DisplayAlbums($data_objects);
-            $albums->buildAlbums();
-            echo "</main>";
-        }
-
+        echo "</main>";
     echo "</div>";

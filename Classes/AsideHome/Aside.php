@@ -12,14 +12,12 @@ class Aside {
         return sprintf(
             '<aside>
                 <ul class="menu">
-                    <li>%s</li>
-                    <li><a href="">accueil</a></li>
+                    <li><a href="index.php?action=home">accueil</a></li>
                     <li><a href="">bibliothèque</a></li>
                     <li><a href="">favoris</a></li>
                 </ul>
-                <a href="">se déconnecter</a>
+                <a href="index.php?action=login">se déconnecter</a>
             </aside>',
-            $_SESSION['idU']
         );
     }
 
