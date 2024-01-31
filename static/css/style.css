@@ -66,11 +66,16 @@ p {
     --accent: #44cbc3;
 }
 
+.Container {
+    display: flex;
+    flex-direction: row;
+}
+
 aside {
+    flex-basis: 20%;
     background-color: var(--background);
-    position: fixed;
     height: 100vh;
-    min-width: 250px;
+    position: fixed;
     border-right: 1px solid var(--accent);
     display: flex;
     flex-direction: column;
@@ -79,8 +84,9 @@ aside {
 
     & ul {
         list-style-type: none;
-        margin: 0;
         padding: 0;
+        padding-bottom: 25px;
+        border-bottom: 1px solid var(--accent);
     }
     
     & a {
@@ -97,7 +103,13 @@ aside {
 }
 
 main {
-    margin-left: 20%;
+    flex-basis: 80%;
+    margin-left: 15%;
+    overflow-y: auto;
+    /* width: min(100%, 80rem);
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-left: 300px; */
 }
 
 .Login, .Register {
