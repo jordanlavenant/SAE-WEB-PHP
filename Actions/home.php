@@ -28,8 +28,8 @@
     use AllAlbum\RenderAlbumInterface;
 
     $dataloader = new Dataloader("data/data.yml");
-    $data = $dataloader->getData();
-    $dataloader->insererData(); 
+    // $data = $dataloader->getData();
+    $data = $dataloader->getDataBd();
 
     // Tableau d'objet Album
     $data_objects = array();

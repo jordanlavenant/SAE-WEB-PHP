@@ -48,6 +48,10 @@ class Dataloader {
         return $data;
     }
 
+    function getDataBd(){
+        return getAlbum();
+    }
+
     function insererData(){
         $data = $this->getData();
         foreach ($data as $donnee){
