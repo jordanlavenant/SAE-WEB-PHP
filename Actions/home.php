@@ -27,9 +27,6 @@
     $dataloader = new Dataloader("data/data.yml");
     $data = $dataloader->getData(); 
 
-
-    print_r($data);
-
     // Tableau d'objet Album
     $data_objects = array();
     foreach($data as $content) {
