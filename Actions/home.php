@@ -35,7 +35,10 @@
     use AsideHome\Aside;
 
     $dataloader = new Dataloader("data/data.yml");
+    // Importation des données brute (yml)
     // $data = $dataloader->getData();
+
+    // Importation des données de la base de données
     $data = $dataloader->getDataBd();
 
     // Tableau d'objet Album
