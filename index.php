@@ -11,6 +11,8 @@
     <body>
         <?php
         
+            session_start();
+
             if ($_REQUEST['action'] == null || $_REQUEST['action'] == "login") {
                 require 'Actions/login.php';
                 $login = new Login();

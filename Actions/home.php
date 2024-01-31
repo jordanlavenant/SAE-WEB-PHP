@@ -10,7 +10,6 @@
         exit();
     }
 
-    session_start();
     $_SESSION['idU'] = getIdUser($_POST['email']);
 
     require 'Classes/Autoloader.php';
@@ -26,6 +25,8 @@
     use AllAlbum\Album;
     use AllAlbum\DisplayAlbums;
     use AllAlbum\RenderAlbumInterface;
+
+    use AsideHome\Aside;
 
     $dataloader = new Dataloader("data/data.yml");
     $data = $dataloader->getData(); 
@@ -44,6 +45,11 @@
         ));
     }
 
+
+    // Aside
+    $aside = new Aside();
+    echo $aside->buildAside();
+
     echo "<div class='Container'>";
         
         if ($_REQUEST['id'] != null) {
@@ -54,6 +60,7 @@
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
         } else {
+            echo "<main>";
             // Barre de recherche
             $searchBar = new SearchBar();
             echo $searchBar->render();
@@ -76,6 +83,7 @@
             // Display des albums
             $albums = new DisplayAlbums($data_objects);
             $albums->buildAlbums();
+            echo "</main>";
         }
 
     echo "</div>";
