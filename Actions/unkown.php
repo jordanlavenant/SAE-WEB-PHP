@@ -1,3 +1,3 @@
-<?php
-
-echo "erreur 404";
+<div id='unkown'>
+    <p>404</p>
+</div>

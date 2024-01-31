@@ -11,7 +11,7 @@
     <body>
         <?php
 
-            if ($_REQUEST['action'] == null || $_REQUEST['action'] == "login") {
+            if ($_REQUEST['action'] == "login") {
                 require 'Actions/login.php';
                 $login = new Login();
                 $login->buildLogin();

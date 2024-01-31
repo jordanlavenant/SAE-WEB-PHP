@@ -208,12 +208,40 @@ p {
 
     & input[type="text"] {
         flex-basis: 80%;
-        padding: 15px;
+        padding: 5px 15px;
+        background-color: transparent;
+        border: 1px var(--text) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 25px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
+
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
     }
 
     & input[type="submit"] {
         flex-basis: 20%;
         padding: 1%;
+        background-color: var(--accent);
+        color: var(--background);
+        border: 1px var(--accent) solid;
+        font-size: 25px;
+        padding: 10px 50px;
+        outline: none;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: var(--accent-hover);  
+            color: var(--accent);
+        }
     }
 }
 
@@ -249,4 +277,17 @@ p {
     font-size: 25px;
     color: red;
     text-align: center;
+}
+
+#unkown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+
+    & p {
+        font-family: medium-italic;
+        font-size: 60px;
+        color: var(--accent);
+    }
 }

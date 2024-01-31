@@ -1,8 +1,11 @@
 <?php
+
     require_once('Classes/Provider/Dataloader.php');
     require('BD/gestionBd.php');
 
-    if (!verifLogin($_POST['email'], $_POST['password'])) {
+    if (isset($_POST['email']) 
+            && isset($_POST['password']) 
+            && !verifLogin($_POST['email'], $_POST['password'])) {
         header('Location: index.php?action=login');
         exit();
     }
