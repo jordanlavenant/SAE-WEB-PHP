@@ -19,12 +19,9 @@
                 require 'Actions/register.php';
                 $register = new Register();
                 $register->buildRegister();
-            } else if ($_REQUEST['action'] == "home") {
-                require 'Actions/home.php';
             } else {
-                require 'Actions/unkown.php';
+                require 'Actions/home.php';
             }
-
         ?>
     </body>
 </html>
