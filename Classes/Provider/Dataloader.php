@@ -35,6 +35,8 @@ class Dataloader {
             // Transformer les releaseYear en string en intergers
             } else if ($cle == "releaseYear") {
                 $album[$cle] = intval($element[1]);
+            } else if ($cle == "img") {
+                $album[$cle] = substr($element[1],1,-2);
             } else {
                 $album[$cle] = substr($element[1],1,-1);
             }

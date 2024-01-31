@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/css/style.css">
-        <title>Spotiut'O</title>
+        <title>Visual Studio Music</title>
     </head>
     <body>
         <?php

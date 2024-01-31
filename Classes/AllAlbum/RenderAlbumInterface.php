@@ -5,5 +5,6 @@ namespace AllAlbum;
 
 interface RenderAlbumInterface
 {
-    public function render();
+    public function renderCard();
+    public function renderCompact();
 }

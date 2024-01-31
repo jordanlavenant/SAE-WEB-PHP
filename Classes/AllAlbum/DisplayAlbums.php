@@ -15,7 +15,7 @@ class DisplayAlbums {
     function buildAlbums() {
         echo "<div class='albums'>";
         foreach($this->data_objects as $album) {
-            echo $album->render();
+            echo $album->renderCard();
         }
         echo "</div>";
     }

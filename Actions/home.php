@@ -29,13 +29,14 @@
     use AllAlbum\GenericAlbum;
     use AllAlbum\Album;
     use AllAlbum\DisplayAlbums;
+    use AllAlbum\DisplayFilteteredAlbums;
     use AllAlbum\RenderAlbumInterface;
 
     use AsideHome\Aside;
 
     $dataloader = new Dataloader("data/data.yml");
     $data = $dataloader->getData(); 
-
+    
     // Tableau d'objet Album
     $data_objects = array();
     foreach($data as $content) {
@@ -89,11 +90,14 @@
                         echo "<h3><span>".count($data_objects)."</span> résultats pour la recherche <span>".$search."</span></h3>";
                     }
                 echo "</div>";
+                // Display des albums filtrés
+                $albums = new DisplayFilteteredAlbums($data_objects);
+                $albums->buildAlbums();
+            } else {
+                // Display des albums
+                $albums = new DisplayAlbums($data_objects);
+                $albums->buildAlbums();
             }
-
-            // Display des albums
-            $albums = new DisplayAlbums($data_objects);
-            $albums->buildAlbums();
         }
 
     echo "</main>";
