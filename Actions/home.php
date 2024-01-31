@@ -81,8 +81,13 @@
                 $filter = new FilterAlbum($data_objects,$search);
                 $data_objects = $filter->filterAlbums();
                 echo "<div id='search-props'>";
-                    echo "<h3>votre recherche : $search</h3>";
-                    echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
+                    if (count($data_objects) == 0) {
+                        echo "<h3>aucun résultat pour la recherche <span>".$search."</span></h3>";
+                    } else if (count($data_objects) == 1) {
+                        echo "<h3><span>".count($data_objects)."</span> résultat pour la recherche <span>".$search."</span></h3>";
+                    } else {
+                        echo "<h3><span>".count($data_objects)."</span> résultats pour la recherche <span>".$search."</span></h3>";
+                    }
                 echo "</div>";
             }
 
