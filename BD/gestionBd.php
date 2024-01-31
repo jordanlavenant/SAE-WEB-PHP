@@ -222,6 +222,17 @@ function getIdUser($email){
     return $idU;
 }
 
+function getNomUser($email){
+    $requete = "SELECT nomU FROM UTILISATEURS WHERE emailU = :emailU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(':emailU', $email, PDO::PARAM_STR);
+    $stm-> execute();
+    $nomU = $stm->fetchColumn();
+    $bd = null;
+    return $nomU;
+}
+
 function verifLogin($emailU, $mdp){
     try {
         $requete = "SELECT * FROM UTILISATEURS WHERE emailU = :emailU"; 

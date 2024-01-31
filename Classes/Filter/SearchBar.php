@@ -10,8 +10,8 @@ class SearchBar {
     function render() {
         return sprintf(
             '<form action="index.php?action=home" id="searchbar" method="post">
-            <input type="text" name="search" placeholder="artiste, album, genre">
-            <input type="submit" value="rechercher">
+                <input type="text" name="search" placeholder="artiste, album, genre">
+                <input type="submit" value="rechercher">
             </form>'
         );
     }
