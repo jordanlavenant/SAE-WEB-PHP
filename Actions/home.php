@@ -1,7 +1,8 @@
 <?php
 
+
     require_once('Classes/Provider/Dataloader.php');
-    require('BD/gestionBd.php');
+    require_once('BD/gestionBd.php');
 
     if (isset($_POST['email']) 
             && isset($_POST['password']) 
@@ -10,9 +11,12 @@
         exit();
     }
 
-    session_start();
-    $_SESSION['idU'] = getIdUser($_POST['email']);
-
+    // On set l'id de l'utilisateur dans la variable de session
+    if (!$_SESSION['idU'] && !$_SESSION['nomU']) {
+        $_SESSION['idU'] = getIdUser($_POST['email']);
+        $_SESSION['nomU'] = getNomUser($_POST['email']);
+    }
+    
     require 'Classes/Autoloader.php';
     Autoloader::register();
 
@@ -25,10 +29,17 @@
     use AllAlbum\GenericAlbum;
     use AllAlbum\Album;
     use AllAlbum\DisplayAlbums;
+    use AllAlbum\DisplayFilteteredAlbums;
     use AllAlbum\RenderAlbumInterface;
 
+    use AsideHome\Aside;
+
     $dataloader = new Dataloader("data/data.yml");
-    $data = $dataloader->getData(); 
+    // Importation des données brute (yml)
+    // $data = $dataloader->getData();
+
+    // Importation des données de la base de données
+    $data = $dataloader->getDataBd();
 
     // Tableau d'objet Album
     $data_objects = array();
@@ -44,7 +55,14 @@
         ));
     }
 
-    echo "<div class='Container'>";
+    // Aside
+    $aside = new Aside();
+    echo $aside->buildAside();
+
+    // Main
+    echo "<main>";
+
+        echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
         
         if ($_REQUEST['id'] != null) {
             // Obtenir l'objet de l'album sélectionné
@@ -68,14 +86,22 @@
                 $filter = new FilterAlbum($data_objects,$search);
                 $data_objects = $filter->filterAlbums();
                 echo "<div id='search-props'>";
-                    echo "<h3>votre recherche : $search</h3>";
-                    echo "<h3>nombre de résultats : ".count($data_objects)."</h3>";
+                    if (count($data_objects) == 0) {
+                        echo "<h3>aucun résultat pour la recherche <span>".$search."</span></h3>";
+                    } else if (count($data_objects) == 1) {
+                        echo "<h3><span>".count($data_objects)."</span> résultat pour la recherche <span>".$search."</span></h3>";
+                    } else {
+                        echo "<h3><span>".count($data_objects)."</span> résultats pour la recherche <span>".$search."</span></h3>";
+                    }
                 echo "</div>";
+                // Display des albums filtrés
+                $albums = new DisplayFilteteredAlbums($data_objects);
+                $albums->buildAlbums();
+            } else {
+                // Display des albums
+                $albums = new DisplayAlbums($data_objects);
+                $albums->buildAlbums();
             }
-
-            // Display des albums
-            $albums = new DisplayAlbums($data_objects);
-            $albums->buildAlbums();
         }
 
-    echo "</div>";
+    echo "</main>";

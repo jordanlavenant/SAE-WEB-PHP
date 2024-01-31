@@ -1,5 +1,8 @@
 <?php
 declare(strict_types=1);
+require_once("BD/gestionBd.php");
+
+
 
 class Dataloader {
 
@@ -35,11 +38,31 @@ class Dataloader {
             // Transformer les releaseYear en string en intergers
             } else if ($cle == "releaseYear") {
                 $album[$cle] = intval($element[1]);
+            } else if ($cle == "img") {
+                $album[$cle] = substr($element[1],1,-2);
             } else {
                 $album[$cle] = substr($element[1],1,-1);
             }
         }
         fclose($file);
         return $data;
+    }
+
+    function getDataBd(){
+        return getAlbum();
+    }
+
+    function insererData(){
+        $data = $this->getData();
+        foreach ($data as $donnee){
+            $by = $donnee['by'];
+            $entryId = $donnee['entryId'];
+            $genre = $donnee['genre'];
+            $img = $donnee['img'];
+            $parent = $donnee['parent'];
+            $releaseYear = $donnee['releaseYear'];
+            $title = $donnee['title'];
+            insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title);
+        }
     }
 }

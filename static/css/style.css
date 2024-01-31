@@ -46,6 +46,8 @@ body {
     margin: 0;
     min-height: 100dvh;
     background-color: var(--background);
+    display: flex;
+    flex-direction: row;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -57,34 +59,81 @@ p {
 }
 
 :root {
-    /* --primary: #81a9ca;
-    --secondary: #0f1024;
-    --text: #e2f3f2;
-    --background: #060e0e;
-    --accent: #4b50b4; */
-
-    --primary: #99d8d4;
+    /* --primary: #99d8d4;
     --secondary: #287974;
     --text: #deeeed;
     --background: #081211;
     --accent: #44cbc3;
+    --hover: #10201e; */
 
-    /* --primary: #24ff00;
-    --secondary: #00f5ff;
-    --text: #ff0000;
-    --background: #f6ff00;
-    --accent: #ff0083; */
+    /* --primary: #7c82ef;
+    --secondary: #681291;
+    --text: #d5d7fa;
+    --background: #04041d;
+    --accent: #d032e6;
+    --hover: #10201e; */
+
+    --primary: #da8ca0;
+    --secondary: #89253e;
+    --text: #f5e9ec;
+    --background: black;
+    --accent: #d2335c;
+    --hover: #d2335c;
 }
 
 .Container {
+    display: flex;
+    flex-direction: row;
+}
+
+aside {
+    flex-basis: 20%;
+    background-color: var(--background);
+    height: 100vh;
+    position: fixed;
+    border-right: 1px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+
+    & ul {
+        list-style-type: none;
+        padding: 0;
+        padding-bottom: 25px;
+        border-bottom: 1px solid var(--accent);
+    }
+    
+    & a {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 25px;
+        transition: .2s all;
+
+        &:hover {
+            color: var(--accent);
+            transition: .2s all;
+        }
+    }
+}
+
+h1 {
+    font-family: black-italic;
+    font-size: 45px;
+    color: var(--accent);
+}
+
+main {
+    flex-basis: 80%;
+    margin-left: 300px;
+    overflow-y: auto;
     width: min(100%, 80rem);
-    margin: 0 auto;
-    padding: 2rem 2rem;
+    /* margin: 0 auto; */
+    padding: 0 5rem;
 }
 
 .Login, .Register {
     width: 100%;
-    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,6 +167,7 @@ p {
                 font-family: black-italic;
                 font-size: 45px;
                 color: var(--accent);
+                margin: 0;
             }
         }
 
@@ -200,14 +250,12 @@ p {
     }
 }
 
-
 #searchbar {
-    padding: 1%;
     display: flex;
     gap: 20px;
 
     & input[type="text"] {
-        flex-basis: 80%;
+        flex-basis: 90%;
         padding: 5px 15px;
         background-color: transparent;
         border: 1px var(--text) solid;
@@ -227,7 +275,8 @@ p {
     }
 
     & input[type="submit"] {
-        flex-basis: 20%;
+        flex-basis: auto;
+        min-width: 250px;
         padding: 1%;
         background-color: var(--accent);
         color: var(--background);
@@ -246,8 +295,14 @@ p {
 }
 
 #search-props {
-    display: flex;
-    justify-content: space-evenly;
+    font-family: medium-italic;
+    font-size: 20px;
+    & h3 {
+        color: var(--text);
+    }
+    & span {
+        color: var(--accent);
+    }
 }
 
 .albums {
@@ -258,6 +313,7 @@ p {
     margin-top: 30px;
 
     & .album {
+        text-decoration: none;
         border: 1px solid black;
 
         & .album-info {
@@ -266,10 +322,53 @@ p {
             max-width: 220px;
         }
     }
+}
 
-    & p {
-        text-decoration: none;
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: medium-italic;
+    font-size: 20px;
+
+    & thead {
+        & tr {
+            border-bottom: 1px solid var(--accent);
+            color: var(--accent);
+            text-align: justify;
+        }
     }
+
+    & tbody {
+        & tr {  
+            cursor: pointer;
+            transition: .2s;
+            padding: 0;
+            
+            &:hover {
+                background-color: var(--hover);
+                color: var(--background);
+                transition: .2s;
+            }
+
+            & td:nth-of-type(1) {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                padding: 1%;
+            }
+
+            & td {
+                text-align: justify;
+                color: var(--text);
+        
+                & img {
+                    height: 50px;
+                    width: 50px;
+                }
+            }   
+        }
+    }
+
 }
 
 #warning {
