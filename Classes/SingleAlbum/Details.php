@@ -13,17 +13,25 @@ class Details {
 
     function render(): string {
         return sprintf(
-            "<div class='album'>
-                <img src='%s' alt='%s'>
-                <div class='album-info'>
-                    <h3>%s</h3>
-                    <p>%s</p>
+            "<section class='album-container'>
+                <div class='album'>
+                    <img src='%s' alt='%s'>
+                    <div class='album-info'>
+                        <h3>%s</h3>
+                        <p>%s</p>
+                        <p>%s</p>
+                        <p>%s</p>
+                    </div>
                 </div>
-            </div>",
+                <div class='related-album'>
+                </div>
+            </section>",
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
             $this->singleData->getTitle(),
-            $this->singleData->getNomGroupe()
+            $this->singleData->getNomGroupe(),
+            $this->singleData->getGenre(),
+            $this->singleData->getReleaseYear()
         );
     }
 }

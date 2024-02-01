@@ -371,6 +371,26 @@ table {
 
 }
 
+.album-container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    width: 100%;
+
+    & .album {
+        background-color: blue;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    & .related-album {
+        background-color: red;
+        width: 100%;
+    }
+
+}
+
 #warning {
     font-family: medium-italic;
     font-size: 25px;
