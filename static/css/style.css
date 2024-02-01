@@ -374,6 +374,25 @@ table {
 .buttonModification {
     display: flex;
     justify-content: flex-end;
+
+    & button {
+        flex-basis: auto;
+        min-width: 250px;
+        padding: 1%;
+        background-color: var(--accent);
+        color: var(--background);
+        border: 1px var(--accent) solid;
+        font-size: 25px;
+        padding: 10px 50px;
+        outline: none;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: var(--accent-hover);  
+            color: var(--accent);
+        }       
+    }
 }
 
 .album-container {

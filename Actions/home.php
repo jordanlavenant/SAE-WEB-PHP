@@ -34,6 +34,8 @@
 
     use AsideHome\Aside;
 
+    use EditAlbum\EditAlbum;
+
     $dataloader = new Dataloader("data/data.yml");
     // Importation des données brute (yml)
     // $data = $dataloader->getData();
