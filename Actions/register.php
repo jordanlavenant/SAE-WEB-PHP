@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-require 'BD/gestionBd.php';
-
 class Register {
 
     function buildRegister() { 
