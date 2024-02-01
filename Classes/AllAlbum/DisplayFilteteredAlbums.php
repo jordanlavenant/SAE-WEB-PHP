@@ -17,8 +17,8 @@ class DisplayFilteteredAlbums {
             echo "<thead>";
                 echo "<tr>";
                     echo "<th>titre</th>";
-                    echo "<th>artiste</th>";
-                    echo "<th>album</th>";
+                    echo "<th>artiste / groupe</th>";
+                    echo "<th>compositeur</th>";
                     echo "<th>année</th>";   
                 echo "</tr>";
             echo "</thead>";

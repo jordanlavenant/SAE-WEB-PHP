@@ -4,6 +4,7 @@
     require_once('Classes/Provider/Dataloader.php');
     require_once('BD/getBd.php');
 
+    // Vérification de la connexion
     if (isset($_POST['email']) 
             && isset($_POST['password']) 
             && !verifLogin($_POST['email'], $_POST['password'])) {
