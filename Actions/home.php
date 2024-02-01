@@ -2,7 +2,7 @@
 
 
     require_once('Classes/Provider/Dataloader.php');
-    require_once('BD/gestionBd.php');
+    require_once('BD/getBd.php');
 
     if (isset($_POST['email']) 
             && isset($_POST['password']) 

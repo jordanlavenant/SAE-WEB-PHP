@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-require 'BD/gestionBd.php';
+require 'BD/insertBd.php';
+require 'BD/getBd.php';
 
 class Login {
 

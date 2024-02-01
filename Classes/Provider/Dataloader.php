@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-require_once("BD/gestionBd.php");
+require_once("BD/getBd.php");
+require_once("BD/insertBd.php");
 
 
 
