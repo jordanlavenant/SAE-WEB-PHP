@@ -13,7 +13,8 @@ class Details {
 
     function render(): string {
         return sprintf(
-            "<section class='album-container'>
+            "<div class='buttonModification'><button type='button'>Modifier les informations de l'album</button></div>
+            <section class='album-container'>
                 <div class='album'>
                     <img src='%s' alt='%s'>
                     <div class='album-info'>

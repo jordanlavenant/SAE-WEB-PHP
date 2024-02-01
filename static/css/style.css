@@ -371,6 +371,11 @@ table {
 
 }
 
+.buttonModification {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .album-container {
     display: flex;
     gap: 50px;
