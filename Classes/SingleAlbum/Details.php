@@ -13,7 +13,9 @@ class Details {
 
     function render(): string {
         return sprintf(
-            "<div class='buttonModification'><button type='button'>Modifier les informations de l'album</button></div>
+            "<div class='modification-album'> 
+                <a href='index.php?action=edit&id=123'>Modifier les informations de l'album</a>
+            </div>
             <section class='album-container'>
                 <div class='album'>
                     <img src='%s' alt='%s'>

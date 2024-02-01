@@ -73,12 +73,19 @@ p {
     --accent: #d032e6;
     --hover: #10201e; */
 
-    --primary: #da8ca0;
+    /*--primary: #da8ca0;
     --secondary: #89253e;
     --text: #f5e9ec;
     --background: black;
     --accent: #d2335c;
-    --hover: #d2335c;
+    --hover: #d2335c;*/
+
+    --text: #d6dbf9;
+    --background: #050921;
+    --primary: #7c8beb;
+    --secondary: #781692;
+    --accent: #0066ff;
+    --hover: #10201e; 
 }
 
 .Container {
@@ -371,27 +378,20 @@ table {
 
 }
 
-.buttonModification {
+.modification-album {
     display: flex;
     justify-content: flex-end;
 
-    & button {
-        flex-basis: auto;
-        min-width: 250px;
-        padding: 1%;
-        background-color: var(--accent);
-        color: var(--background);
-        border: 1px var(--accent) solid;
+    & a {
+        text-decoration: none;
+        color: var(--text);
         font-size: 25px;
-        padding: 10px 50px;
-        outline: none;
-        cursor: pointer;
-        transition: .2s;
+        transition: .2s all;
 
         &:hover {
-            background-color: var(--accent-hover);  
             color: var(--accent);
-        }       
+            transition: .2s all;
+        }
     }
 }
 
