@@ -62,8 +62,6 @@
 
     // Main
     echo "<main>";
-
-        echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
         
         if ($_REQUEST['id'] != null) {
             // Obtenir l'objet de l'album sélectionné
@@ -73,6 +71,8 @@
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
         } else {
+            echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
+
             // Barre de recherche
             $searchBar = new SearchBar();
             echo $searchBar->render();

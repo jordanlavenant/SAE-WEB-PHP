@@ -14,7 +14,9 @@ class Details {
     function render(): string {
         return sprintf(
             "<section class='album-container'>
-                    <div class='album'>
+                <div class='album-content'>
+                    <h2>détail</h2>
+                    <div class='content'>
                         <img src='%s' alt='%s'>
                         <div class='album-info'>
                             <h3>%s</h3>
@@ -30,12 +32,19 @@ class Details {
                     </div>
                 </div>
 
-                <div class='related-album'>
+                <div class='related-album-content'>
+                    <h2>discographie</h2>
+                    <div class='content'>
+
+                    </div>
                 </div>
 
             </section>
+
             <section class='recommended-album'>
-            
+                <h2>mais aussi..</h2>
+                <div class='content'>
+                </div>
             </section>",
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
