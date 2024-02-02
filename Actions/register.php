@@ -7,6 +7,12 @@ class Register {
     function buildRegister() { 
 
         echo "<div class='Register'>";
+
+            echo "<div class='arrival-content'>";
+                echo "<img src='static/images/VisualStudioMusicLogo.png' alt='logo'>";
+                echo "<h1>visual studio music</h1>";
+            echo "</div>";
+
             echo "<form action='index.php?action=login' method='post'>";
 
                 echo "<div class='header'>";
@@ -33,12 +39,12 @@ class Register {
 
                 echo "<div class='input'>";
                 echo "<label for='password'>mot de passe</label>";
-                echo "<input type='password' id='password' name='passwordRegister' placeholder='mot de passe' required>";
+                echo "<input type='password' id='password' name='passwordRegister' placeholder='' required>";
                 echo "</div>";
 
                 echo "<div class='input'>";
                 echo "<label for='passwordConfirm'>confirmer le mot de passe</label>";
-                echo "<input type='password' id='passwordConfirm' name='passwordConfirmRegister' placeholder='confirmer le mot de passe' required>";
+                echo "<input type='password' id='passwordConfirm' name='passwordConfirmRegister' placeholder='' required>";
                 echo "</div>";
 
                 echo "<div class='bottom'>";

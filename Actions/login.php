@@ -28,6 +28,12 @@ class Login {
         }
 
         echo "<div class='Login'>";
+
+            echo "<div class='arrival-content'>";
+                echo "<img src='static/images/VisualStudioMusicLogo.png' alt='logo'>";
+                echo "<h1>visual studio music</h1>";
+            echo "</div>";
+
             echo "<form action='index.php?action=home' method='post'>";
 
                 echo "<div class='header'>";
@@ -44,7 +50,7 @@ class Login {
 
                 echo "<div class='input'>";
                 echo "<label for='password'>mot de passe</label>";
-                echo "<input type='password' id='password' name='password' placeholder='mot de passe' required>";
+                echo "<input type='password' id='password' name='password' placeholder='' required>";
                 echo "</div>";
 
                 echo "<div class='bottom'>";
