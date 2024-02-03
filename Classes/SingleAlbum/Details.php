@@ -31,20 +31,6 @@ class Details {
                         </div>
                     </div>
                 </div>
-
-                <div class='related-album-content'>
-                    <h2>discographie</h2>
-                    <div class='content'>
-
-                    </div>
-                </div>
-
-            </section>
-
-            <section class='recommended-album'>
-                <h2>mais aussi..</h2>
-                <div class='content'>
-                </div>
             </section>",
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
