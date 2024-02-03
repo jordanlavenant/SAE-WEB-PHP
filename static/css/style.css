@@ -321,15 +321,25 @@ main {
 .albums {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
-    flex-direction: row;
     justify-content: space-between;
-    flex-grow: 1;
+    gap: 20px;
+
+
+    /* display: grid;
+    border: 1px red solid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-rows: auto;
+    gap: 3rem; */
+
+    /* width: 100%;
+    column-count: 5;
+    column-gap: 2rem; */
     margin: 50px 0;
 
     & .album {
+        /* margin-top: 4rem;
+        display: inline-block; */
         text-decoration: none;
-        height: fit-content;
         transition: .2s;
 
         & img {
@@ -454,7 +464,7 @@ table {
                 justify-content: space-between;
 
                 & h3 {
-                    font-size: 30px;
+                    font-size: 25px;
                     font-family: black-italic;
                     margin: 0;
                     padding: 0;
@@ -480,11 +490,11 @@ table {
                         padding: 3px 15px;
                         border-radius: 50px;
                     }
-                }
+                }   
 
                 & #genres {
                     font-family: medium-italic;
-                    font-size: 15px;
+                    font-size: 10px;
                 }
             }
 
