@@ -24,6 +24,10 @@
                 require 'Actions/register.php';
                 $register = new Register();
                 $register->buildRegister();
+            } else if ($_REQUEST['action'] == "bibliotheque") {
+                require 'Actions/bibliotheque.php';
+                $bibliotheque = new Bibliotheque();
+                $bibliotheque->buildBibliotheque();
             } else {
                 require 'Actions/home.php';
             }
