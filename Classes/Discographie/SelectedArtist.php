@@ -11,7 +11,7 @@ class SelectedArtist {
         $this->data_objects = $data_objects;
     }
 
-    function getArtist(int $entryId): array {
+    function getArtistData(int $entryId): array {
         $artist = "";
         foreach($this->data_objects as $content) {
             if ($content->getEntryId() == $entryId) {

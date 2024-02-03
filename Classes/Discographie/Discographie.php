@@ -6,14 +6,15 @@ use AllAlbum\DisplayFilteteredAlbums;
 
 class Discographie {
 
-    private Object $artistData;
+    private array $artistData;
 
-    function __construct(Object $data) {    
+    function __construct(array $data) {    
         $this->artistData = $data;
     }
 
     function render(): string {
-        
+        $displayAlbums = new DisplayFilteteredAlbums($this->artistData);
+        return $displayAlbums->buildAlbums();
     }
 }
 
