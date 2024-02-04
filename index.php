@@ -24,6 +24,14 @@
                 require 'Actions/register.php';
                 $register = new Register();
                 $register->buildRegister();
+            } else if ($_REQUEST['action'] == "bibliotheque") {
+                require 'Actions/bibliotheque.php';
+                $bibliotheque = new Bibliotheque();
+                $bibliotheque->buildBibliotheque();
+            } else if ($_REQUEST['action'] == "favoris") {
+                require 'Actions/favoris.php';
+                $favoris = new Favoris();
+                $favoris->buildFavoris();
             } else {
                 require 'Actions/home.php';
             }
