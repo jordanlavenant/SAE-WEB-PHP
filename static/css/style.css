@@ -97,24 +97,61 @@ aside {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 50px;
+    padding: 0 50px;
 
-    & ul {
-        list-style-type: none;
-        padding: 0;
-        padding-bottom: 25px;
-        border-bottom: 1px solid var(--accent);
-    }
+    & section {
+
+        & > a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0;
+            transition: .2s;
+
+            & img {
+                width: 100px;
+                height: 100px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                scale: 1.05;
+                transition: .2s;
+            }
+        }   
+
+        & ul {
+            list-style-type: none;
+            padding: 0;
+            padding: 25px 0;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
+        }
+        
+        & a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 25px;
+            transition: .2s;
     
+            &:hover {
+                color: var(--accent);
+                transition: .2s;
+                scale: 1.05;
+            }
+        }
+    }
+
     & a {
+        margin: 30px 0;
         text-decoration: none;
         color: var(--text);
         font-size: 25px;
-        transition: .2s all;
+        transition: .2s;
 
         &:hover {
             color: var(--accent);
-            transition: .2s all;
+            transition: .2s;
         }
     }
 }
