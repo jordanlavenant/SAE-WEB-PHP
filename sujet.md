@@ -10,7 +10,7 @@ Fonctionalités attendues
 ^Modèle de la BD de musiques  
 ^Affichage des albums
 ^Détail des albums
-Détail d'un artiste avec ses albums
+^Détail d'un artiste avec ses albums
 Edition d'un album
 ^Recherche un peu plus avancée dans les albums (par artiste, année, genre, etc.)
 
