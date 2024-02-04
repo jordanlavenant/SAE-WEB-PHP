@@ -75,7 +75,7 @@
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
 
-            // Discographie
+            // Discographie (à modifié)
             $selectedArtist = new SelectedArtist($data_objects);
             $artistData = $selectedArtist->getArtistData($entryId);
             

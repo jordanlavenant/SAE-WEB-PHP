@@ -459,78 +459,95 @@ table {
 }
 
 .album-container {
-    display: flex;
-    gap: 50px;
-    flex-wrap: wrap;
-    justify-content: space-between;
 
-    .album-content {
-        width: 600px;
+    width: 100%;
+    background-color: #151414;
+    border-radius: 20px;
 
-        & h2 {
-            font-family: black-italic;
-            font-size: 40px;
-            color: var(--accent);
-        }
+    & .content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        box-shadow: 0px 0px 24px 5px #151414;
+        border-radius: 20px;
 
-        .content {
-            background-color: #151414;
+        & .left-part {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
-            border-radius: 20px;
-            gap: 10px;
-            box-shadow: 0px 0px 24px 5px #151414;
-            min-width: 220px;
+
+            & span {
+                background-color: var(--background);
+                padding: 1px 15px;
+                border-radius: 50px;
+            }
 
             & img {
                 border-radius: 20px 0 0 20px;
+                box-shadow: 0px 0px 24px 5px #151414;
                 min-width: 220px;
             }
 
             & .album-info {
-                padding: 20px;
+                color: var(--text);
+                padding: 30px;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-
-                & h3 {
-                    font-size: 25px;
-                    font-family: black-italic;
-                    margin: 0;
-                    padding: 0;
-                    color: var(--text);
-                }
+                justify-content: space-evenly;
 
                 & div {
                     display: flex;
                     flex-wrap: wrap;
+                    align-items: center;
                     gap: 20px;
-                    justify-content: space-between;
+                }
+
+                & h3 {
+                    font-family: black-italic;
+                    font-size: 40px;
+                    margin: 0;
+                    padding: 0;
                 }
 
                 & p {
-                    font-family: black-italic;
-                    margin: 0;
-                    padding: 0;
-                    font-size: 20px;
-                    color: var(--text);
-
-                    & span {
-                        background-color: var(--background);
-                        padding: 3px 15px;
-                        border-radius: 50px;
-                    }
-                }   
-
-                & #genres {
                     font-family: medium-italic;
-                    font-size: 10px;
+                    font-size: 25px;
+                    padding: 0;
+                    margin: 0;
                 }
             }
+        }
 
-            & .props {
-                padding: 30px;
-            }
+            & .buttons {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-end   ;
+            gap: 5px;
+            padding: 0 30px;
+
+            & div { 
+                display: flex;
+                align-items: center ;
+                justify-content: flex-end;
+                color: var(--accent);
+                transition: .2s;
+                scale: 1;
+                gap: 20px;
+
+                & p {
+                    font-family: black-italic;
+                    font-size: 25px;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    scale: 1.05;
+                    transition: .2s;
+                }
+            }            
         }
     }
 
@@ -588,26 +605,5 @@ table {
         font-family: medium-italic;
         font-size: 60px;
         color: var(--accent);
-    }
-}
-
-@media screen and (max-width: 1763px) {
-    .album-container {
-        justify-content: center;
-    }
-
-    .recommended-album {
-        margin-top: 0px;
-    }
-}
-
-@media screen and (max-width: 1074px) {
-    .album-content { 
-        & .content {
-            flex-direction: column;
-            max-height: auto;
-            align-items: center;
-            max-width: 220px;
-        }
     }
 }
