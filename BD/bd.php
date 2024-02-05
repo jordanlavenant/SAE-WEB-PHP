@@ -57,6 +57,25 @@ function creerFavoris($bd){
         idU INTEGER,
         entryId INTEGER,
         FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU),
+        FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
+        PRIMARY KEY (idU, entryId)
+        )";
+    $bd->exec($requete);
+}
+
+function creerPlaylist($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS PLAYLIST(
+        idP INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomP TEXT
+        )";
+    $bd->exec($requete);
+}
+
+function creerAlbumPlaylist($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS ALBUMPLAYLIST(
+        idP INTEGER,
+        entryId INTEGER,
+        FOREIGN KEY (idP) REFERENCES PLAYLIST (idP),
         FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId)
         )";
     $bd->exec($requete);
