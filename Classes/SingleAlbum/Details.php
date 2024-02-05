@@ -19,6 +19,9 @@ class Details {
                 </a>
                 <h1>détail</h1>
             </div>
+            <div class='modification-album'> 
+                <a href='index.php?action=edit&id=123'>Modifier les informations de l'album</a>
+            </div>
             <section class='album-container'>
                 <div class='content'>
                     <div class='left-part'>

@@ -75,19 +75,20 @@ p {
     --accent: #d032e6;
     --hover: #10201e; */
 
-    /*--primary: #da8ca0;
+    --primary: #da8ca0;
     --secondary: #89253e;
     --text: #f5e9ec;
     --background: black;
     --accent: #d2335c;
-    --hover: #d2335c;*/
+    --hover: #d2335c;
 
+    /*
     --text: #d6dbf9;
     --background: #050921;
     --primary: #7c8beb;
     --secondary: #781692;
     --accent: #0066ff;
-    --hover: #10201e; 
+    --hover: #10201e; */
 }
 
 .Container {
