@@ -117,3 +117,17 @@ function verifLogin($emailU, $mdp){
         return false;
     }
 }
+
+function getFavoriU($idU){
+    $favori = array();
+    $requete = "SELECT entryId FROM FAVORIS WHERE idU = :idU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm-> execute();
+    while($g = $stm->fetch()){
+        array_push($favori,$g[0]);
+    }
+    $bd = null;
+    return $favori;
+}

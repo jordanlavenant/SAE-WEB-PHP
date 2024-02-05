@@ -24,6 +24,8 @@
                 require 'Actions/register.php';
                 $register = new Register();
                 $register->buildRegister();
+            } else if ($_REQUEST['action'] == "ajoutFavoris") {
+                require 'Actions/ajoutFavoris.php';
             } else {
                 require 'Actions/home.php';
             }
