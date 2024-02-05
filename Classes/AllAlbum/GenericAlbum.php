@@ -57,9 +57,6 @@ abstract class GenericAlbum implements RenderAlbumInterface
         return substr($genreString,0,-2) == "" ? "pas de genre associé" : substr($genreString,0,-2);
     }
 
-    function test(): string {
-        return "oui";
-    }
 
     function getImg(): string {
         return $this->img;

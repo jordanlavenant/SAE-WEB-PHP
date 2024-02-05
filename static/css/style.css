@@ -170,11 +170,23 @@ main {
     width: min(100%, 80rem);
     padding: 0 5rem;
 
+    & h2 {
+        font-family: black-italic;
+        font-size: 45px;
+        color: var(--accent);
+    }
+
     & .header {
-        margin: 50px 0;
+        margin-top: 50px;
         display: flex;
         flex-direction: row;
         align-items: center;
+
+        & h2 {
+            font-family: black-italic;
+            font-size: 45px;
+            color: var(--accent);
+        }
     
         & a {
             display: flex;
@@ -188,13 +200,6 @@ main {
                 scale: 1.1;
                 transition: .2s;
             }
-        }
-
-        & h1 {
-            font-family: black-italic;
-            font-size: 45px;
-            color: var(--accent);
-            margin: 0;
         }
     }
 }
@@ -391,22 +396,9 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
-
-
-    /* display: grid;
-    border: 1px red solid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    grid-auto-rows: auto;
-    gap: 3rem; */
-
-    /* width: 100%;
-    column-count: 5;
-    column-gap: 2rem; */
     margin: 50px 0;
 
     & .album {
-        /* margin-top: 4rem;
-        display: inline-block; */
         text-decoration: none;
         transition: .2s;
 
@@ -496,10 +488,10 @@ table {
 }
 
 .album-container {
-
     width: 100%;
     background-color: #151414;
     border-radius: 20px;
+    margin: 50px 0;
 
     & .content {
         display: flex;
@@ -587,42 +579,16 @@ table {
             }            
         }
     }
-
-    .related-album-content {
-        width: 600px;
-
-        & h2 {
-            font-family: black-italic;
-            font-size: 40px;
-            color: var(--accent);
-        }
-
-        .content {
-            background-color: #151414;
-            border-radius: 20px;
-            box-shadow: 0px 0px 24px 5px #151414;
-            min-height: 220px;
-        }
-    }
 }
 
-.recommended-album {
-    
-    margin-top: 150px;
-
-    & h2 {
-        font-family: black-italic;
-        font-size: 40px;
-        color: var(--accent);
-    }
-
-    & .content {
-        width: 100%;
-        height: 100dvh; /* temp */
-        background-color: #151414;
-        border-radius: 20px;
-        box-shadow: 0px 0px 24px 5px #151414;
-    }
+.discographie {
+    margin: 50px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #151414;
+    box-shadow: 0px 0px 24px 5px #151414;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 #warning {
