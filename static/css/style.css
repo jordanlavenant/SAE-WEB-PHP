@@ -82,13 +82,20 @@ p {
     --accent: #d2335c;
     --hover: #d2335c;
 
-    /*
-    --text: #d6dbf9;
+    /*--text: #d6dbf9;
     --background: #050921;
     --primary: #7c8beb;
     --secondary: #781692;
     --accent: #0066ff;
-    --hover: #10201e; */
+    --hover: #10201e; 
+
+    --text: #89253e;
+    --background: #f1f6e1;
+    --primary: #f3f3f3;
+    --secondary: #dedcff;
+    --accent: #89253e;
+    --hover: #dedcff;*/
+
 }
 
 .Container {
@@ -518,6 +525,19 @@ table {
             transition: .2s all;
         }
     }
+
+    /*& input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--accent-hover);
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        background-color: var(--accent-hover);
+        color: #333;
+    }*/
 }
 
 .album-container {

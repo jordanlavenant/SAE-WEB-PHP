@@ -38,7 +38,7 @@
     use Discographie\Discographie;
     use Discographie\SelectedArtist;
 
-    use EditAlbum\EditAlbum;
+    use EditAlbum\FormEdit;
 
     $dataloader = new Dataloader("data/data.yml");
     // Importation des données brute (yml)
@@ -67,8 +67,15 @@
 
     // Main
     echo "<main>";
-        
-        if ($_REQUEST['id'] != null) {
+        if ($_REQUEST['action'] == "edit" && $_REQUEST['id'] != null) {
+            $entryId = intval($_REQUEST['id']);
+            $selectedAlbum = new SelectedAlbum($data_objects);
+            $album = $selectedAlbum->getAlbum($entryId);
+            // Render l'objet
+            $edit = new FormEdit($album);
+            echo $edit->render();
+
+        } else if ($_REQUEST['id'] != null) {
             $entryId = intval($_REQUEST['id']);
             // Obtenir l'objet de l'album sélectionné
             $selectedAlbum = new SelectedAlbum($data_objects);
@@ -83,12 +90,6 @@
             
             $displayArtistData = new Discographie($artistData);
             echo $displayArtistData->render();
-        } else if ($_REQUEST['action'] == "edit" && $_REQUEST['id'] != null) {
-            require 'Actions/edit.php';
-            $selectedAlbum = new SelectedAlbum($data_objects);
-            $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
-            $edit = new Edit($album);
-            $edit->buildEdit();
         } else {
             echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
 
