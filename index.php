@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/css/style.css">
+        <link rel="icon" href="static/images/VisualStudioMusicLogo.png" type="image/x-icon">
         <title>Visual Studio Music</title>
     </head>
     <body>
@@ -23,6 +24,14 @@
                 require 'Actions/register.php';
                 $register = new Register();
                 $register->buildRegister();
+            } else if ($_REQUEST['action'] == "bibliotheque") {
+                require 'Actions/bibliotheque.php';
+                $bibliotheque = new Bibliotheque();
+                $bibliotheque->buildBibliotheque();
+            } else if ($_REQUEST['action'] == "favoris") {
+                require 'Actions/favoris.php';
+                $favoris = new Favoris();
+                $favoris->buildFavoris();
             } else {
                 require 'Actions/home.php';
             }

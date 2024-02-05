@@ -7,10 +7,10 @@ réaliser une application présentant le contenu de cette base d'albums de musiq
 Le fichier fixtures.zip contient quelques albums et artistes avec des pochettes d'albums. 
 
 Fonctionalités attendues
-Modèle de la BD de musiques  
+^Modèle de la BD de musiques  
 ^Affichage des albums
-Détail des albums
-Détail d'un artiste avec ses albums
+^Détail des albums
+^Détail d'un artiste avec ses albums
 Edition d'un album
 ^Recherche un peu plus avancée dans les albums (par artiste, année, genre, etc.)
 

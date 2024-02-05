@@ -4,6 +4,7 @@
     require_once('Classes/Provider/Dataloader.php');
     require_once('BD/getBd.php');
 
+    // Vérification de la connexion
     if (isset($_POST['email']) 
             && isset($_POST['password']) 
             && !verifLogin($_POST['email'], $_POST['password'])) {
@@ -34,6 +35,9 @@
 
     use AsideHome\Aside;
 
+    use Discographie\Discographie;
+    use Discographie\SelectedArtist;
+
     use EditAlbum\EditAlbum;
 
     $dataloader = new Dataloader("data/data.yml");
@@ -63,17 +67,25 @@
 
     // Main
     echo "<main>";
-
-        echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
         
         if ($_REQUEST['id'] != null) {
+            $entryId = intval($_REQUEST['id']);
             // Obtenir l'objet de l'album sélectionné
             $selectedAlbum = new SelectedAlbum($data_objects);
-            $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
+            $album = $selectedAlbum->getAlbum($entryId);
             // Render l'objet
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
+
+            // Discographie (à modifié)
+            $selectedArtist = new SelectedArtist($data_objects);
+            $artistData = $selectedArtist->getArtistData($entryId);
+            
+            $displayArtistData = new Discographie($artistData);
+            echo $displayArtistData->render();
         } else {
+            echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
+
             // Barre de recherche
             $searchBar = new SearchBar();
             echo $searchBar->render();

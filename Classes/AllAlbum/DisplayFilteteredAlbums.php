@@ -13,20 +13,22 @@ class DisplayFilteteredAlbums {
     }
 
     function buildAlbums() {
-        echo "<table>";
-            echo "<thead>";
-                echo "<tr>";
-                    echo "<th>titre</th>";
-                    echo "<th>artiste</th>";
-                    echo "<th>album</th>";
-                    echo "<th>année</th>";   
-                echo "</tr>";
-            echo "</thead>";
-            echo "<tbody>";
+        echo "
+        <table>
+            <thead>
+                <tr>
+                    <th>titre</th>
+                    <th>artiste / groupe</th>
+                    <th>compositeur</th>
+                    <th>année</th>;  
+                </tr>
+            </thead>
+            <tbody>";
                 foreach($this->data_objects as $album) {
                     echo $album->renderCompact();
                 }
-            echo "</tbody>";
-        echo "</table>";
+            echo "
+            </tbody>
+       </table>";
     }
 }
