@@ -388,6 +388,7 @@ main {
 }
 
 #search-props {
+    margin: 30px 0;
     font-family: medium-italic;
     font-size: 20px;
     & h3 {
