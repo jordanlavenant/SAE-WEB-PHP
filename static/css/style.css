@@ -81,6 +81,13 @@ p {
     --background: black;
     --accent: #d2335c;
     --hover: #d2335c;
+
+    /* --text: #d6dbf9;
+    --background: #050921;
+    --primary: #7c8beb;
+    --secondary: #781692;
+    --accent: #0066ff;
+    --hover: #10201e; */
 }
 
 .Container {
