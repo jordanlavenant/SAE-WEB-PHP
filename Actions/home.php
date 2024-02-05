@@ -83,6 +83,12 @@
             
             $displayArtistData = new Discographie($artistData);
             echo $displayArtistData->render();
+        } else if ($_REQUEST['action'] == "edit" && $_REQUEST['id'] != null) {
+            require 'Actions/edit.php';
+            $selectedAlbum = new SelectedAlbum($data_objects);
+            $album = $selectedAlbum->getAlbum(intval($_REQUEST['id']));
+            $edit = new Edit($album);
+            $edit->buildEdit();
         } else {
             echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
 

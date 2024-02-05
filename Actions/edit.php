@@ -1,19 +1,28 @@
 <?php
-declare(strict_types=1);
 
-namespace SingleAlbum;
+require_once('Classes/Provider/Dataloader.php');
+require_once('BD/getBd.php');
 
-class Details {
+declare(strict_type=1);
 
-    private Object $singleData;
+require_once 'Classes/AsideHome/Aside.php';
+use AsideHome\Aside;
 
-    function __construct(Object $data) {    
-        $this->singleData = $data;
+class Edit {
+    
+    private Object $album;
+
+    function __construct(Object $album) {    
+        $this->album = $album;
     }
 
-    function render(): string {
+    function buildEdit() {
+
+        $aside = new Aside();
+        echo $aside->buildAside();
+        
         return sprintf("
-            <div clsass='header'>
+        <div class='header'>
                 <a href='index.php?action=home'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
                 </a>
@@ -51,14 +60,33 @@ class Details {
                     </div>
                 </div>
             </section>",
-            $this->singleData->getEntryId(),
-            $this->singleData->getImg(),
-            $this->singleData->getTitle(),
-            $this->singleData->getTitle(),
-            $this->singleData->getNomGroupe(),
-            $this->singleData->getReleaseYear(),
-            $this->singleData->getGenreString(),
+            $this->album.getEntryId(),
+            $this->album.getImg(),
+            $this->album.getTitle(),
+            $this->album.getTitle(),
+            $this->album.getNomGroupe(),
+            $this->album.getReleaseYear(),
+            $this->album.getGenreString(),
         );
     }
 }
-
+        /*<main>
+            <div class='header'>
+                <a href='index.php?action=home'>
+            </div>
+            <form action='index.php?action=edit' method='post'>
+                <label for='title'>Titre de l'album</label>
+                <input type='text' name='title' value='%s'>
+                <label for='artist'>Nom de l'artiste</label>
+                <input type='text' name='artist' value='%s'>
+                <label for='genre'>Genre</label>
+                <input type='text' name='genre' value='%s'>
+                <label for='releaseYear'>Année de sortie</label>
+                <input type='text' name='releaseYear' value='%s'>
+                <label for='img'>Image de l'album</label>
+                <input type='text' name='img' value='%s'>
+                <input type='submit' value='Modifier'>
+            </form>
+        </main>";*/
+    
+?>
