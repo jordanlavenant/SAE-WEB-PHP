@@ -32,6 +32,8 @@
                 require 'Actions/favoris.php';
                 $favoris = new Favoris();
                 $favoris->buildFavoris();
+            } else if ($_REQUEST['action'] == "ajoutFavoris") {
+                require 'Actions/ajoutFavoris.php';
             } else {
                 require 'Actions/home.php';
             }

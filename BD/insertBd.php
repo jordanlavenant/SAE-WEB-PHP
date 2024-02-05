@@ -68,15 +68,14 @@ function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
     } catch(PDOException $ex){}
 }
 
-function ajouterFavori($nom, $prenom, $title){
-    $idU = getIdUser($nom, $prenom);
-    $entryId = getEntryId($title);
-    
-    $requete = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
-    $bd = getConnexion();
-    $stm = $bd->prepare($requete);
-    $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
-    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
-    $stm->execute();
-    $bd=null;
+function ajouterFavori($id, $entryId){
+    try{
+        $requete = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(":idU", $id, PDO::PARAM_INT);
+        $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+        $stm->execute();
+        $bd=null;
+    } catch(PDOException $ex){}
 }
