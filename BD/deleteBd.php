@@ -10,3 +10,12 @@ function retirerFavori($idU, $entryId) {
     $stm->execute();
     $bd = null;
 }
+
+function supprimerPlaylist($idP) {
+    $requete = "DELETE FROM PLAYLISTS WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
