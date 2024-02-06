@@ -164,7 +164,7 @@ aside {
 }
 
 h1 {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     font-family: black-italic;
     font-size: 45px;
     color: var(--accent);
