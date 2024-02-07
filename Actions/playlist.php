@@ -6,6 +6,11 @@ require 'Classes/AsideHome/Aside.php';
 require 'BD/getBd.php';
 use AsideHome\Aside;
 
+if (!accessPlaylist($_SESSION['idU'],$_REQUEST['idP'])) {
+    header('Location: index.php?action=bibliotheque');
+    exit();
+}
+
 class Playlist {
 
     private array $playlistProps;
