@@ -75,12 +75,19 @@ p {
     --accent: #d032e6;
     --hover: #10201e; */
 
-    --primary: #da8ca0;
+    /* --primary: #da8ca0;
     --secondary: #89253e;
     --text: #f5e9ec;
     --background: black;
     --accent: #d2335c;
-    --hover: #d2335c;
+    --hover: #d2335c; */
+
+    --text: #d6dbf9;
+    --background: #050921;
+    --primary: #7c8beb;
+    --secondary: #781692;
+    --accent: #0066ff;
+    --hover: #10201e;
 }
 
 .Container {
@@ -157,7 +164,7 @@ aside {
 }
 
 h1 {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     font-family: black-italic;
     font-size: 45px;
     color: var(--accent);
@@ -381,6 +388,7 @@ main {
 }
 
 #search-props {
+    margin: 30px 0;
     font-family: medium-italic;
     font-size: 20px;
     & h3 {
@@ -489,7 +497,7 @@ table {
 
 .album-container {
     width: 100%;
-    background-color: #151414;
+    background-color: #000b16;
     border-radius: 20px;
     margin: 50px 0;
 
@@ -498,7 +506,7 @@ table {
         justify-content: space-between;
         flex-wrap: wrap;
         align-items: center;
-        box-shadow: 0px 0px 24px 5px #151414;
+        box-shadow: 0px 0px 24px 5px #000b16;
         border-radius: 20px;
 
         & .left-part {
@@ -514,7 +522,7 @@ table {
 
             & img {
                 border-radius: 20px 0 0 20px;
-                box-shadow: 0px 0px 24px 5px #151414;
+                box-shadow: 0px 0px 24px 5px #000b16;
                 min-width: 220px;
             }
 
@@ -585,8 +593,8 @@ table {
     margin: 50px 0;
     max-height: 300px;
     overflow-y: auto;
-    background-color: #151414;
-    box-shadow: 0px 0px 24px 5px #151414;
+    background-color: #000b16;
+    box-shadow: 0px 0px 24px 5px #000b16;
     border-radius: 20px;
     padding: 20px;
 }

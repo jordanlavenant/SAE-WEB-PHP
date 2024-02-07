@@ -30,7 +30,7 @@ class Login {
         echo "<div class='Login'>";
 
             echo "<div class='arrival-content'>";
-                echo "<img src='static/images/VisualStudioMusicLogo.png' alt='logo'>";
+                echo "<img src='static/images/VisualStudioMusicLogo2.png' alt='logo'>";
                 echo "<h1>visual studio music</h1>";
             echo "</div>";
 
