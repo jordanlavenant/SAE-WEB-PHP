@@ -80,15 +80,18 @@ function ajouterFavori($id, $entryId){
     } catch(PDOException $ex){}
 }
 
-function nouvellePlaylist($nomP){
+function nouvellePlaylist($nomP, $idU){
     try{
-        $requete = "INSERT INTO PLAYLISTS (idP, nomP) VALUES (NULL, :nomP)";
+        $requete = "INSERT INTO PLAYLISTS (idP, nomP, idU) VALUES (NULL, :nomP, :idU)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
         $stm->bindParam(':nomP', $nomP, PDO::PARAM_STR);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
         $stm->execute();
         $bd = null;
-    } catch(PDOException $ex){}
+    } catch(PDOException $ex){
+        echo $ex;
+    }
 }
 
 function ajouerALaPlaylist($nomP, $entryId){

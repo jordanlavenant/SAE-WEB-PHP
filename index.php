@@ -34,6 +34,8 @@
                 $favoris->buildFavoris();
             } else if ($_REQUEST['action'] == "ajoutFavoris") {
                 require 'Actions/ajoutFavoris.php';
+            } else if ($_REQUEST['action'] == "ajoutPlaylist") {
+                require 'Actions/ajoutPlaylist.php';
             } else {
                 require 'Actions/home.php';
             }

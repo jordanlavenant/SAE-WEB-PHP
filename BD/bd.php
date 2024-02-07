@@ -2,16 +2,20 @@
 require_once("BD/connexionBd.php");
 function creerBd(){
     $bd = getConnexion();
-    creerTableAlbum($bd);
+    creerTableAlbums($bd);
     creerTableGenres($bd);
     creerTableGenresAlbum($bd);
     creerUser($bd);
+    creerArtistes($bd);
     creerFavoris($bd);
+    creerPlaylists($bd);
+    creerPlaylistsUtilsateur($bd);
+    creerAlbumsPlaylist($bd);
     $bd = null;
 
 }
 
-function creerTableAlbum($bd){
+function creerTableAlbums($bd){
     $requete = "CREATE TABLE IF NOT EXISTS ALBUMS(
         by TEXT,
         entryId INTEGER PRIMARY KEY,
@@ -52,6 +56,16 @@ function creerUser($bd){
     $bd->exec($requete);
 }
 
+function creerArtistes($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS ARTISTES(
+        idA INTEGER PRIMARY KEY,
+        nomA TEXT,
+        prenomA TEXT,
+        pseudo TEXT
+        )";
+    $bd->exec($requete);
+}
+
 function creerFavoris($bd){
     $requete = "CREATE TABLE IF NOT EXISTS FAVORIS(
         idU INTEGER,
@@ -63,16 +77,18 @@ function creerFavoris($bd){
     $bd->exec($requete);
 }
 
-function creerPlaylist($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS PLAYLIST(
+function creerPlaylists($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS PLAYLISTS(
         idP INTEGER PRIMARY KEY AUTOINCREMENT,
-        nomP TEXT
+        nomP TEXT UNIQUE,
+        idU INTEGER,
+        FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU)
         )";
     $bd->exec($requete);
 }
 
-function creerAlbumPlaylist($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS ALBUMPLAYLIST(
+function creerAlbumsPlaylist($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS ALBUMSPLAYLIST(
         idP INTEGER,
         entryId INTEGER,
         FOREIGN KEY (idP) REFERENCES PLAYLIST (idP),
