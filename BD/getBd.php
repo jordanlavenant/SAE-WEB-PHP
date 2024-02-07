@@ -133,12 +133,24 @@ function getFavoriU($idU){
 }
 
 function getPlaylistsU($idU){
-    $requete = "SELECT nomP FROM PLAYLISTS WHERE idU = :idU";
+    $playlists = array();
+    $requete = "SELECT * FROM PLAYLISTS WHERE idU = :idU";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
     $stm-> execute();
     $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getPlaylistProps($idP) {
+    $requete = "SELECT * FROM PLAYLISTS WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $data = $stm->fetch();
     $bd = null;
     return $data;
 }
@@ -153,6 +165,23 @@ function isFavorite($idU, $entryId){
     $favori = $stm->fetch();
     $bd = null;
     if ($favori){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function accessPlaylist($idU, $idP) {
+    $requete = "SELECT * FROM PLAYLISTS WHERE idU = :idU AND idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $playlist = $stm->fetch();
+    $bd = null; 
+    // print_r($playlist);
+    if ($playlist){
         return true;
     } else {
         return false;

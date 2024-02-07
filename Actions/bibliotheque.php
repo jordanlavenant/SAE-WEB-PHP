@@ -12,6 +12,7 @@ class Bibliotheque {
     function buildBibliotheque() {
         $idU = $_SESSION['idU'];
         $playlists = getPlaylistsU($idU);
+        // print_r($playlists[0]);
 
         // Aside 
         $aside = new Aside();
@@ -24,14 +25,20 @@ class Bibliotheque {
                 </a>
                 <h1>bibliothèque</h1>
             </div>";
-        echo "<form action='index.php?action=ajoutPlaylist' method='post'>";
-        echo "<input type='text' id='nomP' name='nomP' required>";
-        echo "<input type='submit' value='Nouvelle Playlist'>";
-        echo "</form>";
-        foreach ($playlists as $p) {
-            echo "<h2>" . $p[0] . "</h2>";
-    
-        }
+        echo "
+            <form action='index.php?action=ajoutPlaylist' method='post'>
+                <input type='text' id='nomP' name='nomP' required>
+                <input type='submit' value='Nouvelle Playlist'>
+            </form>";
+        echo "<section class='playlist-container'>";
+            foreach ($playlists as $p) {
+                echo "
+                <a class='playlist-content' href=index.php?action=playlist&idP=".$p['idP'].">
+                    <h2>". $p['nomP'] ."</h2>
+                </a>
+                ";
+            }
+            echo "</section>";  
         echo "</main>";
     }
 }

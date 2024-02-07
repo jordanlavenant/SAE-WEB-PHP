@@ -599,6 +599,10 @@ table {
     padding: 20px;
 }
 
+.playlist-container {
+
+}
+
 #warning {
     font-family: medium-italic;
     font-size: 25px;
