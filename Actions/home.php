@@ -84,8 +84,8 @@
             echo $displayArtistData->render();
 
             // Related albums
-            $selectedArtist = new SelectedArtist($data_objects);
-            $genres = $selectedArtist->getGenre($entryId);
+            // $selectedArtist = new SelectedArtist($data_objects);
+            // $genres = $selectedArtist->getGenre($entryId);
 
         } else {
             echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
