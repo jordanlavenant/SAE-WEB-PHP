@@ -94,12 +94,12 @@ function nouvellePlaylist($nomP, $idU){
     }
 }
 
-function ajouerALaPlaylist($nomP, $entryId){
+function ajouerALaPlaylist($idP, $entryId){
     try{
         $requete = "INSERT INTO ALBUMPLAYLIST (idP, entryId) VALUES (:idP, :entryId)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
-        $stm->bindParam(":idP", $nomP, PDO::PARAM_INT);
+        $stm->bindParam(":idP", $idP, PDO::PARAM_INT);
         $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
         $stm->execute();
         $bd=null;
