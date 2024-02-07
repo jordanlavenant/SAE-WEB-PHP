@@ -134,13 +134,24 @@ function getFavoriU($idU){
 
 function getPlaylistsU($idU){
     $playlists = array();
-    $requete = "SELECT nomP FROM PLAYLISTS WHERE idU = :idU";
+    $requete = "SELECT * FROM PLAYLISTS WHERE idU = :idU";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
     $stm-> execute();
     $data = $stm->fetchAll();
     // print_r($data);
+    $bd = null;
+    return $data;
+}
+
+function getPlaylistProps($idP) {
+    $requete = "SELECT * FROM PLAYLISTS WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $data = $stm->fetch();
     $bd = null;
     return $data;
 }

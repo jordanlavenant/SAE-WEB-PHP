@@ -28,6 +28,10 @@
                 require 'Actions/bibliotheque.php';
                 $bibliotheque = new Bibliotheque();
                 $bibliotheque->buildBibliotheque();
+            } else if ($_REQUEST['action'] == "playlist") {
+                require 'Actions/playlist.php';
+                $playlist = new Playlist($_REQUEST['idP']);
+                $playlist->buildPlaylist();
             } else if ($_REQUEST['action'] == "favoris") {
                 require 'Actions/favoris.php';
                 $favoris = new Favoris();
