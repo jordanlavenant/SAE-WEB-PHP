@@ -38,6 +38,9 @@
     use Discographie\Discographie;
     use Discographie\SelectedArtist;
 
+    use Playlists\DisplayPlaylists;
+
+
     $dataloader = new Dataloader("data/data.yml");
     // Importation des données brute (yml)
     // $data = $dataloader->getData();

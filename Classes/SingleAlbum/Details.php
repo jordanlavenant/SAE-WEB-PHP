@@ -2,19 +2,41 @@
 declare(strict_types=1);
 
 namespace SingleAlbum;
+use Playlists\DisplayPlaylists;
 
 class Details {
 
     private Object $singleData;
     private bool $liked;
+    private Object $playlists;
 
     function __construct(Object $data) {    
         $this->singleData = $data;
         $this->liked = isFavorite($_SESSION['idU'], $_REQUEST['id']);
+        $this->playlists = new DisplayPlaylists($_SESSION['idU']);
     }
 
     function render(): string {
+
+        print_r($this->playlists->buildPlaylists());
+
         return sprintf("
+            <script>
+                function togglePopup(){
+                    let popup = document.querySelector('#popup-overlay');
+                    popup.classList.toggle('open');
+                }
+            </script>
+
+            <div id='popup-overlay' class=''>
+                <div class='popup-content'>
+                    <h2>selectionnez une playlist</h2>
+                    <a href='%s' onclick='togglePopup()' class='popup-exit'>fermer</a>
+                    <div class='playlists-list'>
+                    </div>
+                </div>
+            </div>
+
             <div class='header'>
                 <a href='index.php?action=home'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
@@ -41,7 +63,7 @@ class Details {
                         </div>
                         <div>
                             <p>ajouter à la bibliothèque</p>
-                            <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(0,102,255,1);transform: ;msFilter:;'><path d='M3 8v11c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.806 5 19c0-.101.009-.191.024-.273.112-.576.584-.717.988-.727H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v3zm3-4h13v12H5V5c0-.806.55-.988 1-1z'></path><path d='M11 14h2v-3h3V9h-3V6h-2v3H8v2h3z'></path></svg>
+                            <svg onclick='togglePopup()' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(0,102,255,1);transform: ;msFilter:;'><path d='M3 8v11c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.988 5 19.806 5 19c0-.101.009-.191.024-.273.112-.576.584-.717.988-.727H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v3zm3-4h13v12H5V5c0-.806.55-.988 1-1z'></path><path d='M11 14h2v-3h3V9h-3V6h-2v3H8v2h3z'></path></svg>
                         </div>
                         <div>
                             <p>%s</p>
@@ -52,6 +74,8 @@ class Details {
                     </div>
                 </div>
             </section>",
+            "javascript:void(0)",
+            // $this->playlists->buildPlaylists(),
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
             $this->singleData->getTitle(),

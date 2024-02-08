@@ -15,7 +15,6 @@ function getIdGenre($nomG){
         echo "Erreur lors de la récupération de l'idG";
         echo $ex->getMessage();
     } 
-
 }
 
 function getAlbum(){
@@ -75,8 +74,6 @@ function getLastIdUser() {
         echo $ex->getMessage();
     }
 }
-
-
 
 function getIdUser($email){
     $requete = "SELECT idU FROM UTILISATEURS WHERE emailU = :emailU";
@@ -184,6 +181,52 @@ function accessPlaylist($idU, $idP) {
     if ($playlist){
         return true;
     } else {
+        return false;
+    }
+}
+
+function inPlaylist($entryId, $idP) {
+    $requete = "SELECT * FROM ALBUMSPLAYLIST WHERE idP = :idP AND entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $album = $stm->fetch();
+    $bd = null;
+    if ($album){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function addPlaylist($entryId, $idP) { 
+    try {
+        $requete = "INSERT INTO ALBUMSPLAYLIST (idP, entryId) VALUES (:idP, :entryId)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+        $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT); 
+        $stm->execute();
+        $bd = null;
+        return true;
+    } catch (PDOException $ex) {
+        return false;
+    }
+}
+
+function removePlaylist($entryId, $idP) {
+    try {
+        $requete = "DELETE FROM ALBUMSPLAYLIST WHERE idP = :idP AND entryId = :entryId";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+        $stm -> bindParam(":entryId", $entryId, PDO::PARAM);
+        $stm->execute();
+        $bd = null;
+        return true;
+    } catch (PDOException $ex) {
         return false;
     }
 }
