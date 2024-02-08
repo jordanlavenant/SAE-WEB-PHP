@@ -12,11 +12,6 @@
         exit();
     }
 
-    if (!isset($_POST['email'])) {
-        header('Location: index.php?action=login');
-        exit();
-    }
-
     // On set l'id de l'utilisateur dans la variable de session
     if (!$_SESSION['idU'] && !$_SESSION['nomU']) {
         $_SESSION['idU'] = getIdUser($_POST['email']);
