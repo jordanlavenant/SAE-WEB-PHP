@@ -34,7 +34,7 @@ class Login {
                 echo "<h1>visual studio music</h1>";
             echo "</div>";
 
-            echo "<form action='index.php?action=home' method='post'>";
+            echo "<form action='index.php?action=verifConnexion' method='post'>";
 
                 echo "<div class='header'>";
                     echo "<a href='index.php?action=login'>";

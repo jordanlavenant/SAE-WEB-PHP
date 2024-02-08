@@ -14,7 +14,15 @@
 
             error_reporting(E_ERROR | E_PARSE);
             session_start();
-            
+
+
+            if (!isset($_SESSION['idU'])
+                    && $_REQUEST['action'] != 'login'
+                    && $_REQUEST['action'] != 'register'
+                    && $_REQUEST['action'] != 'verifConnexion') {
+                header('Location: index.php?action=login');
+            }
+                    
             switch ($_REQUEST['action']) {
                 case null:
                     require 'Actions/login.php';
@@ -30,6 +38,9 @@
                     require 'Actions/register.php';
                     $register = new Register();
                     $register->buildRegister();
+                    break;
+                case "verifConnexion":
+                    require 'Actions/verifConnexion.php';
                     break;
                 case "bibliotheque":
                     require 'Actions/bibliotheque.php';
