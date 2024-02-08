@@ -9,7 +9,6 @@ function creerBd(){
     creerArtistes($bd);
     creerFavoris($bd);
     creerPlaylists($bd);
-    creerPlaylistsUtilsateur($bd);
     creerAlbumsPlaylist($bd);
     $bd = null;
 
@@ -80,7 +79,7 @@ function creerFavoris($bd){
 function creerPlaylists($bd){
     $requete = "CREATE TABLE IF NOT EXISTS PLAYLISTS(
         idP INTEGER PRIMARY KEY AUTOINCREMENT,
-        nomP TEXT UNIQUE,
+        nomP TEXT,
         idU INTEGER,
         FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU)
         )";

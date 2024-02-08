@@ -15,6 +15,12 @@
             error_reporting(E_ERROR | E_PARSE);
             session_start();
 
+            if (!isset($_SESSION['idU']) 
+                    && $_REQUEST['action'] != 'login'
+                    && $_REQUEST['action'] != 'home') {
+                header('Location: index.php?action=login');
+                exit();
+            }
 
             switch ($_REQUEST['action']) {
                 case null:
@@ -32,6 +38,8 @@
                     $register = new Register();
                     $register->buildRegister();
                     break;
+                case "home":
+                    require 'Actions/home.php';
                 case "bibliotheque":
                     require 'Actions/bibliotheque.php';
                     $bibliotheque = new Bibliotheque();
@@ -57,7 +65,9 @@
                     require 'Actions/supprimerPlaylist.php';
                     break;
                 default:
-                    require 'Actions/home.php';
+                    require 'Actions/login.php';
+                    $login = new Login();
+                    $login->buildLogin();   
                     break;
             }
         ?>

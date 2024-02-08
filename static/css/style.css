@@ -183,6 +183,65 @@ main {
         color: var(--accent);
     }
 
+    & .header-props {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+        & div {
+            display: flex;
+            align-items: center;
+
+            & a {
+                display: flex;
+            }
+        }
+
+        & form {
+            display: flex;
+            gap: 20px;
+
+            & input[type="text"] {
+                width: 200px;
+                padding: 0 15px;
+                background-color: transparent;
+                border: 1px var(--text) solid;
+                outline: .125rem solid transparent;
+                outline-offset: 0;   
+                font-size: 20px;
+                color: var(--text);
+                font-weight: 700;
+                transition: all .2s;
+
+                &:hover, &:focus-visible, &:active {
+                    border-color: transparent;
+                    outline: .125rem solid currentColor;
+                    outline-offset: .1rem;
+                    transition: all .2s;
+                }
+            }
+
+            & input[type="submit"] {
+                padding: 1%;
+                background-color: var(--accent);
+                color: var(--background);
+                border: 1px var(--accent) solid;
+                font-size: 25px;
+                padding: 10px 50px;
+                outline: none;
+                cursor: pointer;
+                transition: .2s;
+
+                &:hover {
+                    background-color: var(--accent-hover);  
+                    color: var(--accent);
+                }
+            }
+        }
+    }
+
     & .header {
         margin-top: 50px;
         display: flex;
@@ -600,7 +659,41 @@ table {
 }
 
 .playlist-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
 
+    & .playlist-content {
+        width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--accent);
+        text-decoration: none;
+        transition: .2s;
+
+        & #delete {
+            margin: 0;
+            padding: 0;
+        }
+
+        & p {
+            font-size: 30px;
+            font-family: black-italic;
+            color: var(--text)
+        }
+
+        &:hover {
+            background-color: var(--accent);
+            transition: .2s;
+        }
+    }
+}
+
+#welcome {
+    margin-top: 50px;
 }
 
 #warning {

@@ -12,6 +12,11 @@
         exit();
     }
 
+    if (!isset($_POST['email'])) {
+        header('Location: index.php?action=login');
+        exit();
+    }
+
     // On set l'id de l'utilisateur dans la variable de session
     if (!$_SESSION['idU'] && !$_SESSION['nomU']) {
         $_SESSION['idU'] = getIdUser($_POST['email']);
@@ -88,7 +93,7 @@
             // $genres = $selectedArtist->getGenre($entryId);
 
         } else {
-            echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
+            echo "<h1 id='welcome'>bonjour ". $_SESSION['nomU'] ."</h1>";
 
             // Barre de recherche
             $searchBar = new SearchBar();
