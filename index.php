@@ -53,6 +53,9 @@
                 case "ajoutPlaylist":
                     require 'Actions/ajoutPlaylist.php';
                     break;
+                case "supprimerPlaylist":
+                    require 'Actions/supprimerPlaylist.php';
+                    break;
                 default:
                     require 'Actions/home.php';
                     break;
