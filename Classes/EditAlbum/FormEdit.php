@@ -30,7 +30,6 @@ class FormEdit {
                                 <input type='text' name='parent' value='%s'>
                                 <input type='text' name='releaseYear' value='%s'>
                                 <input type='text' name='genre' value='%s'>
-        
                             </div>
                         </div>
                         <div class='buttons'>
