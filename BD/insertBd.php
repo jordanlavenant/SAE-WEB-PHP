@@ -68,15 +68,58 @@ function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
     } catch(PDOException $ex){}
 }
 
-function ajouterFavori($nom, $prenom, $title){
-    $idU = getIdUser($nom, $prenom);
-    $entryId = getEntryId($title);
-    
-    $requete = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
-    $bd = getConnexion();
-    $stm = $bd->prepare($requete);
-    $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
-    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
-    $stm->execute();
-    $bd=null;
+function ajouterFavori($id, $entryId){
+    try{
+        $requete = "INSERT INTO FAVORIS (idU, entryId) VALUES (:idU, :entryId)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(":idU", $id, PDO::PARAM_INT);
+        $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+        $stm->execute();
+        $bd=null;
+    } catch(PDOException $ex){}
+}
+
+function nouvellePlaylist($nomP, $idU){
+    try{
+        $requete = "INSERT INTO PLAYLISTS (idP, nomP, idU) VALUES (NULL, :nomP, :idU)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':nomP', $nomP, PDO::PARAM_STR);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+    } catch(PDOException $ex){
+        echo $ex;
+    }
+}
+
+function addPlaylist($entryId, $idP) { 
+    try {
+        $requete = "INSERT INTO ALBUMSPLAYLIST (idP, entryId) VALUES (:idP, :entryId)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+        $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT); 
+        $stm->execute();
+        $bd = null;
+        return true;
+    } catch (PDOException $ex) {
+        return false;
+    }
+}
+
+function removePlaylist($entryId, $idP) {
+    try {
+        $requete = "DELETE FROM ALBUMSPLAYLIST WHERE idP = :idP AND entryId = :entryId";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+        $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+        return true;
+    } catch (PDOException $ex) {
+        return false;
+    }
 }

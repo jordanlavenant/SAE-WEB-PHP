@@ -12,9 +12,12 @@ class Discographie {
         $this->artistData = $data;
     }
 
-    function render(): string {
+    function render(): void {
         $displayAlbums = new DisplayFilteteredAlbums($this->artistData);
-        return $displayAlbums->buildAlbums();
+        echo "<h2>discographie</h2>";
+        echo "<section class='discographie'>";
+            $displayAlbums->buildAlbums();
+        echo "</section>";
     }
 }
 

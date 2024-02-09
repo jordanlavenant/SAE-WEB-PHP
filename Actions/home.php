@@ -38,6 +38,9 @@
     use Discographie\Discographie;
     use Discographie\SelectedArtist;
 
+    use Playlists\DisplayPlaylists;
+
+
     use EditAlbum\FormEdit;
 
     $dataloader = new Dataloader("data/data.yml");
@@ -77,21 +80,27 @@
 
         } else if ($_REQUEST['id'] != null) {
             $entryId = intval($_REQUEST['id']);
+
             // Obtenir l'objet de l'album sélectionné
             $selectedAlbum = new SelectedAlbum($data_objects);
             $album = $selectedAlbum->getAlbum($entryId);
-            // Render l'objet
+            
+            // Détail de la selection
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
 
             // Discographie (à modifié)
             $selectedArtist = new SelectedArtist($data_objects);
             $artistData = $selectedArtist->getArtistData($entryId);
-            
             $displayArtistData = new Discographie($artistData);
             echo $displayArtistData->render();
+
+            // Related albums
+            // $selectedArtist = new SelectedArtist($data_objects);
+            // $genres = $selectedArtist->getGenre($entryId);
+
         } else {
-            echo "<h1>bonjour ". $_SESSION['nomU'] ."</h1>";
+            echo "<h1 id='welcome'>bonjour ". $_SESSION['nomU'] ."</h1>";
 
             // Barre de recherche
             $searchBar = new SearchBar();
@@ -126,3 +135,5 @@
         }
 
     echo "</main>";
+    
+?>

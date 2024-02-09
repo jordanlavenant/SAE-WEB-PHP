@@ -1,0 +1,3 @@
+function toggleEntryIdPlaylist(idP,entryId) {
+    
+}

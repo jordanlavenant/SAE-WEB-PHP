@@ -20,7 +20,7 @@ class DisplayFilteteredAlbums {
                     <th>titre</th>
                     <th>artiste / groupe</th>
                     <th>compositeur</th>
-                    <th>année</th>;  
+                    <th>année</th>
                 </tr>
             </thead>
             <tbody>";

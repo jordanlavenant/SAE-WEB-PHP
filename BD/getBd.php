@@ -15,7 +15,6 @@ function getIdGenre($nomG){
         echo "Erreur lors de la récupération de l'idG";
         echo $ex->getMessage();
     } 
-
 }
 
 function getAlbum(){
@@ -76,8 +75,6 @@ function getLastIdUser() {
     }
 }
 
-
-
 function getIdUser($email){
     $requete = "SELECT idU FROM UTILISATEURS WHERE emailU = :emailU";
     $bd = getConnexion();
@@ -116,4 +113,126 @@ function verifLogin($emailU, $mdp){
     } catch(PDOException $ex) {
         return false;
     }
+}
+
+function getFavoriU($idU){
+    $favori = array();
+    $requete = "SELECT entryId FROM FAVORIS WHERE idU = :idU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm-> execute();
+    while($g = $stm->fetch()){
+        array_push($favori,$g[0]);
+    }
+    $bd = null;
+    return $favori;
+}
+
+function getPlaylistsU($idU){
+    $requete = "SELECT * FROM PLAYLISTS WHERE idU = :idU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm-> execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getPlaylistProps($idP) {
+    $requete = "SELECT * FROM PLAYLISTS WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $data = $stm->fetch();
+    $bd = null;
+    return $data;
+}
+
+function getEntriesPlaylist($idP) {
+    try {
+        $requete = "SELECT entryId FROM ALBUMSPLAYLIST WHERE idP = :idP";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+        $stm-> execute();
+        $data = $stm->fetchAll();
+        $bd = null;
+        return $data;
+    } catch(PDOException $ex) {
+        echo "Erreur lors de la récupération des albums de la playlist";
+        echo $ex->getMessage();
+    }
+}
+
+function isFavorite($idU, $entryId){
+    $requete = "SELECT * FROM FAVORIS WHERE idU = :idU AND entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $favori = $stm->fetch();
+    $bd = null;
+    if ($favori){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function accessPlaylist($idU, $idP) {
+    $requete = "SELECT * FROM PLAYLISTS WHERE idU = :idU AND idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $playlist = $stm->fetch();
+    $bd = null; 
+    if ($playlist){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function inPlaylist($entryId, $idP) {
+    $requete = "SELECT * FROM ALBUMSPLAYLIST WHERE idP = :idP AND entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $album = $stm->fetch();
+    $bd = null;
+    if ($album){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getAlbumWithId($entryId){
+    $requete = "SELECT * FROM ALBUMS WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $album = $stm->fetch();
+    $bd = null;
+    return $album;
+}
+
+function countAlbumsPlaylist($idP) {
+    $requete = "SELECT COUNT(entryId) FROM ALBUMSPLAYLIST WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $count = $stm->fetchColumn();
+    $bd = null;
+    return $count;
 }

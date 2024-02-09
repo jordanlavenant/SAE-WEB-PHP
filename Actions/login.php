@@ -30,11 +30,11 @@ class Login {
         echo "<div class='Login'>";
 
             echo "<div class='arrival-content'>";
-                echo "<img src='static/images/VisualStudioMusicLogo.png' alt='logo'>";
+                echo "<img src='static/images/VisualStudioMusicLogo2.png' alt='logo'>";
                 echo "<h1>visual studio music</h1>";
             echo "</div>";
 
-            echo "<form action='index.php?action=home' method='post'>";
+            echo "<form action='index.php?action=verifConnexion' method='post'>";
 
                 echo "<div class='header'>";
                     echo "<a href='index.php?action=login'>";
