@@ -130,7 +130,6 @@ function getFavoriU($idU){
 }
 
 function getPlaylistsU($idU){
-    $playlists = array();
     $requete = "SELECT * FROM PLAYLISTS WHERE idU = :idU";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
@@ -197,36 +196,6 @@ function inPlaylist($entryId, $idP) {
     if ($album){
         return true;
     } else {
-        return false;
-    }
-}
-
-function addPlaylist($entryId, $idP) { 
-    try {
-        $requete = "INSERT INTO ALBUMSPLAYLIST (idP, entryId) VALUES (:idP, :entryId)";
-        $bd = getConnexion();
-        $stm = $bd->prepare($requete);
-        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
-        $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT); 
-        $stm->execute();
-        $bd = null;
-        return true;
-    } catch (PDOException $ex) {
-        return false;
-    }
-}
-
-function removePlaylist($entryId, $idP) {
-    try {
-        $requete = "DELETE FROM ALBUMSPLAYLIST WHERE idP = :idP AND entryId = :entryId";
-        $bd = getConnexion();
-        $stm = $bd->prepare($requete);
-        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
-        $stm -> bindParam(":entryId", $entryId, PDO::PARAM);
-        $stm->execute();
-        $bd = null;
-        return true;
-    } catch (PDOException $ex) {
         return false;
     }
 }

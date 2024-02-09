@@ -659,7 +659,7 @@ table {
     display: none;
 
     & .popup-content {
-        max-width: 60%;
+        max-width: 600px;
         width: 100%;
         padding: 30px;
         background-color: var(--background);
@@ -667,6 +667,37 @@ table {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+
+        & .playlists-list {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            transition: .2s;
+
+            & .playlist {
+                width: 100%;
+                border: 1px solid var(--accent);
+                transition: .2s;
+                text-decoration: none;
+
+                & p {
+                    font-family: black-italic;
+                    font-size: 25px;
+                    color: var(--text);
+                    padding: 10px;
+                    margin: 0;
+                }
+
+                & :hover {
+                    background-color: var(--accent);
+                    transition: .2s;
+                    cursor: pointer;
+                }
+            }
+        }
 
         & h2 {
             font-family: black-italic;

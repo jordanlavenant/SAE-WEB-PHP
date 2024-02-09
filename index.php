@@ -66,6 +66,12 @@
                 case "supprimerPlaylist":
                     require 'Actions/supprimerPlaylist.php';
                     break;
+                case "ajoutAlbumPlaylist":
+                    require 'Actions/ajoutAlbumPlaylist.php';
+                    break;
+                case "retirerAlbumPlaylist":
+                    require 'Actions/retirerAlbumPlaylist.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }

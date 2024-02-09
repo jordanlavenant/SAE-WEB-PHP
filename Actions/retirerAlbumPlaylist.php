@@ -6,6 +6,6 @@ session_start();
 $idP = $_REQUEST['idP'];
 $entryId = $_REQUEST['entryId'];
 
-addPlaylist($entryId,$idP);
+removePlaylist($entryId,$idP);
 
 header("Location: index.php?action=album&id=".$entryId."");

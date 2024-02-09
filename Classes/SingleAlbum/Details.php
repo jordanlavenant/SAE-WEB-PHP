@@ -6,34 +6,36 @@ use Playlists\DisplayPlaylists;
 
 class Details {
 
+    private Object $playlists;
     private Object $singleData;
     private bool $liked;
-    private Object $playlists;
 
     function __construct(Object $data) {    
+        $this->playlists = new DisplayPlaylists($_SESSION['idU'],intval($_REQUEST['id']));
         $this->singleData = $data;
         $this->liked = isFavorite($_SESSION['idU'], $_REQUEST['id']);
-        $this->playlists = new DisplayPlaylists($_SESSION['idU']);
     }
 
     function render(): string {
 
-        print_r($this->playlists->buildPlaylists());
+        $playlistContent = $this->playlists->buildPlaylists();
 
         return sprintf("
+        
             <script>
                 function togglePopup(){
                     let popup = document.querySelector('#popup-overlay');
                     popup.classList.toggle('open');
                 }
+
+                
             </script>
 
             <div id='popup-overlay' class=''>
                 <div class='popup-content'>
                     <h2>selectionnez une playlist</h2>
-                    <a href='%s' onclick='togglePopup()' class='popup-exit'>fermer</a>
-                    <div class='playlists-list'>
-                    </div>
+                    <a href='javascript:void(0)' onclick='togglePopup()' class='popup-exit'>fermer</a>
+                    %s
                 </div>
             </div>
 
@@ -74,8 +76,7 @@ class Details {
                     </div>
                 </div>
             </section>",
-            "javascript:void(0)",
-            // $this->playlists->buildPlaylists(),
+            $playlistContent,
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
             $this->singleData->getTitle(),
