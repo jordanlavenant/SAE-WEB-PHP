@@ -19,3 +19,12 @@ function supprimerPlaylist($idP) {
     $stm->execute();
     $bd = null;
 }
+
+function supprimerAllAlbumsPlaylist($idP) {
+    $requete = "DELETE FROM ALBUMSPLAYLIST WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}

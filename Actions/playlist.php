@@ -51,12 +51,41 @@ class Playlist {
         $aside = new Aside();
         echo $aside->buildAside();
 
+        
+
         echo "<main>
-            <div class='header'>
-                <a href='index.php?action=bibliotheque'>
-                    <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
-                </a>
-                <h1>".$this->playlistProps['nomP']."</h1>
+
+            <script>
+                function togglePopup(){
+                    let popup = document.querySelector('#popup-overlay');
+                    popup.classList.toggle('open');
+                }
+
+                
+            </script>
+
+            <div id='popup-overlay' class=''>
+                <div class='popup-content'>
+                    <h2>voulez-vous vraiment supprimer ".$this->playlistProps['nomP']." ?</h2>
+                    <svg href='javascript:void(0)' onclick='togglePopup()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(0, 102, 255, 1);transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
+                    <div class='choices'>
+                        <a class='genericButton' href='index.php?action=supprimerPlaylist&idP=".$_REQUEST['idP']."'>supprimer</a>
+                        <a class='genericButton' href='index.php?action=playlist&idP=".$_REQUEST['idP']."'>annuler</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='header-props'>
+                <div>
+                    <a href='index.php?action=bibliotheque'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
+                    </a>
+                    <h1>".$this->playlistProps['nomP']."</h1>
+                </div>
+                <div id='buttonsProps'>
+                    <a class='genericButton' href='index.php?action=home'>ajouter</a>
+                    <a class='genericButton' onclick='togglePopup()'>supprimer</a>
+                </div>
             </div>";
             echo "
             <div id='playlist-props'>";

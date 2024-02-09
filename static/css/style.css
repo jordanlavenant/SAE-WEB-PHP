@@ -60,6 +60,10 @@ p {
     text-wrap: pretty;
 }
 
+a {
+    text-decoration: none;
+}
+
 :root {
     /* --primary: #99d8d4;
     --secondary: #287974;
@@ -189,13 +193,43 @@ main {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
+        & #buttonsProps {
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+        }
         
         & div {
             display: flex;
             align-items: center;
 
             & a {
+                text-decoration: none;
                 display: flex;
+            }
+
+            & .genericButton {
+                padding: 1%;
+                background-color: var(--background);
+                color: var(--accent);
+                font-size: 25px;
+                padding: 10px 50px;
+                outline: none;
+                cursor: pointer;
+                transition: .2s;
+
+                &:nth-of-type(1) {
+                    border-radius: 20px 0 0 20px;
+                }
+
+                &:nth-of-type(2) {
+                    border-radius: 0 20px 20px 0;
+                }
+
+                &:hover {
+                    background-color: var(--accent);  
+                    color: var(--background);
+                }
             }
         }
 
@@ -669,6 +703,32 @@ table {
         left: 50%;
         transform: translate(-50%, -50%);
 
+        & .choices {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            & a {
+                padding: 1%;
+                background-color: var(--background);
+                color: var(--accent);
+                border: 1px var(--accent) solid;
+                font-size: 25px;
+                padding: 10px 50px;
+                outline: none;
+                cursor: pointer;
+                transition: .2s;
+
+                &:hover {
+                    background-color: var(--accent);  
+                    color: var(--background);
+                }
+            }
+        }
+
         & .playlists-list {
             margin: 30px 0;
             display: flex;
@@ -712,8 +772,12 @@ table {
             right: 0;
             text-decoration: none;
             color: var(--text);
-            padding: 5px 10px;
+            padding: 10px;
             border-radius: 5px;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 
