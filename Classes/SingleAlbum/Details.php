@@ -83,6 +83,7 @@ class Details {
             $this->singleData->getEntryId(),
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
+            $this->singleData->getTitle(),
             $this->singleData->getNomGroupe(),
             $this->singleData->getGenreString(),
             $this->singleData->getReleaseYear(),
