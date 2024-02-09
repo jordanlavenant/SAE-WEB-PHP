@@ -225,3 +225,14 @@ function getAlbumWithId($entryId){
     $bd = null;
     return $album;
 }
+
+function countAlbumsPlaylist($idP) {
+    $requete = "SELECT COUNT(entryId) FROM ALBUMSPLAYLIST WHERE idP = :idP";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+    $stm-> execute();
+    $count = $stm->fetchColumn();
+    $bd = null;
+    return $count;
+}

@@ -741,12 +741,28 @@ table {
     & .playlist-content {
         width: 200px;
         height: 200px;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         border: 1px solid var(--accent);
         text-decoration: none;
         transition: .2s;
+
+        & #countProps {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: -15px;
+            right: 20px;  
+            font-size: 20px; 
+            color: var(--accent);
+            padding: 0 20px;
+            background-color: var(--background);
+            transition: .2s;
+            border-radius: 20px;
+            border: var(--accent) 1px solid;
+        }
 
         & #delete {
             margin: 0;

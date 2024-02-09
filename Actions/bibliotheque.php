@@ -35,9 +35,13 @@ class Bibliotheque {
             foreach ($playlists as $p) {
                 echo "
                 <a class='playlist-content' href=index.php?action=playlist&idP=" . $p['idP'] . ">
-                    <p>". $p['nomP'] ."</p>
-                </a>
-                ";
+                    <p>". $p['nomP'] ."</p>";
+                    if (countAlbumsPlaylist($p['idP']) > 1) {
+                        echo "<p id='countProps'>".countAlbumsPlaylist($p['idP'])." albums</p>";
+                    } else {
+                        echo "<p id='countProps'>".countAlbumsPlaylist($p['idP'])." album</p>";
+                    }
+                echo "</a>";
             }
             echo "</section>";  
         echo "</main>";
