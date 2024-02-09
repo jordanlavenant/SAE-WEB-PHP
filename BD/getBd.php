@@ -151,6 +151,22 @@ function getPlaylistProps($idP) {
     return $data;
 }
 
+function getEntriesPlaylist($idP) {
+    try {
+        $requete = "SELECT entryId FROM ALBUMSPLAYLIST WHERE idP = :idP";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
+        $stm-> execute();
+        $data = $stm->fetchAll();
+        $bd = null;
+        return $data;
+    } catch(PDOException $ex) {
+        echo "Erreur lors de la récupération des albums de la playlist";
+        echo $ex->getMessage();
+    }
+}
+
 function isFavorite($idU, $entryId){
     $requete = "SELECT * FROM FAVORIS WHERE idU = :idU AND entryId = :entryId";
     $bd = getConnexion();
@@ -176,7 +192,6 @@ function accessPlaylist($idU, $idP) {
     $stm-> execute();
     $playlist = $stm->fetch();
     $bd = null; 
-    // print_r($playlist);
     if ($playlist){
         return true;
     } else {
@@ -198,4 +213,15 @@ function inPlaylist($entryId, $idP) {
     } else {
         return false;
     }
+}
+
+function getAlbumWithId($entryId){
+    $requete = "SELECT * FROM ALBUMS WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $album = $stm->fetch();
+    $bd = null;
+    return $album;
 }

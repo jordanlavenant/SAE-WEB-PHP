@@ -446,7 +446,8 @@ main {
     }
 }
 
-#search-props {
+#search-props,
+#playlist-props {
     margin: 30px 0;
     font-family: medium-italic;
     font-size: 20px;
