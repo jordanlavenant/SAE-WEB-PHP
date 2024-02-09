@@ -36,7 +36,7 @@ class FormEdit {
                         </div>
                     </div>
                     <div class='buttons'>
-                        <input type='submit' value='Submit'>
+                        <a href='index.php?action=modifierAlbum&id=%s'>Modifier l'album</a>
                     </div>
                 </div>
             </section>
@@ -49,6 +49,7 @@ class FormEdit {
             $this->singleData->getNomGroupe(),
             $this->singleData->getReleaseYear(),
             $this->singleData->getGenreString(),
+            $this->singleData->getEntryId(),
         );
     }
     /*
