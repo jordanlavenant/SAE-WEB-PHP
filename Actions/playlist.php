@@ -83,8 +83,8 @@ class Playlist {
                     <h1>".$this->playlistProps['nomP']."</h1>
                 </div>
                 <div id='buttonsProps'>
-                    <a class='genericButton' href='index.php?action=home'>ajouter</a>
-                    <a class='genericButton' onclick='togglePopup()'>supprimer</a>
+                    <a class='buttons' href='index.php?action=home'>ajouter</a>
+                    <a class='buttons' onclick='togglePopup()'>supprimer</a>
                 </div>
             </div>";
             echo "

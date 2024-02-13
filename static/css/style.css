@@ -91,7 +91,7 @@ a {
     --primary: #7c8beb;
     --secondary: #781692;
     --accent: #0066ff;
-    --hover: #10201e;
+    --hover: #142743;
 }
 
 .Container {
@@ -194,6 +194,24 @@ main {
         justify-content: space-between;
         align-items: center;
 
+        .genericButton {
+            padding: 1%;
+            background-color: var(--accent);
+            color: var(--background);
+            font-size: 25px;
+            padding: 10px 50px;
+            outline: none;
+            cursor: pointer;
+            transition: .2s;
+            border: 1px solid var(--accent);
+
+            &:hover {
+                background-color: var(--background);  
+                color: var(--accent);
+                transition: .2s;
+            } 
+        }
+
         & #buttonsProps {
             border: 1px solid var(--accent);
             border-radius: 20px;
@@ -208,7 +226,7 @@ main {
                 display: flex;
             }
 
-            & .genericButton {
+            & .buttons {
                 padding: 1%;
                 background-color: var(--background);
                 color: var(--accent);
@@ -481,10 +499,12 @@ main {
 }
 
 #search-props,
-#playlist-props {
+#playlist-props,
+#favoris-props {
     margin: 30px 0;
     font-family: medium-italic;
     font-size: 20px;
+
     & h3 {
         color: var(--text);
     }

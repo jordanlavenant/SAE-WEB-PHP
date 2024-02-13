@@ -40,7 +40,6 @@
 
     use Playlists\DisplayPlaylists;
 
-
     use EditAlbum\FormEdit;
 
     $dataloader = new Dataloader("data/data.yml");
