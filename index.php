@@ -72,6 +72,9 @@
                 case "retirerAlbumPlaylist":
                     require 'Actions/retirerAlbumPlaylist.php';
                     break;
+                case "modifierAlbum":
+                    require 'Actions/modifierAlbum.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }

@@ -589,6 +589,36 @@ table {
     }
 }
 
+.modification-album {
+    display: flex;
+    justify-content: flex-end;
+
+    & a {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 25px;
+        transition: .2s all;
+
+        &:hover {
+            color: var(--accent);
+            transition: .2s all;
+        }
+    }
+
+    /*& input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--accent-hover);
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        background-color: var(--accent-hover);
+        color: #333;
+    }*/
+}
+
 .album-container {
     width: 100%;
     background-color: #000b16;

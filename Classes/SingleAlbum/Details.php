@@ -45,6 +45,9 @@ class Details {
                 </a>
                 <h1>détail</h1>
             </div>
+            <div class='modification-album'> 
+                <a href='index.php?action=edit&id=%s'>Modifier les informations de l'album</a>
+            </div>
             <section class='album-container'>
                 <div class='content'>
                     <div class='left-part'>
@@ -77,6 +80,7 @@ class Details {
                 </div>
             </section>",
             $playlistContent,
+            $this->singleData->getEntryId(),
             $this->singleData->getImg(),
             $this->singleData->getTitle(),
             $this->singleData->getTitle(),

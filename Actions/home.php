@@ -41,6 +41,8 @@
     use Playlists\DisplayPlaylists;
 
 
+    use EditAlbum\FormEdit;
+
     $dataloader = new Dataloader("data/data.yml");
     // Importation des données brute (yml)
     // $data = $dataloader->getData();
@@ -68,8 +70,15 @@
 
     // Main
     echo "<main>";
-        
-        if ($_REQUEST['id'] != null) {
+        if ($_REQUEST['action'] == "edit" && $_REQUEST['id'] != null) {
+            $entryId = intval($_REQUEST['id']);
+            $selectedAlbum = new SelectedAlbum($data_objects);
+            $album = $selectedAlbum->getAlbum($entryId);
+            // Render l'objet
+            $edit = new FormEdit($album);
+            echo $edit->render();
+
+        } else if ($_REQUEST['id'] != null) {
             $entryId = intval($_REQUEST['id']);
 
             // Obtenir l'objet de l'album sélectionné
@@ -126,3 +135,5 @@
         }
 
     echo "</main>";
+    
+?>
