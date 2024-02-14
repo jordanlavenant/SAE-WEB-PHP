@@ -765,7 +765,7 @@ table {
     }
 }
 
-#popup-overlay {
+#popup-overlay, #popup-overlay-delete, #popup-overlay-playlist {
     position: fixed;
     top: 0;
     left: 0;
