@@ -747,11 +747,12 @@ table {
                 scale: 1;
                 gap: 20px;
 
-                & p {
+                & p, a {
                     font-family: black-italic;
                     font-size: 25px;
                     padding: 0;
                     margin: 0;
+                    text-decoration: none;
                 }
 
                 &:hover {
@@ -764,7 +765,7 @@ table {
     }
 }
 
-#popup-overlay {
+#popup-overlay, #popup-overlay-delete, #popup-overlay-playlist {
     position: fixed;
     top: 0;
     left: 0;
