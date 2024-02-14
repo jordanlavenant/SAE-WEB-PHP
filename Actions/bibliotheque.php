@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require 'Classes/AsideHome/Aside.php';
-require 'BD/getBd.php';
+require_once('BD/getBd.php');
 session_start();
 use AsideHome\Aside;
 

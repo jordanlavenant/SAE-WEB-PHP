@@ -41,7 +41,7 @@
     use Discographie\SelectedGroupe;
 
     use Playlists\DisplayPlaylists;
-
+    use Playlists\DisplayPlaylistsCompact;
 
     use EditAlbum\FormEdit;
 
