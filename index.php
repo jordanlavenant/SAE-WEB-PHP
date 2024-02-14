@@ -75,6 +75,9 @@
                 case "modifierAlbum":
                     require 'Actions/modifierAlbum.php';
                     break;
+                case "supprimerAlbum":
+                    require 'Actions/supprimerAlbum.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }

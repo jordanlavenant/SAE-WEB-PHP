@@ -28,3 +28,12 @@ function supprimerAllAlbumsPlaylist($idP) {
     $stm->execute();
     $bd = null;
 }
+
+function supprimerAlbum($id) {
+    $requete = "DELETE FROM ALBUMS WHERE entryId = :id";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":id", $id, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
