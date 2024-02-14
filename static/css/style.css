@@ -619,6 +619,57 @@ table {
     }*/
 }
 
+.myform {
+    display: flex;
+            gap: 20px;
+
+            & label {
+                font-family: black-italic;
+                font-size: 25px;
+                color: var(--text);
+                cursor: pointer;
+                width: auto;
+                user-select: none;
+            }
+
+            & input[type="text"] {
+                width: 450px;
+                padding: 0 15px;
+                background-color: transparent;
+                border: 1px var(--text) solid;
+                outline: .125rem solid transparent;
+                outline-offset: 0;   
+                font-size: 20px;
+                color: var(--text);
+                font-weight: 700;
+                transition: all .2s;
+
+                &:hover, &:focus-visible, &:active {
+                    border-color: transparent;
+                    outline: .125rem solid currentColor;
+                    outline-offset: .1rem;
+                    transition: all .2s;
+                }
+            }
+
+            & .genericButton {
+                padding: 1%;
+                background-color: var(--accent);
+                color: var(--background);
+                border: 1px var(--accent) solid;
+                font-size: 25px;
+                padding: 10px 50px;
+                outline: none;
+                cursor: pointer;
+                transition: .2s;
+
+                &:hover {
+                    background-color: var(--accent-hover);  
+                    color: var(--accent);
+                }
+            }
+}
+
 .album-container {
     width: 100%;
     background-color: #000b16;
@@ -741,7 +792,7 @@ table {
             gap: 20px;
             flex-wrap: wrap;
 
-            & a {
+            & a, input {
                 padding: 1%;
                 background-color: var(--background);
                 color: var(--accent);
