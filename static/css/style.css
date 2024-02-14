@@ -304,7 +304,8 @@ main {
     }
 }
 
-.Login, .Register {
+.Login, 
+.Register {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -872,6 +873,52 @@ table {
         &:hover {
             background-color: var(--accent);
             transition: .2s;
+        }
+    }
+}
+
+.importDataForm {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    & input[type="text"] {
+        width: 400px;
+        padding: 15px;
+        background-color: transparent;
+        border: 1px var(--text) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 20px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
+
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
+    }
+
+    & input[type="submit"] {
+        padding: 1%;
+        background-color: var(--accent);
+        color: var(--background);
+        border: 1px var(--accent) solid;
+        font-size: 25px;
+        padding: 10px 50px;
+        outline: none;
+        cursor: pointer;
+        transition: .2s;
+        width: 400px;
+
+        &:hover {
+            background-color: var(--accent-hover);  
+            color: var(--accent);
         }
     }
 }

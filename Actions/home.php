@@ -35,8 +35,10 @@
 
     use AsideHome\Aside;
 
-    use Discographie\Discographie;
+    use Discographie\DiscographieArtist;
+    use Discographie\DiscographieGroupe;
     use Discographie\SelectedArtist;
+    use Discographie\SelectedGroupe;
 
     use Playlists\DisplayPlaylists;
 
@@ -89,16 +91,17 @@
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
 
-            // Discographie (à modifié)
+            // Discographie artiste
+            $selectedGroupe = new SelectedGroupe($data_objects);
+            $groupeData = $selectedGroupe->getGroupeData($entryId);
+            $displayGroupeData = new DiscographieGroupe($groupeData);
+            echo $displayGroupeData->render();
+
+            // Discographie artiste
             $selectedArtist = new SelectedArtist($data_objects);
             $artistData = $selectedArtist->getArtistData($entryId);
-            $displayArtistData = new Discographie($artistData);
+            $displayArtistData = new DiscographieArtist($artistData);
             echo $displayArtistData->render();
-
-            // Related albums
-            // $selectedArtist = new SelectedArtist($data_objects);
-            // $genres = $selectedArtist->getGenre($entryId);
-
         } else {
             echo "<h1 id='welcome'>bonjour ". $_SESSION['nomU'] ."</h1>";
 

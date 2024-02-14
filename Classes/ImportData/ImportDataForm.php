@@ -9,7 +9,7 @@ class ImportDataForm {
 
     function render() {
         return sprintf(
-            '<form action="index.php?action=ajouterAlbum" method="post">
+            '<form class="importDataForm" action="index.php?action=ajouterAlbum" method="post">
                 <input required type="text" name="by" placeholder="groupe">
                 <input required type="text" name="title" placeholder="titre">
                 <input required type="text" name="parent" placeholder="artiste, compositeur">
