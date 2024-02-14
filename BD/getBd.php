@@ -60,6 +60,21 @@ function getEntryId($title){
     return $entryId;
 }
 
+function getLastEntryId() {
+    try {
+        $requete = "SELECT MAX(entryId) FROM ALBUMS";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->execute();
+        $entryId = $stm->fetchColumn();
+        $bd = null;
+        return $entryId;
+    } catch(PDOException $ex) {
+        echo "Erreur lors de la récupération du dernier entryId";
+        echo $ex->getMessage();
+    }
+}
+
 function getLastIdUser() {
     try {
         $requete = "SELECT MAX(idU) FROM UTILISATEURS";

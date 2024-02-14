@@ -11,7 +11,7 @@ Fonctionalités attendues
 ^Affichage des albums
 ^Détail des albums
 ^Détail d'un artiste avec ses albums
-Edition d'un album
+^Edition d'un album
 ^Recherche un peu plus avancée dans les albums (par artiste, année, genre, etc.)
 
 Fonctionalités souhaitées
