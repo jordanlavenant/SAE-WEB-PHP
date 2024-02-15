@@ -20,7 +20,23 @@ class FormEdit {
                     popup.classList.toggle('open');
                 }
 
-                
+                function handleImageUpload(event) {
+                    const file = event.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imgElement = document.querySelector('#album-image');
+                        imgElement.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+
+                function updateAlbumImage() {
+                    const imgElement = document.querySelector('#album-image');
+                    const newImageSrc = imgElement.src;
+                    // Call an API or perform any necessary action to update the album image
+                    // Redirect to the album details page
+                    window.location.href = 'index.php?action=album&id=' + <?php echo $this->singleData->getEntryId(); ?>;
+                }
             </script>
 
             <div id='popup-overlay' class=''>
@@ -35,9 +51,6 @@ class FormEdit {
                 </div>
             </div>
 
-
-
-        
             <div class='header'>
                 <a href='index.php?action=album&id=%s'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
@@ -49,7 +62,7 @@ class FormEdit {
                 <section class='album-container'>
                     <div class='content'>
                         <div class='left-part'>
-                            <img src='%s' alt='%s'>
+                            <img id='album-image' src='%s' alt='%s'>
                             <div class='album-info'>
                                 <label for='title'>Titre</label>
                                 <input type='text' name='title' value='%s'>
@@ -65,6 +78,9 @@ class FormEdit {
                         </div>
                         <div class='buttons'>
                             <a class='genericButton' onclick='togglePopup()'>Modifier l'album</a>
+                            <label for='image-upload' class='genericButton'>Modifier l'image</label>
+                            <input id='image-upload' type='file' accept='image/*' style='display: none;' onchange='handleImageUpload(event)'>
+                            <a class='genericButton' onclick='updateAlbumImage()'>Valider</a>
                         </div>
                     </div>
                 </section>

@@ -22,6 +22,26 @@ class Album extends GenericAlbum
         );
     }
 
+    public function render() {
+        return sprintf(
+            "<div class='album'>
+                <img src='%s' alt='%s'>
+                <div class='album-info'>
+                    <h3>%s</h3>
+                    <p>%s</p>
+                    <p>%s</p>
+                    <p>%s</p>
+                </div>
+            </div>",
+            $this->getImg(),
+            $this->getTitle(),
+            $this->getTitle(),
+            $this->getNomGroupe(),
+            $this->getParent(),
+            $this->getReleaseYear()  
+        );
+    }
+
     function renderCompact(): string {
         return sprintf(
             "<tr onclick='document.location = `index.php?action=album&id=" . trim(strval($this->getEntryId())) . "`';>
