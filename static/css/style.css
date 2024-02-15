@@ -65,7 +65,6 @@ a {
 }
 
 :root {
-    /* Default theme */
     --primary: #99d8d4;
     --secondary: #287974;
     --text: #deeeed;
@@ -93,10 +92,10 @@ body.theme-rose {
 }
 
 body.theme-bleu {
-    --text: #d6dbf9;
-    --background: #050921;
     --primary: #7c8beb;
     --secondary: #781692;
+    --text: #d6dbf9;
+    --background: #050921;
     --accent: #0066ff;
     --hover: #10201e;
 }

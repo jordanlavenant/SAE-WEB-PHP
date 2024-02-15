@@ -1,3 +1,11 @@
+<?php
+    error_reporting(E_ERROR | E_PARSE);
+    session_start();
+
+    $_SESSION['theme'] = $_SESSION['theme'] ?? "bleu";
+?>
+
+
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -9,13 +17,12 @@
         <link rel="icon" href="static/images/VisualStudioMusicLogo2.png" type="image/x-icon">
         <title>Visual Studio Music</title>
     </head>
-    <body>
+    <body class='theme-<?php echo $_SESSION['theme']; ?>'>
+
         <?php
 
             error_reporting(E_ERROR | E_PARSE);
             session_start();
-
-            $_SESSION['theme'] = "Light";
 
             if (!isset($_SESSION['idU'])
                     && $_REQUEST['action'] != 'login'

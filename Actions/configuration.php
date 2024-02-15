@@ -11,7 +11,7 @@
         private string $currentTheme;
         
         function __construct() {
-            $this->themes = array("bleu", "violet", "rose", "Green", "vert");
+            $this->themes = array("bleu", "violet", "rose", "vert");
             $this->currentTheme = $_SESSION["theme"] ?? "Light"; // Default to "Light" if no theme is set
         }
    
@@ -29,10 +29,6 @@
         
             echo "
                 <main>
-                <head>
-                    <title>Choisir un thème</title>
-                </head>
-                <body class='theme-{$this->currentTheme}'>
                     <form id='themeForm' method='post'>";
                         foreach ($this->themes as $theme) {
                             $checked = $theme === $this->currentTheme ? 'checked' : '';
