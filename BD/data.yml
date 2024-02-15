@@ -1,0 +1,79 @@
+- by: The Beatles
+  entryId: 12345
+  genre: [Rock, Pop]
+  img: the_beatles_album_cover.jpg
+  parent: The Beatles
+  releaseYear: 1967
+  title: Sgt. Pepper's Lonely Hearts Club Band
+
+- by: Michael Jackson
+  entryId: 67890
+  genre: [Pop, R&B]
+  img: thriller_album_cover.jpg
+  parent: Michael Jackson
+  releaseYear: 1982
+  title: Thriller
+
+- by: Pink Floyd
+  entryId: 24680
+  genre: [Progressive Rock]
+  img: dark_side_of_the_moon_album_cover.jpg
+  parent: Pink Floyd
+  releaseYear: 1973
+  title: The Dark Side of the Moon
+
+- by: Led Zeppelin
+  entryId: 13579
+  genre: [Hard Rock]
+  img: led_zeppelin_album_cover.jpg
+  parent: Led Zeppelin
+  releaseYear: 1969
+  title: Led Zeppelin
+
+- by: Bob Dylan
+  entryId: 97531
+  genre: [Folk, Rock]
+  img: bob_dylan_album_cover.jpg
+  parent: Bob Dylan
+  releaseYear: 1965
+  title: Highway 61 Revisited
+
+- by: Nirvana
+  entryId: 86420
+  genre: [Grunge, Alternative Rock]
+  img: nevermind_album_cover.jpg
+  parent: Nirvana
+  releaseYear: 1991
+  title: Nevermind
+
+- by: Queen
+  entryId: 25896
+  genre: [Rock]
+  img: a_night_at_the_opera_album_cover.jpg
+  parent: Queen
+  releaseYear: 1975
+  title: A Night at the Opera
+
+- by: David Bowie
+  entryId: 74125
+  genre: [Rock]
+  img: ziggy_stardust_album_cover.jpg
+  parent: David Bowie
+  releaseYear: 1972
+  title: The Rise and Fall of Ziggy Stardust and the Spiders from Mars
+
+- by: The Rolling Stones
+  entryId: 36912
+  genre: [Rock, Blues]
+  img: sticky_fingers_album_cover.jpg
+  parent: The Rolling Stones
+  releaseYear: 1971
+  title: Sticky Fingers
+
+- by: Fleetwood Mac
+  entryId: 14725
+  genre: [Rock, Pop]
+  img: rumours_album_cover.jpg
+  parent: Fleetwood Mac
+  releaseYear: 1977
+  title: Rumours
