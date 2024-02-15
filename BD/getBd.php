@@ -112,6 +112,17 @@ function getNomUser($email){
     return $nomU;
 }
 
+function getPrenomUser($email){
+    $requete = "SELECT prenomU FROM UTILISATEURS WHERE emailU = :emailU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(':emailU', $email, PDO::PARAM_STR);
+    $stm-> execute();
+    $prenomU = $stm->fetchColumn();
+    $bd = null;
+    return $prenomU;
+}
+
 function verifLogin($emailU, $mdp){
     try {
         $requete = "SELECT * FROM UTILISATEURS WHERE emailU = :emailU"; 

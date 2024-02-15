@@ -1,22 +1,7 @@
 <?php
 
-
     require_once('Classes/Provider/Dataloader.php');
-    require_once('BD/getBd.php');
-
-    // Vérification de la connexion
-    if (isset($_POST['email']) 
-            && isset($_POST['password']) 
-            && !verifLogin($_POST['email'], $_POST['password'])) {
-        header('Location: index.php?action=login');
-        exit();
-    }
-
-    // On set l'id de l'utilisateur dans la variable de session
-    if (!$_SESSION['idU'] && !$_SESSION['nomU']) {
-        $_SESSION['idU'] = getIdUser($_POST['email']);
-        $_SESSION['nomU'] = getNomUser($_POST['email']);
-    }
+    require_once('BD/getBd.php');    
     
     require 'Classes/Autoloader.php';
     Autoloader::register();
@@ -103,7 +88,7 @@
             $displayArtistData = new DiscographieArtist($artistData);
             echo $displayArtistData->render();
         } else {
-            echo "<h1 id='welcome'>bonjour ". $_SESSION['nomU'] ."</h1>";
+            echo "<h1 id='welcome'>bonjour ". $_SESSION['prenomU'] ."</h1>";
 
             // Barre de recherche
             $searchBar = new SearchBar();
