@@ -1,5 +1,5 @@
 <?php
-declare(strict_type=1);
+declare(strict_types=1);
 
 namespace EditAlbum;
 
@@ -14,6 +14,9 @@ class FormEdit {
     function render(): string {
         return sprintf("
         <script>
+            let originalImagePath = '" . $this->singleData->getImg() . "';
+            let newImagePath = '';
+
             function togglePopup() {
                 let popup = document.querySelector('#popup-overlay');
                 popup.classList.toggle('open');
@@ -21,14 +24,28 @@ class FormEdit {
 
             function chargeImage(event) {
                 let input = event.target;
+                let newAlbumImage = document.getElementById('album-image');
+                let deleteButton = document.getElementById('delete-button');
+
+                deleteButton.style.display = 'block';
+
                 let reader = new FileReader();
 
                 reader.onload = function(){
-                    let newAlbumImage = document.getElementById('new-album-image');
-                    newAlbumImage.src = reader.result;
+                    newImagePath = reader.result;
+                    newAlbumImage.src = newImagePath;
                 };
 
                 reader.readAsDataURL(input.files[0]);
+            }
+
+            function deleteImage() {
+                let newAlbumImage = document.getElementById('album-image');
+                let deleteButton = document.getElementById('delete-button');
+
+                newImagePath = '';
+                newAlbumImage.src = originalImagePath;
+                deleteButton.style.display = 'none';
             }
         </script>
 
@@ -44,50 +61,40 @@ class FormEdit {
             </div>
 
             <div class='header'>
-                <a href='index.php?action=album&id=%s'>
+                <a href='index.php?action=album&id=" . $this->singleData->getEntryId() . "'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
                 </a>
                 <h1>détail</h1>
             </div>
             
-            <form class='myform' id='myform' action='index.php?action=modifierAlbum&id=%s' method='post'>
+            <form class='myform' id='myform' action='index.php?action=modifierAlbum&id=" . $this->singleData->getEntryId() . "' method='post'>
                 <section class='album-container'>
                     <div class='content'>
                         <div class='left-part'>
-                            <img id='album-image' src='%s' alt='%s'>
-                            <img id='new-album-image' src='' alt='New Album Image'>
+                            <img id='album-image' src='" . $this->singleData->getImg() . "' alt='" . $this->singleData->getTitle() . "'>
                             <div class='album-info'>
                                 <label for='title'>Titre</label>
-                                <input type='text' name='title' value='%s'>
+                                <input type='text' name='title' value='" . $this->singleData->getTitle() . "'>
                                 <label for='by'>Interprété par</label>
-                                <input type='text' name='by' value='%s'>
+                                <input type='text' name='by' value='" . $this->singleData->getNomGroupe() . "'>
                                 <label for='parent'>Compositeur</label>
-                                <input type='text' name='parent' value='%s'>
+                                <input type='text' name='parent' value='" . $this->singleData->getParent() . "'>
                                 <label for='releaseYear'>Date de sortie</label>
-                                <input type='text' name='releaseYear' value='%s'>
+                                <input type='text' name='releaseYear' value=" . $this->singleData->getReleaseYear() . ">
                                 <label for='genre'>Genre</label>
-                                <input type='text' name='genre' value='%s'>
+                                <input type='text' name='genre' value='" . $this->singleData->getGenreString() . "'>
                             </div>
                         </div>
                         <div class='buttons'>
                             <a class='genericButton' onclick='togglePopup()'>Modifier l'album</a>
                             <label for='image-upload' class='genericButton'>Modifier l'image</label>
                             <input id='image-upload' type='file' accept='image/*' style='display: none;' onchange='chargeImage(event)'>
+                            <button id='delete-button' style='display: none;' type='button' class='genericButton' onclick='deleteImage()'>Supprimer</button>
                         </div>
                     </div>
                 </section>
             </form>
-        </main>",
-            $this->singleData->getEntryId(),
-            $this->singleData->getEntryId(),
-            $this->singleData->getImg(),
-            $this->singleData->getTitle(),
-            $this->singleData->getTitle(),
-            $this->singleData->getNomGroupe(),
-            $this->singleData->getParent(),
-            $this->singleData->getReleaseYear(),
-            $this->singleData->getGenreString(),
-            $this->singleData->getEntryId(),
+        </main>"
         );
     }
 }
