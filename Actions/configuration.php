@@ -7,11 +7,13 @@
 
 
     class Configuration {
-        private array $themes;
+        private array $themesLight;
+        private array $themesDark;
         private string $currentTheme;
         
-        function __construct() {
-            $this->themes = array("bleu", "violet", "rose", "vert");
+        function __construct() { 
+            $this->themesDark = array("bleu", "violet", "rose", "vert");
+            $this->themesLight = array("mauve");
             $this->currentTheme = $_SESSION["theme"] ?? "Light"; 
         }
    
@@ -29,16 +31,27 @@
         
             echo "
                 <main>
-                    <form id='themeForm' method='post'>";
-                        foreach ($this->themes as $theme) {
+                    <h1>THEMES</h1>
+                    <form class='myform-theme' method='post'>
+                        <h2>light</h2>";
+                        foreach ($this->themesLight as $theme) {
                             $checked = $theme === $this->currentTheme ? 'checked' : '';
                             echo "
                             <input type='radio' id='$theme' name='theme' value='$theme' $checked onchange='this.form.submit()'>
                             <label for='$theme'>$theme</label>";
                         }
-                echo "  </form>
-                </body>
-                </html>
+                        echo "
+                            <h2>dark</h2>";
+                            foreach ($this->themesDark as $theme) {
+                                $checked = $theme === $this->currentTheme ? 'checked' : '';
+                                echo "
+                                <input type='radio' id='$theme' name='theme' value='$theme' $checked onchange='this.form.submit()'>
+                                <label  for='$theme'>$theme</label>";
+                            }
+                        echo "  
+                        </form>
+                        </body>
+                    </html>
                 </main>";
             }
         }

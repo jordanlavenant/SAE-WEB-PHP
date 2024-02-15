@@ -64,7 +64,7 @@ a {
     text-decoration: none;
 }
 
-:root {
+body.theme-vert {
     --primary: #99d8d4;
     --secondary: #287974;
     --text: #deeeed;
@@ -81,6 +81,16 @@ body.theme-violet {
     --accent: #d032e6;
     --hover: #10201e;
 }
+
+body.theme-mauve {
+    --primary: #142385;
+    --secondary: #ce6de9;
+    --text: #060b28;
+    --background: #e0e4fa;
+    --accent: #0031d1;
+    --hover: #eaedfd;
+}
+
 
 body.theme-rose {
     --primary: #da8ca0;
@@ -627,54 +637,117 @@ table {
 
 .myform {
     display: flex;
-            gap: 20px;
+    gap: 20px;
 
-            & label {
-                font-family: black-italic;
-                font-size: 25px;
-                color: var(--text);
-                cursor: pointer;
-                width: auto;
-                user-select: none;
-            }
+    & label {
+        font-family: black-italic;
+        font-size: 25px;
+        color: var(--text);
+        cursor: pointer;
+        width: auto;
+        user-select: none;
+    }
 
-            & input[type="text"] {
-                width: 450px;
-                padding: 0 15px;
-                background-color: transparent;
-                border: 1px var(--text) solid;
-                outline: .125rem solid transparent;
-                outline-offset: 0;   
-                font-size: 20px;
-                color: var(--text);
-                font-weight: 700;
-                transition: all .2s;
+    & input[type="text"] {
+        width: 450px;
+        padding: 0 15px;
+        background-color: transparent;
+        border: 1px var(--text) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 20px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
 
-                &:hover, &:focus-visible, &:active {
-                    border-color: transparent;
-                    outline: .125rem solid currentColor;
-                    outline-offset: .1rem;
-                    transition: all .2s;
-                }
-            }
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
+    }
 
-            & .genericButton {
-                padding: 1%;
-                background-color: var(--accent);
-                color: var(--background);
-                border: 1px var(--accent) solid;
-                font-size: 25px;
-                padding: 10px 50px;
-                outline: none;
-                cursor: pointer;
-                transition: .2s;
+    & .genericButton {
+        padding: 1%;
+        background-color: var(--accent);
+        color: var(--background);
+        border: 1px var(--accent) solid;
+        font-size: 25px;
+        padding: 10px 50px;
+        outline: none;
+        cursor: pointer;
+        transition: .2s;
 
-                &:hover {
-                    background-color: var(--accent-hover);  
-                    color: var(--accent);
-                }
-            }
+        &:hover {
+            background-color: var(--accent-hover);  
+            color: var(--accent);
+        }
+    }
 }
+
+.myform-theme {
+    gap: 20px;
+
+    & label {
+        font-family: black-italic;
+        font-size: 25px;
+        color: var(--text);
+        cursor: pointer;
+        width: auto;
+        user-select: none;
+    }
+
+    & input[type="text"] {
+        width: 450px;
+        padding: 0 15px;
+        background-color: transparent;
+        border: 1px var(--text) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 20px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
+
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
+    }
+
+    & .genericButton {
+        padding: 1%;
+        background-color: var(--accent);
+        color: var(--background);
+        border: 1px var(--accent) solid;
+        font-size: 25px;
+        padding: 10px 50px;
+        outline: none;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: var(--accent-hover);  
+            color: var(--accent);
+        }
+    }
+
+    & .radio{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        & input[type="radio"] {
+            width: 20px;
+            height: 20px;
+        }
+    
+    }
+}
+
 
 .album-container {
     width: 100%;
