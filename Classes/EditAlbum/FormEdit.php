@@ -3,7 +3,7 @@ declare(strict_type=1);
 
 namespace EditAlbum;
 
-require_once('BD/getBd');
+require_once('BD/getBd.php');
 
 class FormEdit {
 
@@ -20,9 +20,7 @@ class FormEdit {
                 function togglePopup(){
                     let popup = document.querySelector('#popup-overlay');
                     popup.classList.toggle('open');
-                }
-
-                
+                }                
             </script>
 
             <div id='popup-overlay' class=''>

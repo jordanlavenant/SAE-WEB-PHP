@@ -22,7 +22,9 @@ class Aside {
                 <section class="header">
                     <a href="index.php?action=home"><img src="static/images/VisualStudioMusicLogo-%s.png" alt="logo"></a>
                     <ul class="menu">
-                        <li><a href="index.php?action=home">accueil</a></li>
+                        <li><a href="index.php?action=home">explorer</a></li>
+                        <li><a class="child" href="index.php?action=groupes">goupes</a></li>
+                        <li><a class="child" href="index.php?action=compositeurs">compositeurs</a></li>
                         <li><a href="index.php?action=bibliotheque">bibliothèque</a></li>
                         <li><a href="index.php?action=favoris">favoris</a></li>
                         <li><a href="index.php?action=import">importer</a></li>

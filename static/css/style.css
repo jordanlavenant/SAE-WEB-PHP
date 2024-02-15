@@ -183,6 +183,22 @@ aside {
                     transition: .2s;
                     scale: 1.05;
                 }
+
+                &.child {
+                    text-decoration: none;
+                    color: var(--text);
+                    font-size: 20px;
+                    transition: .2s;
+                    padding: 1px 17.5px;
+                    margin-left: 10px;
+                    border-left: 1px solid var(--accent);
+
+                    &:hover {
+                        color: var(--accent);
+                        transition: .2s;
+                        scale: 1.05;
+                    }
+                }
             }
         }
 

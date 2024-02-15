@@ -102,6 +102,16 @@
                 case "ajouterAlbum":
                     require 'Actions/ajouterAlbum.php';
                     break;
+                case "groupes":
+                    require 'Actions/groupes.php';
+                    $groupes = new Groupes();
+                    $groupes->buildGroupes();
+                    break;
+                case "compositeurs":    
+                    require 'Actions/compositeurs.php';
+                    $artistes = new Compositeurs();
+                    $artistes->buildCompositeurs();
+                    break;
                 case "configuration":
                     require 'Actions/configuration.php';
                     $configuration = new Configuration();

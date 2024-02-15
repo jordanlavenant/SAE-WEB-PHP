@@ -264,5 +264,21 @@ function countAlbumsPlaylist($idP) {
 }
 
 function getAllGroupe() {
-    
+    $requete = "SELECT by from ALBUMS GROUP BY by";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}   
+
+function getAllArtist() {
+    $requete = "SELECT parent from ALBUMS GROUP BY parent";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
 }

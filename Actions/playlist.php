@@ -50,9 +50,7 @@ class Playlist {
         // Aside 
         $aside = new Aside();
         echo $aside->buildAside();
-
         
-
         echo "<main>
 
             <script>
@@ -60,8 +58,6 @@ class Playlist {
                     let popup = document.querySelector('#popup-overlay');
                     popup.classList.toggle('open');
                 }
-
-                
             </script>
 
             <div id='popup-overlay' class=''>
