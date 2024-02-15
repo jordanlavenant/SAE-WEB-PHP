@@ -130,9 +130,45 @@
                 $albums = new DisplayFilteteredAlbums($data_objects);
                 $albums->buildAlbums();
             } else {
-                // Display des albums
-                $albums = new DisplayAlbums($data_objects);
+                // Pagination
+                $data_objects_displayed = $data_objects;
+                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                $itemsPerPage = 10;
+                $startIndex = ($page - 1) * $itemsPerPage;
+                $data_objects_displayed_page = array_slice($data_objects_displayed, $startIndex, $itemsPerPage);
+
+                // Display des albums avec pagination
+                $albums = new DisplayAlbums($data_objects_displayed_page);
                 $albums->buildAlbums();
+                  
+                // Affichage des liens de pagination
+                $totalItems = count($data_objects_displayed);
+                $totalPages = ceil($totalItems / $itemsPerPage);
+
+                echo "<div id='pagination'>";
+                    if ($page > 1) {
+                        echo '<a href="index.php?action=home&page=' . ($page - 1) . '">< précédent</a> ';
+                    }
+                    // Page precedente 
+                    if ($page > 1) {
+                        echo '<a href="index.php?action=home&page=' .  ($page - 1) . '">' . $page - 1 . '</a> ';
+                    }
+                    // Page actuelle 
+                    echo '<a class="current" href="index.php?action=home&page=' . $page . '">' . $page . '</a> ';
+                    // Page suivante
+                    if ($page < $totalPages) {
+                        echo '<a href="index.php?action=home&page=' .  ($page + 1) . '">' . $page + 1 . '</a> ';
+                    }
+                    // Total de pages
+                    if ($page < $totalPages - 1) {
+                        echo "<p>...</p> ";
+                        echo '<a href="index.php?action=home&page=' . $totalPages . '">' . $totalPages . '</a> ';
+                    }
+
+                    if ($page < $totalPages) {
+                        echo '<a href="index.php?action=home&page=' . ($page + 1) . '">suivant ></a> ';
+                    }
+                echo "</div>";
             }
         }
 

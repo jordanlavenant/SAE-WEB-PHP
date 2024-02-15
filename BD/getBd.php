@@ -17,7 +17,7 @@ function getIdGenre($nomG){
     } 
 }
 
-function getAlbum(){
+function getAlbums(){
     try{
         $data = array();
         $album = array();
@@ -32,6 +32,43 @@ function getAlbum(){
             $stm->bindParam(':entryId', $row['entryId'], PDO::PARAM_INT);
             $stm->execute();
             while($g = $stm->fetch()){
+                array_push($genres,$g[0]);
+            }
+            $album["genre"] = $genres;
+            $album["img"] = $row['img'];
+            $album["parent"] = $row['parent'];
+            $album["releaseYear"] = $row['releaseYear'];
+            $album["title"] = $row['title'];
+            $data[] = $album;
+            $album = array();
+        }
+        $bd = null;
+        return $data;
+    } catch(PDOException $ex){
+        echo $ex->getMessage();
+    } 
+}
+
+function getAlbumsOffset($currentPage, $parPage) {
+    try {
+        $data = array();
+        $album = array();
+        $offset = ($currentPage - 1) * $parPage;
+        $requete = "SELECT by, entryId, img, parent, releaseYear, title FROM ALBUMS LIMIT :parPage OFFSET :offset";
+        $getGenre = "SELECT nomG FROM GENRES NATURAL JOIN GENRESALBUM WHERE entryId=:entryId";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':parPage', $parPage, PDO::PARAM_INT);
+        $stm->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stm->execute();
+        foreach ($stm as $row){
+            $album["by"] = $row['by'];
+            $album["entryId"] = $row['entryId'];
+            $genres = array();
+            $stm2 = $bd->prepare($getGenre);
+            $stm2->bindParam(':entryId', $row['entryId'], PDO::PARAM_INT);
+            $stm2->execute();
+            while($g = $stm2->fetch()){
                 array_push($genres,$g[0]);
             }
             $album["genre"] = $genres;

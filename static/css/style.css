@@ -1154,6 +1154,39 @@ table {
     }
 }
 
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 50px 0;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--accent);
+
+    & p {
+        font-family: black-italic;
+        font-size: 25px;
+        color: var(--text);
+    }
+
+    & a {
+        text-decoration: none;
+        color: var(--text);
+        font-size: 25px;
+        transition: .2s;
+
+        &.current {
+            color: var(--accent);
+        }
+
+        &:hover {
+            color: var(--accent);
+            transition: .2s;
+        }
+    }
+
+}
+
 #welcome {
     margin-top: 50px;
 }
