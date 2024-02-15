@@ -12,16 +12,16 @@
         
         function __construct() {
             $this->themes = array("bleu", "violet", "rose", "vert");
-            $this->currentTheme = $_SESSION["theme"] ?? "Light"; // Default to "Light" if no theme is set
+            $this->currentTheme = $_SESSION["theme"] ?? "Light"; 
         }
    
 
         function buildPlaylist() {
             if (isset($_POST["theme"])) {
-                // Save the selected theme to the session
                 $_SESSION["theme"] = $_POST["theme"];
-                // Update the current theme
                 $this->currentTheme = $_POST["theme"];
+                header("Location: index.php?action=configuration");
+                exit(); 
             }
         
             $aside = new Aside();
@@ -42,7 +42,6 @@
                 </main>";
             }
         }
-        
 
      
 ?>
