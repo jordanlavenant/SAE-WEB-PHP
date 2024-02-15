@@ -91,6 +91,24 @@ body.theme-mauve {
     --hover: #eaedfd;
 }
 
+body.theme-saumon {
+    --text: #0f0807;
+    --background: #fbf6f6;
+    --primary: #b95952;
+    --secondary: #d99a95;
+    --accent: #d27972;
+    --hover: #eaedfd;
+}
+
+body.theme-vintage {
+    --text: #89253e;
+    --background: #f1f6e1;
+    --primary: #f3f3f3;
+    --secondary: #dedcff;
+    --accent: #9e9cd8;
+    --hover: #eaedfd;
+
+}
 
 body.theme-rose {
     --primary: #da8ca0;
