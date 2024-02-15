@@ -771,28 +771,27 @@ table {
             }
         }
 
-            & .buttons {
+        & .buttons {
             display: flex;
             flex-direction: column-reverse;
             align-items: flex-end   ;
             gap: 5px;
             padding: 0 30px;
 
-            & div { 
+            & a {
                 display: flex;
-                align-items: center ;
+                align-items: center;
                 justify-content: flex-end;
-                color: var(--accent);
                 transition: .2s;
                 scale: 1;
                 gap: 20px;
 
-                & p, a {
-                    font-family: black-italic;
-                    font-size: 25px;
-                    padding: 0;
+                & p {
                     margin: 0;
-                    text-decoration: none;
+                    padding: 0;
+                    font-family: black-italic;
+                    color: var(--accent);
+                    font-size: 25px;
                 }
 
                 &:hover {
@@ -800,7 +799,7 @@ table {
                     scale: 1.05;
                     transition: .2s;
                 }
-            }            
+            }
         }
     }
 }

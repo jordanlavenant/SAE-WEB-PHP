@@ -11,6 +11,16 @@ function retirerFavori($idU, $entryId) {
     $bd = null;
 }
 
+function retirerAllFavori($entryId) {
+    $requete = "DELETE FROM FAVORIS WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+
+}
+
 function supprimerPlaylist($idP) {
     $requete = "DELETE FROM PLAYLISTS WHERE idP = :idP";
     $bd = getConnexion();
@@ -29,11 +39,22 @@ function supprimerAllAlbumsPlaylist($idP) {
     $bd = null;
 }
 
-function supprimerAlbum($id) {
+function retirerAllPlaylist($entryId) {
+    $requete = "DELETE FROM ALBUMSPLAYLIST WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
+
+function supprimerAlbum($entryId) {
+    retirerAllFavori($entryId);
+    retirerAllPlaylist($entryId);
     $requete = "DELETE FROM ALBUMS WHERE entryId = :id";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
-    $stm->bindParam(":id", $id, PDO::PARAM_INT);
+    $stm->bindParam(":id", $entryId, PDO::PARAM_INT);
     $stm->execute();
     $bd = null;
 }
