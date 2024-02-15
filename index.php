@@ -78,6 +78,14 @@
                 case "supprimerAlbum":
                     require 'Actions/supprimerAlbum.php';
                     break;
+                case "import":
+                    require 'Actions/importData.php';
+                    $import = new ImportData();
+                    $import->buildImportData();
+                    break;
+                case "ajouterAlbum":
+                    require 'Actions/ajouterAlbum.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }
