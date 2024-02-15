@@ -729,6 +729,11 @@ table {
 .myform-theme {
     gap: 20px;
 
+    & .themeSelector {
+        display: flex;
+        gap: 30px;
+    }
+
     & label {
         font-family: black-italic;
         font-size: 25px;
@@ -736,6 +741,14 @@ table {
         cursor: pointer;
         width: auto;
         user-select: none;
+
+        & .checked {
+            text-decoration: underline;
+        }
+    }
+
+    & input[type="radio"] {
+        visibility: hidden;
     }
 
     & input[type="text"] {
