@@ -15,11 +15,11 @@ Fonctionalités attendues
 ^Recherche un peu plus avancée dans les albums (par artiste, année, genre, etc.)
 
 Fonctionalités souhaitées
-Edition/Suppression/Update Albums
+^Edition/Suppression/Update Albums
 
 Fonctionnalités possibles
-Login / Users
-Playlist par user
+^Login / Users
+^Playlist par user
 Noter les albums
 
 Organisation et délais
@@ -27,10 +27,10 @@ Par groupes de 3
 
 Contraintes
 Organisation du code dans une arboresence cohérente
-Utilisation des objets
-Utilisation des namespaces
-Utilisation d'un autoloader
-Utilisation de PDO avec base de données sqlite
+^Utilisation des objets
+^Utilisation des namespaces
+^Utilisation d'un autoloader
+^Utilisation de PDO avec base de données sqlite
 
 Dépôt gitlab/github obligatoire 
 Enseignants SAé à mettre en reporter sur le dépôt
