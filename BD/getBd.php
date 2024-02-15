@@ -230,7 +230,7 @@ function inPlaylist($entryId, $idP) {
     }
 }
 
-function getAlbumWithId($entryId){
+function getAlbumWithId($entryId)   {
     $requete = "SELECT * FROM ALBUMS WHERE entryId = :entryId";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
@@ -241,7 +241,7 @@ function getAlbumWithId($entryId){
     return $album;
 }
 
-function countAlbumsPlaylist($idP) {
+function countAlbumsPlaylist($idP)  {
     $requete = "SELECT COUNT(entryId) FROM ALBUMSPLAYLIST WHERE idP = :idP";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
@@ -250,4 +250,60 @@ function countAlbumsPlaylist($idP) {
     $count = $stm->fetchColumn();
     $bd = null;
     return $count;
+}
+
+function getCompositeur($idC)   {
+    $requete = "SELECT * FROM COMPOSITEURS WHERE idC = :idC";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idC", $idC, PDO::PARAM_INT);
+    $stm-> execute();
+    $compositeur = $stm->fetch();
+    $bd = null;
+    return $compositeur;
+}
+
+function getCompositeurGroupe($idG) {
+    $requete = "SELECT * FROM COMPOSITEURGROUPE WHERE idG = :idG";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idG", $idG, PDO::PARAM_INT);
+    $stm-> execute();
+    $compositeur = $stm->fetch();
+    $bd = null;
+    return $compositeur;
+}
+
+function getCompositeurAlbum($entryId)  {
+    $requete = "SELECT * FROM COMPOSITEURALBUM WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $compositeur = $stm->fetch();
+    $bd = null;
+    return $compositeur;
+}
+
+function getAlbumCompositeur($idC) {
+    $listeAlbums = array();
+    $requete = "SELECT entryId FROM COMPOSITEURALBUM WHERE idC = :idC";
+    $res = getElementsFromRequete($requete, $idC);
+    while ($donnees = $res->fetch()) {
+        $album = getDetailsAlbum($donnees['entryId']);
+        array_push($listeAlbums, $album);
+    }
+    return $listeAlbums;
+}
+
+function getNoteAlbum($idU, $entryId) {
+    $requete = "SELECT * FROM NOTEALBUM WHERE idU = :idU AND entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $note = $stm->fetch();
+    $bd = null;
+    return $note;
 }

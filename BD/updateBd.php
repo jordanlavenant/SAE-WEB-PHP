@@ -20,3 +20,19 @@ function modifierAlbum($entryId, $title, $by, $parent, $releaseYear, $genre){
         echo $ex->getMessage();
     } 
 }
+
+function modifierNoteAlbum($idU, $entryId, $note){
+    try{
+        $requete = "UPDATE NOTEALBUM SET note = :note WHERE idU = :idU AND entryId = :entryId";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':note', $note, PDO::PARAM_INT);
+        $stm -> bindParam(':idU', $_SESSION['id'], PDO::PARAM_INT);
+        $stm -> bindParam(':entryId', $entryId, PDO::PARAM_INT);
+        $stm -> execute();
+        $bd = null;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modifcation de la note de l'album";
+        echo $ex->getMessage();
+    }
+} 

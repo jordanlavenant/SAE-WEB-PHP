@@ -1,3 +1,4 @@
 BD/bd.sqlite
 BD/bd.sqlite-journal
 .vscode/
+BD\vendor\symfony
