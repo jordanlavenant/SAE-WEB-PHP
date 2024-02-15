@@ -713,6 +713,31 @@ table {
     display: flex;
     gap: 20px;
 
+    & .album-info {
+        display: flex;
+        gap: 10px;
+
+        & div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+
+            & p {
+                font-family: medium-italic;
+                font-size: 25px;
+                color: var(--accent);
+                padding: 0;
+                margin: 0;
+                text-decoration: underline;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
     & label {
         font-family: black-italic;
         font-size: 25px;
@@ -720,6 +745,14 @@ table {
         cursor: pointer;
         width: auto;
         user-select: none;
+    }
+
+    .right-part {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 50px;
+        padding: 30px;
     }
 
     & input[type="text"] {
@@ -739,6 +772,54 @@ table {
             outline: .125rem solid currentColor;
             outline-offset: .1rem;
             transition: all .2s;
+        }
+
+        &#by-input {
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
+
+        &#parent-input {
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
+    }
+
+    & select {
+        display: block;
+        cursor: pointer;
+        width: 450px;
+        padding: 0 15px;
+        background-color: transparent;
+        border: 1px var(--accent) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 20px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
+
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
+
+        & option {
+            background-color: var(--background);
+            color: var(--text);
+            outline: none;
+        }
+
+        &.hidden {
+            display: none;
         }
     }
 
