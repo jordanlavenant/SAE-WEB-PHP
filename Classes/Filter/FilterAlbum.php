@@ -17,6 +17,7 @@ class FilterAlbum {
         $filtered_albums = array();
         foreach($this->data_objects as $album) {
             if(str_contains(strtolower($album->getNomGroupe()),strtolower($this->search)) || 
+                str_contains(strtolower(strval($album->getReleaseYear())),strtolower($this->search)) ||
                 str_contains(strtolower($album->getTitle()),strtolower($this->search)) ||
                 str_contains(strtolower($album->getParent()),strtolower($this->search)) ||
                 in_array(strtolower($this->search),array_map('strtolower',$album->getGenre()))    

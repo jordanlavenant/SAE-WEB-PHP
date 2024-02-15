@@ -9,7 +9,7 @@ require 'Classes/AllAlbum/RenderAlbumInterface.php';
 require 'Classes/AllAlbum/GenericAlbum.php';
 require 'Classes/AllAlbum/Album.php';
 
-require 'BD/getBd.php';
+require_once('BD/getBd.php');
 
 use AsideHome\Aside;
 use Favoris\DisplayFavoris;
