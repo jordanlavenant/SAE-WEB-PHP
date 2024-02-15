@@ -15,6 +15,7 @@
             error_reporting(E_ERROR | E_PARSE);
             session_start();
 
+            $_SESSION['theme'] = "Light";
 
             if (!isset($_SESSION['idU'])
                     && $_REQUEST['action'] != 'login'
@@ -80,6 +81,8 @@
                     break;
                 case "configuration":
                     require 'Actions/configuration.php';
+                    $configuration = new Configuration();
+                    $configuration->buildPlaylist();
                     break;
                 default:
                     require 'Actions/home.php';

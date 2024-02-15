@@ -65,27 +65,34 @@ a {
 }
 
 :root {
-    /* --primary: #99d8d4;
+    /* Default theme */
+    --primary: #99d8d4;
     --secondary: #287974;
     --text: #deeeed;
     --background: #081211;
     --accent: #44cbc3;
-    --hover: #10201e; */
+    --hover: #10201e;
+}
 
-    /* --primary: #7c82ef;
+body.theme-violet {
+    --primary: #7c82ef;
     --secondary: #681291;
     --text: #d5d7fa;
     --background: #04041d;
     --accent: #d032e6;
-    --hover: #10201e; */
+    --hover: #10201e;
+}
 
-    /* --primary: #da8ca0;
+body.theme-rose {
+    --primary: #da8ca0;
     --secondary: #89253e;
     --text: #f5e9ec;
     --background: black;
     --accent: #d2335c;
-    --hover: #d2335c; */
+    --hover: #d2335c;
+}
 
+body.theme-bleu {
     --text: #d6dbf9;
     --background: #050921;
     --primary: #7c8beb;

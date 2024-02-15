@@ -3,43 +3,50 @@
 
     require 'Classes/AsideHome/Aside.php';
 
+    use AsideHome\Aside;
+
+
     class Configuration {
         private array $themes;
         private string $currentTheme;
         
         function __construct() {
-            $this->themes = array("Light", "Dark", "Blue", "Green", "Red");
+            $this->themes = array("bleu", "violet", "rose", "Green", "vert");
             $this->currentTheme = $_SESSION["theme"] ?? "Light"; // Default to "Light" if no theme is set
         }
-    }
+   
 
-    function buildPlaylist() {
-        $aside = new Aside();
-        echo $aside->buildAside();
-    }
+        function buildPlaylist() {
+            if (isset($_POST["theme"])) {
+                // Save the selected theme to the session
+                $_SESSION["theme"] = $_POST["theme"];
+                // Update the current theme
+                $this->currentTheme = $_POST["theme"];
+            }
+        
+            $aside = new Aside();
+            echo $aside->buildAside();
+        
+            echo "
+                <main>
+                <head>
+                    <title>Choisir un thème</title>
+                </head>
+                <body class='theme-{$this->currentTheme}'>
+                    <form id='themeForm' method='post'>";
+                        foreach ($this->themes as $theme) {
+                            $checked = $theme === $this->currentTheme ? 'checked' : '';
+                            echo "
+                            <input type='radio' id='$theme' name='theme' value='$theme' $checked onchange='this.form.submit()'>
+                            <label for='$theme'>$theme</label>";
+                        }
+                echo "  </form>
+                </body>
+                </html>
+                </main>";
+            }
+        }
+        
 
-    echo "
-        <main>
-
-            <html>
-            <head>
-                <title>Select Theme</title>
-            </head>
-            <body>
-                <h1>Current Theme: <?php echo $currentTheme; ?></h1>
-                <form method='post'>
-                    <label for='theme'>Select a theme:</label>
-                    <select id='theme' name='theme'>
-                        <?php foreach ($themes as $theme): ?>
-                            <option value='<?php echo $theme; ?>' <?php echo $theme === $currentTheme ? 'selected' : ''; ?>>
-                                <?php echo $theme; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                    <input type='submit' value='Save'>
-                </form>
-            </body>
-            </html>
-        </main>';
-
+     
 ?>
