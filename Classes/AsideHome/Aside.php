@@ -16,10 +16,11 @@ class Aside {
     }
 
     function buildAside() {
+        $theme = $_SESSION['theme'] ?? 'default';
         return sprintf(
             '<aside>
                 <section class="header">
-                    <a href="index.php?action=home"><img src="static/images/VisualStudioMusicLogo2.png" alt="logo"></a>
+                    <a href="index.php?action=home"><img src="static/images/VisualStudioMusicLogo-%s.png" alt="logo"></a>
                     <ul class="menu">
                         <li><a href="index.php?action=home">accueil</a></li>
                         <li><a href="index.php?action=bibliotheque">bibliothèque</a></li>
@@ -34,7 +35,8 @@ class Aside {
                 </section>
                 <a href="index.php?action=login">se déconnecter</a>
             </aside>',
-            $this->displayPlaylists->buildPlaylists(),
+            $theme,
+            $this->displayPlaylists->buildPlaylists()
         );
     }
 

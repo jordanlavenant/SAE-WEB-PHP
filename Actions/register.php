@@ -9,8 +9,8 @@ class Register {
         echo "<div class='Register'>";
 
             echo "<div class='arrival-content'>";
-                echo "<img src='static/images/VisualStudioMusicLogo2.png' alt='logo'>";
-                echo "<h1>visual studio music</h1>";
+            echo "<img src='static/images/VisualStudioMusicLogo-" . $_SESSION['theme'] . ".png' alt='logo'>";
+            echo "<h1>visual studio music</h1>";
             echo "</div>";
 
             echo "<form action='index.php?action=login' method='post'>";

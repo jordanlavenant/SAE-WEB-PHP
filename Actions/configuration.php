@@ -13,7 +13,7 @@
         
         function __construct() { 
             $this->themesDark = array("bleu", "violet", "rose", "vert");
-            $this->themesLight = array("mauve");
+            $this->themesLight = array("mauve", "saumon" , "vintage");
             $this->currentTheme = $_SESSION["theme"] ?? "Light"; 
         }
    
