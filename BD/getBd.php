@@ -282,3 +282,25 @@ function getAllArtist() {
     $bd = null;
     return $data;
 }
+
+function getAlbumWithParent($parent){
+    $requete = "SELECT * FROM ALBUMS WHERE parent = :parent";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":parent", $parent, PDO::PARAM_STR);
+    $stm-> execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getAlbumWithBy($by){
+    $requete = "SELECT * FROM ALBUMS WHERE by = :by";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":by", $by, PDO::PARAM_STR);
+    $stm-> execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}

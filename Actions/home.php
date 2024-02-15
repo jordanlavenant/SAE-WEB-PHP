@@ -30,6 +30,12 @@
 
     use EditAlbum\FormEdit;
 
+    use Compositeurs\DisplayCompositeurs;
+    use Compositeurs\DisplayCompositeur;
+
+    use Groupes\DisplayGroupes;
+    use Groupes\DisplayGroupe;
+
     $dataloader = new Dataloader("data/data.yml");
     // Importation des données brute (yml)
     // $data = $dataloader->getData();
@@ -87,6 +93,14 @@
             $artistData = $selectedArtist->getArtistData($entryId);
             $displayArtistData = new DiscographieArtist($artistData);
             echo $displayArtistData->render();
+        } else if ($_REQUEST['action'] == 'groupes') {
+            $displayGroupes = new DisplayGroupes($data_objects);
+            echo $displayGroupes->render();
+            
+        } else if ($_REQUEST['action'] == 'compositeurs') {
+            $displayCompositeurs = new DisplayCompositeurs($data_objects);
+            echo $displayCompositeurs->render();
+
         } else {
             echo "<h1 id='welcome'>bonjour ". $_SESSION['prenomU'] ."</h1>";
 
