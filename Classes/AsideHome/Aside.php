@@ -25,6 +25,7 @@ class Aside {
                         <li><a href="index.php?action=bibliotheque">bibliothèque</a></li>
                         <li><a href="index.php?action=favoris">favoris</a></li>
                         <li><a href="index.php?action=import">importer</a></li>
+                        <li><a href="index.php?action=configuration">configuration</a></li>
                     </ul>
 
                     <ul class="playlists-aside">
