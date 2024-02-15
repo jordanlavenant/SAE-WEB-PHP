@@ -727,6 +727,7 @@ table {
 }
 
 .myform-theme {
+    margin-top: 50px;
     gap: 20px;
 
     & .themeSelector {
@@ -741,14 +742,18 @@ table {
         cursor: pointer;
         width: auto;
         user-select: none;
-
-        & .checked {
-            text-decoration: underline;
-        }
+        text-decoration: none;
+        padding: 5px;
+        transition: .2s;
     }
 
     & input[type="radio"] {
         visibility: hidden;
+
+        &:checked + label {
+            background-color: var(--accent);
+            transition: .2s;
+        }
     }
 
     & input[type="text"] {
