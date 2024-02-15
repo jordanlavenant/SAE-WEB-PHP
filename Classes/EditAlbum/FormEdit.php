@@ -3,6 +3,8 @@ declare(strict_type=1);
 
 namespace EditAlbum;
 
+require_once('BD/getBd');
+
 class FormEdit {
 
     private Object $singleData;
@@ -51,15 +53,15 @@ class FormEdit {
                         <div class='left-part'>
                             <img src='%s' alt='%s'>
                             <div class='album-info'>
-                                <label for='title'>Titre</label>
+                                <label for='title'>titre</label>
                                 <input type='text' name='title' value='%s'>
-                                <label for='by'>Interprété par</label>
+                                <label for='by'>interprété par</label>
                                 <input type='text' name='by' value='%s'>
-                                <label for='parent'>Compositeur</label>
+                                <label for='parent'>compositeur</label>
                                 <input type='text' name='parent' value='%s'>
-                                <label for='releaseYear'>Date de sortie</label>
+                                <label for='releaseYear'>date de sortie</label>
                                 <input type='text' name='releaseYear' value='%s'>
-                                <label for='genre'>Genre</label>
+                                <label for='genre'>genre</label>
                                 <input type='text' name='genre' value='%s'>
                             </div>
                         </div>

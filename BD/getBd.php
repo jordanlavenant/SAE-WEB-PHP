@@ -262,3 +262,7 @@ function countAlbumsPlaylist($idP) {
     $bd = null;
     return $count;
 }
+
+function getAllGroupe() {
+    
+}
