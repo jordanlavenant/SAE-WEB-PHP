@@ -57,7 +57,7 @@ class FormEdit {
                 <h1>détail</h1>
             </div>
             
-            <form class= 'myform' id='myform' action='index.php?action=modifierAlbum&id=".$this->singleData->getEntryId()."' method='post'>
+            <form class= 'myform' id='myform' action='index.php?action=modifierAlbum&id=".$this->singleData->getEntryId()."' method='post' enctype='multipart/form-data'>
                 <section class='album-container'>
                     <div class='content'>
                         <div class='left-part'>

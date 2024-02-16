@@ -111,9 +111,6 @@
                 case "notation":
                     require 'Actions/notation.php';
                     break;
-                case "uploadImage":
-                    require 'Actions/uploadImage.php';
-                    break;
                 default:
                     require 'Actions/home.php';
             }
