@@ -14,7 +14,7 @@ class DiscographieGroupe {
 
     function render(): void {
         $displayAlbums = new DisplayFilteteredAlbums($this->groupeData);
-        echo "<h2>discographie groupe</h2>";
+        echo "<h2>discographie du groupe</h2>";
         echo "<section class='discographie'>";
             $displayAlbums->buildAlbums();
         echo "</section>";
