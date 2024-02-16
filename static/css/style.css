@@ -593,11 +593,11 @@ main {
 .albums {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+    /* justify-content: space-between; */
+    gap: 65px;
     margin: 50px 0;
 
-    & .album {
+    & .album {  
         text-decoration: none;
         transition: .2s;
 
@@ -1255,7 +1255,96 @@ table {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    gap: 20px 50px;
+    gap: 50px 20px;
+
+    & .props {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .saisie {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & label {
+            font-family: black-italic;
+            font-size: 25px;
+            color: var(--text);
+            cursor: pointer;
+            width: auto;
+            user-select: none;
+            padding: 0 10px;
+        }
+
+        & p {
+            font-family: medium-italic;
+            font-size: 25px;
+            color: var(--accent);
+            padding: 0;
+            margin: 0;
+            text-decoration: underline;
+            user-select: none;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    & div {
+        display: flex;
+        gap: 50px;
+    }
+
+    & select {
+        display: block;
+        cursor: pointer;
+        width: 600px;
+        padding: 15px;
+        background-color: transparent;
+        border: 1px var(--accent) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 20px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
+
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
+
+        & option {
+            background-color: var(--background);
+            color: var(--text);
+            outline: none;
+        }
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    & #by-input {
+        display: none;
+
+        &.visible {
+            display: block;
+        }
+    }
+
+    & #parent-input {
+        display: none;
+
+        &.visible {
+            display: block;
+        }
+    }
 
     & input[type="text"] {
         width: 600px;
@@ -1276,6 +1365,44 @@ table {
             transition: all .2s;
         }
     }
+    
+    & input[type="file"] {
+        display: none;
+    }
+
+    & #label-file {
+        font-family: black-italic;
+        font-size: 25px;
+        color: var(--text);
+        cursor: pointer;
+        width: auto;
+        user-select: none;
+        transition: .2s;
+
+        &:hover {
+            transition: .2s;
+            color: var(--accent);
+        }
+    }
+
+    & #delete-button {
+        padding: 1%;
+        background-color: #a1452e;
+        color: var(--background);
+        border: 1px #a1452e solid;
+        font-size: 20px;
+        padding: 5px 20px;
+        outline: none;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: transparent;  
+            color: #a1452e;
+        }
+    }
+
+
 }
 
 .importDataFormSubmit {
@@ -1293,7 +1420,7 @@ table {
         outline: none;
         cursor: pointer;
         transition: .2s;
-        width: 400px;
+        width: 200px;
 
         &:hover {
             background-color: var(--accent-hover);  
