@@ -27,28 +27,37 @@ class FormEdit {
                 let newAlbumImage = document.getElementById('album-image');
                 let deleteButton = document.getElementById('delete-button');
                 let hiddenImagePath = document.getElementById('hidden-image-path');
-
+            
                 deleteButton.style.display = 'block';
-
+            
                 let reader = new FileReader();
-
+            
                 reader.onload = function(){
                     newImagePath = reader.result;
                     newAlbumImage.src = newImagePath;
-                    hiddenImagePath.value = newImagePath;
-                };
+            
+                    let fileName = input.files[0].name;
+                    let fileNameExtension = input.files[0].extension;
+                    let fileNameWithExtension = fileName + '.' + fileNameExtension;
 
+                    hiddenImagePath.value = fileNameWithExtension;
+            
+                    let fileExtension = fileNameWithExtension.split('.').pop().toLowerCase();
+                    console.log('File Extension:', fileExtension);
+                };
+            
                 reader.readAsDataURL(input.files[0]);
             }
-
+            
             function deleteImage() {
                 let newAlbumImage = document.getElementById('album-image');
                 let deleteButton = document.getElementById('delete-button');
                 let hiddenImagePath = document.getElementById('hidden-image-path');
-
+            
                 newImagePath = '';
                 newAlbumImage.src = originalImagePath;
                 deleteButton.style.display = 'none';
+            
                 hiddenImagePath.value = originalImagePath;
             }
         </script>
@@ -72,8 +81,8 @@ class FormEdit {
             </div>
             
             <form class='myform' id='myform' action='index.php?action=modifierAlbum&id=" . $this->singleData->getEntryId() . "' method='post'>
-                <input type='hidden' id='hidden-image-path' name='hiddenImagePath' value='" . $this->singleData->getImg() . "'>
-                <section class='album-container'>
+            <input type='hidden' id='hidden-image-path' name='hiddenImagePath' value='<?= $this->singleData->getImg() ?>'>
+            <section class='album-container'>
                     <div class='content'>
                         <div class='left-part'>
                             <img id='album-image' src='" . $this->singleData->getImg() . "' alt='" . $this->singleData->getTitle() . "'>
