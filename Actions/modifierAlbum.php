@@ -9,7 +9,7 @@
     $idU = $_SESSION['idU'];
     if (in_array($entryId, getAlbumWithId($entryId))){ //vaut tsans doute mieux utiliser getAlbumWithId
         echo "L'album existe";
-        modifierAlbum($entryId,$_POST['title'],$_POST['by'],$_POST['parent'],$_POST['releaseYear'],$_POST['genre']);
+        modifierAlbum($entryId,$_POST['title'],$_POST['by'],$_POST['parent'],$_POST['releaseYear'],$_POST['genre'],$_POST['hiddenImagePath']);
     }
     else {
         echo "L'album n'existe pas";
