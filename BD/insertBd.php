@@ -65,6 +65,16 @@ function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
         $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
+        
+        $bd = getConnexion();
+        $default = "bleu";
+        $requete = "INSERT INTO THEMES (idU, theme) VALUES (:idU, :theme)";
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
+        $stm->bindParam(":theme", $default, PDO::PARAM_STR);
+        $stm->execute();
+
+        $bd = null;
     } catch(PDOException $ex){}
 }
 
