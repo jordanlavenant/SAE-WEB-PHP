@@ -9,7 +9,7 @@ class Album extends GenericAlbum
     function renderCard(): string {
         return sprintf(
             "<a href='index.php?action=album&id=" . trim(strval($this->getEntryId())) . "' class='album'>
-                <img src='%s' alt='%s'>
+                <img src='baise64;%s' alt='%s'>
                 <div class='album-info'>
                     <h3>%s</h3>
                     <p>%s</p>
@@ -25,7 +25,7 @@ class Album extends GenericAlbum
     function renderCompact(): string {
         return sprintf(
             "<tr onclick='document.location = `index.php?action=album&id=" . trim(strval($this->getEntryId())) . "`';>
-                <td><img src='%s' alt='%s'>%s</td>
+                <td><img src='base64;%s' alt='%s'>%s</td>
                 <td>%s</td>
                 <td>%s</td>
                 <td>%s</td>

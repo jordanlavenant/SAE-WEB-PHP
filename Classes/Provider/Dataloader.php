@@ -58,6 +58,12 @@ class Dataloader {
             $entryId = $donnee['entryId'];
             $genre = $donnee['genre'];
             $img = $donnee['img'];
+            if ($img == "null") {
+                $img = "default.jpg";
+            } else {
+                $img_content = file_get_contents("data/images/".$img);
+                $img = base64_encode($img_content);
+            }
             $parent = $donnee['parent'];
             $releaseYear = $donnee['releaseYear'];
             $title = $donnee['title'];
