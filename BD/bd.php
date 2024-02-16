@@ -14,6 +14,7 @@ function creerBd(){
     creerCompisteurGroupe($bd);
     creerCompositeurAlbum($bd);
     creerNoteAlbum($bd);
+    creerTheme($bd);
     $bd = null;
 
 }
@@ -55,6 +56,15 @@ function creerUser($bd){
         nomU TEXT,
         prenomU TEXT,
         mdpU TEXT
+        )";
+    $bd->exec($requete);
+}
+
+function creerTheme($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS THEMES(
+        idU INTEGER PRIMARY KEY,
+        theme TEXT,
+        FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU)
         )";
     $bd->exec($requete);
 }

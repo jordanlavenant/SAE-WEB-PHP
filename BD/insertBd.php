@@ -65,6 +65,7 @@ function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
         $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
+        insererThemeU($idU, "bleu");
     } catch(PDOException $ex){}
 }
 
@@ -161,6 +162,20 @@ function insererNoteAlbum($idU, $entryId, $note){
         $stm->execute();
         $bd = null;
     } catch(PDOException $ex){
+        echo $ex;
+    }
+}
+
+function insererThemeU($idU, $nomT){
+    try {
+        $requete = "INSERT INTO THEME (idU, nomT) VALUES (:idU, :nomT)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
+        $stm->bindParam(':nomT', $nomT, PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $ex) {
         echo $ex;
     }
 }
