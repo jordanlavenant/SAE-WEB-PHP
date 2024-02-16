@@ -15,7 +15,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="static/css/style.css">
-        <link rel="icon" href="static/images/VisualStudioMusicLogo2.png" type="image/x-icon">
+        <link rel="icon" href="static/images/VisualStudioMusicLogo-<?php echo $_SESSION['theme']; ?>.png" type="image/x-icon">
         <title>Visual Studio Music</title>
     </head>
     <body class='theme-<?php echo $_SESSION['theme']; ?>'>
