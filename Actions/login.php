@@ -5,6 +5,9 @@ declare(strict_types=1);
 require 'BD/insertBd.php';
 require 'BD/getBd.php';
 
+require 'BD/bd.php';
+
+
 class Login {
 
     function buildLogin() { 

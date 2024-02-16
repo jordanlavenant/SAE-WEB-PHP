@@ -3,10 +3,9 @@
 
     require 'Classes/AsideHome/Aside.php';
     require 'Classes/Themes/UpdateTheme.php';
+    require_once('BD/updateBd.php');
 
     use AsideHome\Aside;
-
-    require_once('BD/updateBd.php');
 
     class Configuration {
         private array $themesLight;
@@ -24,6 +23,8 @@
             if (isset($_POST["theme"])) {
                 $_SESSION["theme"] = $_POST["theme"];
                 $this->currentTheme = $_POST["theme"];
+                print_r($_POST["theme"]);
+                print_r($_SESSION["idU"]);
                 modifierTheme($_SESSION["idU"], $_POST["theme"]);
                 $_SESSION['hexa'] = getThemeHexa($_POST["theme"]);
                 header("Location: index.php?action=configuration");
