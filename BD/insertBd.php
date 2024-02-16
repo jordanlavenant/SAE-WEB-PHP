@@ -65,6 +65,7 @@ function insererUtilisateur($emailU, $nomU, $prenomU, $mdp){
         $stm->bindParam(":mdpU", $mdpHash, PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
+        insererThemeU($idU, "bleu");
     } catch(PDOException $ex){}
 }
 
@@ -94,7 +95,7 @@ function nouvellePlaylist($nomP, $idU){
     }
 }
 
-function addPlaylist($entryId, $idP) { 
+function addPlaylist($entryId, $idP){ 
     try {
         $requete = "INSERT INTO ALBUMSPLAYLIST (idP, entryId) VALUES (:idP, :entryId)";
         $bd = getConnexion();
@@ -109,17 +110,72 @@ function addPlaylist($entryId, $idP) {
     }
 }
 
-function removePlaylist($entryId, $idP) {
-    try {
-        $requete = "DELETE FROM ALBUMSPLAYLIST WHERE idP = :idP AND entryId = :entryId";
+function insererCompositeur($nomC){
+    try{
+        $requete = "INSERT INTO COMPOSITEUR (idC, nomC) VALUES (NULL, :nomC)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
-        $stm -> bindParam(":idP", $idP, PDO::PARAM_INT);
-        $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+        $stm->bindParam(':nomC', $nomC, PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
-        return true;
+    } catch(PDOException $ex){
+        echo $ex;
+    }
+}
+
+function insererCompositeurAlbum($idC, $entryId){
+    try{
+        $requete = "INSERT INTO COMPOSITEURALBUM (idC, entryId) VALUES (:idC, :entryId)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':idC', $idC, PDO::PARAM_INT);
+        $stm->bindParam(':entryId', $entryId, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+    } catch(PDOException $ex){
+        echo $ex;
+    }
+}
+
+function insererCompositeurGroupe($idG, $idC){
+    try{
+        $requete = "INSERT INTO COMPOSITEURGROUPE (idG, idC) VALUES (:idG, :idC)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':idG', $idG, PDO::PARAM_INT);
+        $stm->bindParam(':idC', $idC, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+    } catch(PDOException $ex){
+        echo $ex;
+    }
+}
+
+function insererNoteAlbum($idU, $entryId, $note){
+    try{
+        $requete = "INSERT INTO NOTEALBUM (idU, entryId, note) VALUES (:idU, :entryId, :note)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
+        $stm->bindPARAM(':entryId', $entryId, PDO::PARAM_INT);
+        $stm->bindParam(':note', $note, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+    } catch(PDOException $ex){
+        echo $ex;
+    }
+}
+
+function insererThemeU($idU, $nomT){
+    try {
+        $requete = "INSERT INTO THEME (idU, nomT) VALUES (:idU, :nomT)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
+        $stm->bindParam(':nomT', $nomT, PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
     } catch (PDOException $ex) {
-        return false;
+        echo $ex;
     }
 }

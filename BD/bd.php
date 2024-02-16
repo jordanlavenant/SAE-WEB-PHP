@@ -6,10 +6,15 @@ function creerBd(){
     creerTableGenres($bd);
     creerTableGenresAlbum($bd);
     creerUser($bd);
-    creerArtistes($bd);
+    creerCompositeurs($bd);
     creerFavoris($bd);
     creerPlaylists($bd);
     creerAlbumsPlaylist($bd);
+    creerGroupes($bd);
+    creerCompisteurGroupe($bd);
+    creerCompositeurAlbum($bd);
+    creerNoteAlbum($bd);
+    creerTheme($bd);
     $bd = null;
 
 }
@@ -55,12 +60,19 @@ function creerUser($bd){
     $bd->exec($requete);
 }
 
-function creerArtistes($bd){
-    $requete = "CREATE TABLE IF NOT EXISTS ARTISTES(
-        idA INTEGER PRIMARY KEY,
-        nomA TEXT,
-        prenomA TEXT,
-        pseudo TEXT
+function creerTheme($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS THEMES(
+        idU INTEGER PRIMARY KEY,
+        theme TEXT,
+        FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU)
+        )";
+    $bd->exec($requete);
+}
+
+function creerCompositeurs($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS COMPOSITEURS(
+        idC INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomC TEXT
         )";
     $bd->exec($requete);
 }
@@ -95,3 +107,45 @@ function creerAlbumsPlaylist($bd){
         )";
     $bd->exec($requete);
 }
+
+function creerGroupes($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS GROUPES(
+        idG INTEGER PRIMARY KEY AUTOINCREMENT,
+        nomG TEXT
+        )";
+    $bd->exec($requete);
+}
+
+function creerCompisteurGroupe($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS COMPOSITEURGROUPE(
+        idG INTEGER,
+        idC INTEGER,
+        FOREIGN KEY (idG) REFERENCES GROUPES (idG),
+        FOREIGN KEY (idC) REFERENCES COMPOSITEURS (idC)
+        )";
+    $bd->exec($requete);
+}
+
+function creerCompositeurAlbum($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS COMPOSITEURALBUM(
+        entryId INTEGER,
+        idC INTEGER,
+        FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
+        FOREIGN KEY (idC) REFERENCES COMPOSITEURS (idC)
+        )";
+    $bd->exec($requete);
+}
+
+function creerNoteAlbum($bd){
+    $requete = "CREATE TABLE IF NOT EXISTS NOTEALBUM(
+        entryId INTEGER,
+        idU INTEGER,
+        note INTEGER,
+        FOREIGN KEY (entryId) REFERENCES ALBUMS (entryId),
+        FOREIGN KEY (idU) REFERENCES UTILISATEURS (idU)
+        )";
+    $bd->exec($requete);
+}
+
+
+creerBd();
