@@ -16,6 +16,10 @@ class FormEdit {
     function render() {
         echo " 
             <script>
+
+                let originalImagePath = '" . $this->singleData->getImg() . "';
+                let newImagePath = '';
+
                 function togglePopup(){
                     let popup = document.querySelector('#popup-overlay');
                     popup.classList.toggle('open');
@@ -52,17 +56,31 @@ class FormEdit {
                         newAlbumImage.src = newImagePath;
                 
                         let fileName = input.files[0].name;
+                        console.log('File Name:', fileName);
                         let fileNameExtension = input.files[0].extension;
                         let fileNameWithExtension = fileName + '.' + fileNameExtension;
     
                         hiddenImagePath.value = fileNameWithExtension;
                 
                         let fileExtension = fileNameWithExtension.split('.').pop().toLowerCase();
-                        console.log('File Extension:', fileExtension);
                     };
                 
                     reader.readAsDataURL(input.files[0]);
                 }    
+
+                function deleteImage() {
+                    let newAlbumImage = document.getElementById('album-image');
+                    let deleteButton = document.getElementById('delete-button');
+                    let hiddenImagePath = document.getElementById('hidden-image-path');
+                    let loadedImage = document.getElementById('image');
+
+                    loadedImage.value = '';
+                    newImagePath = '';
+                    newAlbumImage.src = originalImagePath;
+                    deleteButton.style.display = 'none';
+                
+                    hiddenImagePath.value = originalImagePath;
+                }
             </script>
 
             <div id='popup-overlay' class=''>
@@ -81,64 +99,64 @@ class FormEdit {
                 <a href='index.php?action=album&id=".$this->singleData->getEntryId()."'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill: rgba(222, 238, 237, 1);transform: ;msFilter:;'><path d='M13.939 4.939 6.879 12l7.06 7.061 2.122-2.122L11.121 12l4.94-4.939z'></path></svg>
                 </a>
-                <h1>détail</h1>
+                <h1>modifier l'album</h1>
             </div>
             
-            <form class= 'myform' id='myform' action='index.php?action=modifierAlbum&id=".$this->singleData->getEntryId()."' method='post' enctype='multipart/form-data'>
-                <section class='album-container'>
-                    <div class='content'>
-                        <div class='left-part'>
-                            <div class='album-info'>
-                                <label for='title'>titre</label>
-                                <input type='text' name='title' value='".$this->singleData->getTitle()."'>
+            <form class= 'editAlbumForm' id='myform' action='index.php?action=modifierAlbum&id=".$this->singleData->getEntryId()."' method='post' enctype='multipart/form-data'>
+                <input type='hidden' id='hidden-image-path' name='hiddenImagePath' value='".$this->singleData->getImg()."'>
+                <div class='content'>
+                    <div class='left-part'>                            
+                        <label for='title'>titre</label>
+                        <input type='text' name='title' value='".$this->singleData->getTitle()."'>
 
-                                <div>
-                                    <label for='by'>interprété par</label>
-                                    <p onclick='toggleEntry(this)'>manuel</p>
-                                </div>
-                                <select name='by' id='by'>";
-                                    foreach(getAllGroupe() as $groupe) {
-                                        if ($groupe[0] == $this->singleData->getNomGroupe())
-                                            echo "<option value='".$groupe[0]."' selected>".$groupe[0]."</option>";
-                                        else
-                                            echo "<option value='".$groupe[0]."'>".$groupe[0]."</option>";
-                                    }
-                                    echo "
-                                </select>
-                                <input id='by-input' type='text' name='by-input' value='".$this->singleData->getParent()."'>
-
-                                <div>
-                                    <label for='parent'>compositeur</label>
-                                    <p onclick='toggleEntry(this)'>manuel</p>
-                                </div>
-                                <select name='parent' id='parent'>";
-                                    foreach(getAllArtist() as $compositeur) {
-                                        if ($compositeur[0] == $this->singleData->getParent()) {
-                                            echo "<option value='".$compositeur[0]."' selected>".$compositeur[0]."</option>";
-                                        }
-                                        else {
-                                            echo "<option value='".$compositeur[0]."'>".$compositeur[0]."</option>";
-                                        }
-                                    }
-                                    echo "
-                                </select>
-                                <input id='parent-input' type='text' name='parent-input' value='".$this->singleData->getParent()."'>
-
-                                <label for='releaseYear'>date de sortie</label>
-                                <input type='text' name='releaseYear' value='".$this->singleData->getReleaseYear()."'>
-                                <label for='genre'>genre</label>
-                                <input type='text' name='genre' value='".$this->singleData->getGenreString()."'>
-                                
-                                <label for='image'>choisissez une image</label>
-                                <input type='file' name='image' id='image' accept='image/*' onchange='chargeImage(event)'>
-                            </div>
+                        <div>
+                            <label for='by'>interprété par</label>
+                            <p onclick='toggleEntry(this)'>manuel</p>
                         </div>
-                        <div class='right-part'>
-                            <img src='".$this->singleData->getImg()."' alt='".$this->singleData->getTitle()."'>
-                            <a class='genericButton' onclick='togglePopup()'>modifier l'album</a>
+                        <select name='by' id='by'>";
+                            foreach(getAllGroupe() as $groupe) {
+                                if ($groupe[0] == $this->singleData->getNomGroupe())
+                                    echo "<option value='".$groupe[0]."' selected>".$groupe[0]."</option>";
+                                else
+                                    echo "<option value='".$groupe[0]."'>".$groupe[0]."</option>";
+                            }
+                            echo "
+                        </select>
+                        <input id='by-input' type='text' name='by-input' value='".$this->singleData->getParent()."'>
+
+                        <div>
+                            <label for='parent'>compositeur</label>
+                            <p onclick='toggleEntry(this)'>manuel</p>
+                        </div>
+                        <select name='parent' id='parent'>";
+                            foreach(getAllArtist() as $compositeur) {
+                                if ($compositeur[0] == $this->singleData->getParent()) {
+                                    echo "<option value='".$compositeur[0]."' selected>".$compositeur[0]."</option>";
+                                }
+                                else {
+                                    echo "<option value='".$compositeur[0]."'>".$compositeur[0]."</option>";
+                                }
+                            }
+                            echo "
+                        </select>
+                        <input id='parent-input' type='text' name='parent-input' value='".$this->singleData->getParent()."'>
+
+                        <label for='releaseYear'>date de sortie</label>
+                        <input type='text' name='releaseYear' value='".$this->singleData->getReleaseYear()."'>
+                        <label for='genre'>genre</label>
+                        <input type='text' name='genre' value='".$this->singleData->getGenreString()."'>
+                        
+                        <div>
+                            <label id='label-file' for='image'>choisissez une image</label>
+                            <input type='file' name='image' id='image' accept='image/*' onchange='chargeImage(event)'>
+                            <button id='delete-button' style='display: none;' type='button' onclick='deleteImage()'>supprimer</button>
                         </div>
                     </div>
-                </section>
+                    <div class='right-part'>
+                        <img id='album-image' src='".$this->singleData->getImg()."' alt='".$this->singleData->getTitle()."'>
+                        <a class='genericButton' onclick='togglePopup()'>modifier</a>
+                    </div>
+                </div>
             </form>
         </main>";
     }

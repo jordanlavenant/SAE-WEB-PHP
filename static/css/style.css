@@ -701,27 +701,27 @@ table {
             transition: .2s all;
         }
     }
-
-    /*& input, textarea, select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid var(--accent-hover);
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        resize: vertical;
-        background-color: var(--accent-hover);
-        color: #333;
-    }*/
 }
 
-.myform {
+.editAlbumForm {
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
 
-    & .album-info {
+    & .content {
         display: flex;
+        flex-direction: row;
+        background-color: var(--background-secondary);
+        border-radius: 20px;
+        box-shadow: 0px 0px 24px 5px var(--background-secondary);
+        padding: 30px;
+        gap: 100px;
+        flex-wrap: wrap;
+    }
+
+    & .left-part {
+        display: flex;
+        flex-direction: column;
         gap: 10px;
 
         & div {
@@ -743,7 +743,52 @@ table {
                     cursor: pointer;
                 }
             }
+
+            & input[type="file"] {
+                display: none;
+            }
+
+            & #label-file {
+                font-family: black-italic;
+                font-size: 25px;
+                color: var(--text);
+                cursor: pointer;
+                width: auto;
+                user-select: none;
+                transition: .2s;
+        
+                &:hover {
+                    transition: .2s;
+                    color: var(--accent);
+                }
+            }
+
+            & #delete-button {
+                padding: 1%;
+                background-color: #a1452e;
+                color: var(--background);
+                border: 1px #a1452e solid;
+                font-size: 20px;
+                padding: 5px 20px;
+                outline: none;
+                cursor: pointer;
+                transition: .2s;
+
+                &:hover {
+                    background-color: transparent;  
+                    color: #a1452e;
+                }
+            }
         }
+    }
+
+    .right-part {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 50px;
+        padding: 0 30px;
     }
 
     & label {
@@ -753,14 +798,6 @@ table {
         cursor: pointer;
         width: auto;
         user-select: none;
-    }
-
-    .right-part {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 50px;
-        padding: 30px;
     }
 
     & input[type="text"] {
