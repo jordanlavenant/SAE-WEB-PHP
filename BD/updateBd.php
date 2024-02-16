@@ -27,7 +27,7 @@ function modifierNoteAlbum($idU, $entryId, $note){
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
         $stm->bindParam(':note', $note, PDO::PARAM_INT);
-        $stm->bindParam(':idU', $_SESSION['id'], PDO::PARAM_INT);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
         $stm->bindParam(':entryId', $entryId, PDO::PARAM_INT);
         $stm->execute();
         $bd = null;

@@ -929,6 +929,26 @@ table {
     }
 }
 
+.note {
+    display: flex;
+    justify-content: flex-end;
+
+    & div {
+        display: flex;
+
+        & svg {
+            scale: 1;
+            transition: .2s;
+        }
+
+        & svg:hover {
+            scale: 1.1;
+            cursor: pointer;
+            transition: .2s;
+        }
+    }
+}
+
 
 .album-container {
     width: 100%;

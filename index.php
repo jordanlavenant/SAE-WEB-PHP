@@ -108,6 +108,9 @@
                     $configuration = new Configuration();
                     $configuration->buildPlaylist();
                     break;
+                case "notation":
+                    require 'Actions/notation.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }
