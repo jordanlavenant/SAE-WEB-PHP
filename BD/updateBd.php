@@ -39,11 +39,11 @@ function modifierNoteAlbum($idU, $entryId, $note){
 
 function modifierTheme($idU, $theme){
     try{
-        $requete = "UPDATE THEME SET theme = :theme WHERE idU = :idU";
+        $requete = "UPDATE THEMES SET theme = :theme WHERE idU = :idU";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
         $stm->bindParam(':theme', $theme, PDO::PARAM_STR);
-        $stm->bindParam(':idU', $_SESSION['id'], PDO::PARAM_INT);
+        $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
         $stm->execute();
         $bd = null;
     } catch (PDOException $e) {

@@ -399,7 +399,7 @@ function getNoteAlbum($idU, $entryId) {
 }
 
 function getThemeUser($idU) {
-    $requete = "SELECT theme FROM THEME WHERE idU = :idU";
+    $requete = "SELECT theme FROM THEMES WHERE idU = :idU";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm -> bindParam(":idU", $idU, PDO::PARAM_INT);

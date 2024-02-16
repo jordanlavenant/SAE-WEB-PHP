@@ -3,6 +3,7 @@
     session_start();
 
     $_SESSION['theme'] = $_SESSION['theme'] ?? "bleu";
+    $_SESSION['hexa'] = $_SESSION['hexa'] ?? "#0066ff";
 ?>
 
 

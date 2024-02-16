@@ -168,7 +168,7 @@ function insererNoteAlbum($idU, $entryId, $note){
 
 function insererThemeU($idU, $nomT){
     try {
-        $requete = "INSERT INTO THEME (idU, nomT) VALUES (:idU, :nomT)";
+        $requete = "INSERT INTO THEMES (idU, nomT) VALUES (:idU, :nomT)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
         $stm->bindParam(':idU', $idU, PDO::PARAM_INT);

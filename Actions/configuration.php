@@ -2,9 +2,11 @@
     declare(strict_types=1);
 
     require 'Classes/AsideHome/Aside.php';
+    require 'Classes/Themes/UpdateTheme.php';
 
     use AsideHome\Aside;
 
+    require_once('BD/updateBd.php');
 
     class Configuration {
         private array $themesLight;
@@ -14,7 +16,7 @@
         function __construct() { 
             $this->themesDark = array("bleu", "violet", "rose", "vert");
             $this->themesLight = array("mauve", "saumon" , "vintage");
-            $this->currentTheme = $_SESSION["theme"] ?? "Light"; 
+            $this->currentTheme = $_SESSION["theme"];
         }
    
 
@@ -22,6 +24,8 @@
             if (isset($_POST["theme"])) {
                 $_SESSION["theme"] = $_POST["theme"];
                 $this->currentTheme = $_POST["theme"];
+                modifierTheme($_SESSION["idU"], $_POST["theme"]);
+                $_SESSION['hexa'] = getThemeHexa($_POST["theme"]);
                 header("Location: index.php?action=configuration");
                 exit(); 
             }
