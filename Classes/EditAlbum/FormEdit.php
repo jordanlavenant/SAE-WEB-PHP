@@ -26,6 +26,7 @@ class FormEdit {
                 let input = event.target;
                 let newAlbumImage = document.getElementById('album-image');
                 let deleteButton = document.getElementById('delete-button');
+                let hiddenImagePath = document.getElementById('hidden-image-path');
 
                 deleteButton.style.display = 'block';
 
@@ -34,6 +35,7 @@ class FormEdit {
                 reader.onload = function(){
                     newImagePath = reader.result;
                     newAlbumImage.src = newImagePath;
+                    hiddenImagePath.value = newImagePath;
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -42,10 +44,12 @@ class FormEdit {
             function deleteImage() {
                 let newAlbumImage = document.getElementById('album-image');
                 let deleteButton = document.getElementById('delete-button');
+                let hiddenImagePath = document.getElementById('hidden-image-path');
 
                 newImagePath = '';
                 newAlbumImage.src = originalImagePath;
                 deleteButton.style.display = 'none';
+                hiddenImagePath.value = originalImagePath;
             }
         </script>
 
@@ -68,6 +72,7 @@ class FormEdit {
             </div>
             
             <form class='myform' id='myform' action='index.php?action=modifierAlbum&id=" . $this->singleData->getEntryId() . "' method='post'>
+                <input type='hidden' id='hidden-image-path' name='hiddenImagePath' value='" . $this->singleData->getImg() . "'>
                 <section class='album-container'>
                     <div class='content'>
                         <div class='left-part'>
