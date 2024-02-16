@@ -9,6 +9,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
         $_SESSION['idU'] = getIdUser($_POST['email']);
         $_SESSION['nomU'] = getNomUser($_POST['email']);
+        $_SESSION['prenomU'] = getPrenomUser($_POST['email']);
         header('Location: index.php?action=home');
     }
 }

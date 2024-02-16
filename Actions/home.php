@@ -1,22 +1,7 @@
 <?php
 
-
     require_once('Classes/Provider/Dataloader.php');
-    require_once('BD/getBd.php');
-
-    // Vérification de la connexion
-    if (isset($_POST['email']) 
-            && isset($_POST['password']) 
-            && !verifLogin($_POST['email'], $_POST['password'])) {
-        header('Location: index.php?action=login');
-        exit();
-    }
-
-    // On set l'id de l'utilisateur dans la variable de session
-    if (!$_SESSION['idU'] && !$_SESSION['nomU']) {
-        $_SESSION['idU'] = getIdUser($_POST['email']);
-        $_SESSION['nomU'] = getNomUser($_POST['email']);
-    }
+    require_once('BD/getBd.php');    
     
     require 'Classes/Autoloader.php';
     Autoloader::register();
@@ -44,6 +29,12 @@
     use Playlists\DisplayPlaylistsCompact;
 
     use EditAlbum\FormEdit;
+
+    use Compositeurs\DisplayCompositeurs;
+    use Compositeurs\DisplayCompositeur;
+
+    use Groupes\DisplayGroupes;
+    use Groupes\DisplayGroupe;
 
     $dataloader = new Dataloader("data/data.yml");
     // Importation des données brute (yml)
@@ -102,8 +93,16 @@
             $artistData = $selectedArtist->getArtistData($entryId);
             $displayArtistData = new DiscographieArtist($artistData);
             echo $displayArtistData->render();
+        } else if ($_REQUEST['action'] == 'groupes') {
+            $displayGroupes = new DisplayGroupes($data_objects);
+            echo $displayGroupes->render();
+            
+        } else if ($_REQUEST['action'] == 'compositeurs') {
+            $displayCompositeurs = new DisplayCompositeurs($data_objects);
+            echo $displayCompositeurs->render();
+
         } else {
-            echo "<h1 id='welcome'>bonjour ". $_SESSION['nomU'] ."</h1>";
+            echo "<h1 id='welcome'>bonjour ". $_SESSION['prenomU'] ."</h1>";
 
             // Barre de recherche
             $searchBar = new SearchBar();
@@ -131,9 +130,45 @@
                 $albums = new DisplayFilteteredAlbums($data_objects);
                 $albums->buildAlbums();
             } else {
-                // Display des albums
-                $albums = new DisplayAlbums($data_objects);
+                // Pagination
+                $data_objects_displayed = $data_objects;
+                $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+                $itemsPerPage = 10;
+                $startIndex = ($page - 1) * $itemsPerPage;
+                $data_objects_displayed_page = array_slice($data_objects_displayed, $startIndex, $itemsPerPage);
+
+                // Display des albums avec pagination
+                $albums = new DisplayAlbums($data_objects_displayed_page);
                 $albums->buildAlbums();
+                  
+                // Affichage des liens de pagination
+                $totalItems = count($data_objects_displayed);
+                $totalPages = ceil($totalItems / $itemsPerPage);
+
+                echo "<div id='pagination'>";
+                    if ($page > 1) {
+                        echo '<a href="index.php?action=home&page=' . ($page - 1) . '">< précédent</a> ';
+                    }
+                    // Page precedente 
+                    if ($page > 1) {
+                        echo '<a href="index.php?action=home&page=' .  ($page - 1) . '">' . $page - 1 . '</a> ';
+                    }
+                    // Page actuelle 
+                    echo '<a class="current" href="index.php?action=home&page=' . $page . '">' . $page . '</a> ';
+                    // Page suivante
+                    if ($page < $totalPages) {
+                        echo '<a href="index.php?action=home&page=' .  ($page + 1) . '">' . $page + 1 . '</a> ';
+                    }
+                    // Total de pages
+                    if ($page < $totalPages - 1) {
+                        echo "<p>...</p> ";
+                        echo '<a href="index.php?action=home&page=' . $totalPages . '">' . $totalPages . '</a> ';
+                    }
+
+                    if ($page < $totalPages) {
+                        echo '<a href="index.php?action=home&page=' . ($page + 1) . '">suivant ></a> ';
+                    }
+                echo "</div>";
             }
         }
 

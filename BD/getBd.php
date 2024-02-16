@@ -17,7 +17,7 @@ function getIdGenre($nomG){
     } 
 }
 
-function getAlbum(){
+function getAlbums(){
     try{
         $data = array();
         $album = array();
@@ -32,6 +32,43 @@ function getAlbum(){
             $stm->bindParam(':entryId', $row['entryId'], PDO::PARAM_INT);
             $stm->execute();
             while($g = $stm->fetch()){
+                array_push($genres,$g[0]);
+            }
+            $album["genre"] = $genres;
+            $album["img"] = $row['img'];
+            $album["parent"] = $row['parent'];
+            $album["releaseYear"] = $row['releaseYear'];
+            $album["title"] = $row['title'];
+            $data[] = $album;
+            $album = array();
+        }
+        $bd = null;
+        return $data;
+    } catch(PDOException $ex){
+        echo $ex->getMessage();
+    } 
+}
+
+function getAlbumsOffset($currentPage, $parPage) {
+    try {
+        $data = array();
+        $album = array();
+        $offset = ($currentPage - 1) * $parPage;
+        $requete = "SELECT by, entryId, img, parent, releaseYear, title FROM ALBUMS LIMIT :parPage OFFSET :offset";
+        $getGenre = "SELECT nomG FROM GENRES NATURAL JOIN GENRESALBUM WHERE entryId=:entryId";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':parPage', $parPage, PDO::PARAM_INT);
+        $stm->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stm->execute();
+        foreach ($stm as $row){
+            $album["by"] = $row['by'];
+            $album["entryId"] = $row['entryId'];
+            $genres = array();
+            $stm2 = $bd->prepare($getGenre);
+            $stm2->bindParam(':entryId', $row['entryId'], PDO::PARAM_INT);
+            $stm2->execute();
+            while($g = $stm2->fetch()){
                 array_push($genres,$g[0]);
             }
             $album["genre"] = $genres;
@@ -110,6 +147,17 @@ function getNomUser($email){
     $nomU = $stm->fetchColumn();
     $bd = null;
     return $nomU;
+}
+
+function getPrenomUser($email){
+    $requete = "SELECT prenomU FROM UTILISATEURS WHERE emailU = :emailU";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(':emailU', $email, PDO::PARAM_STR);
+    $stm-> execute();
+    $prenomU = $stm->fetchColumn();
+    $bd = null;
+    return $prenomU;
 }
 
 function verifLogin($emailU, $mdp){
@@ -250,6 +298,48 @@ function countAlbumsPlaylist($idP)  {
     $count = $stm->fetchColumn();
     $bd = null;
     return $count;
+}
+
+function getAllGroupe() {
+    $requete = "SELECT by from ALBUMS GROUP BY by";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}   
+
+function getAllArtist() {
+    $requete = "SELECT parent from ALBUMS GROUP BY parent";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getAlbumWithParent($parent){
+    $requete = "SELECT * FROM ALBUMS WHERE parent = :parent";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":parent", $parent, PDO::PARAM_STR);
+    $stm-> execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getAlbumWithBy($by){
+    $requete = "SELECT * FROM ALBUMS WHERE by = :by";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":by", $by, PDO::PARAM_STR);
+    $stm-> execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
 }
 
 function getCompositeur($idC)   {

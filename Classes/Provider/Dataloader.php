@@ -48,7 +48,7 @@ class Dataloader {
     }
 
     function getDataBd(){
-        return getAlbum();
+        return getAlbums();
     }
 
     function insererData(){

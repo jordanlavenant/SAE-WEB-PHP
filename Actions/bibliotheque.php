@@ -27,7 +27,7 @@ class Bibliotheque {
                     <h1>bibliothèque</h1>
                 </div>
                 <form action='index.php?action=ajoutPlaylist' method='post'>
-                    <input type='text' id='nomP' name='nomP' required/>
+                    <input type='text' id='nomP' name='nomP' required placeholder='playlist'/>
                     <input type='submit' value='ajouter'/>
                 </form>
             </div>";            
