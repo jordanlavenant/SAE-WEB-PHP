@@ -36,6 +36,33 @@ class FormEdit {
                         input.name = input.name === 'parent-input' ? 'parent' : 'parent-input';
                     }
                 }
+
+                function chargeImage(event) {
+                    let input = event.target;
+                    let newAlbumImage = document.getElementById('album-image');
+                    let deleteButton = document.getElementById('delete-button');
+                    let hiddenImagePath = document.getElementById('hidden-image-path');
+                
+                    deleteButton.style.display = 'block';
+                
+                    let reader = new FileReader();
+                
+                    reader.onload = function(){
+                        newImagePath = reader.result;
+                        newAlbumImage.src = newImagePath;
+                
+                        let fileName = input.files[0].name;
+                        let fileNameExtension = input.files[0].extension;
+                        let fileNameWithExtension = fileName + '.' + fileNameExtension;
+    
+                        hiddenImagePath.value = fileNameWithExtension;
+                
+                        let fileExtension = fileNameWithExtension.split('.').pop().toLowerCase();
+                        console.log('File Extension:', fileExtension);
+                    };
+                
+                    reader.readAsDataURL(input.files[0]);
+                }    
             </script>
 
             <div id='popup-overlay' class=''>
@@ -103,7 +130,7 @@ class FormEdit {
                                 <input type='text' name='genre' value='".$this->singleData->getGenreString()."'>
                                 
                                 <label for='image'>choisissez une image</label>
-                                <input type='file' name='image' id='image' accept='image/*'>
+                                <input type='file' name='image' id='image' accept='image/*' onchange='chargeImage(event)'>
                             </div>
                         </div>
                         <div class='right-part'>
