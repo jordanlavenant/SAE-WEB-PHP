@@ -1,4 +1,5 @@
 <?php
+require_once("BD/bd.php");
 require_once("BD/connexionBd.php");
 require_once("vendor/autoload.php"); // Chemin vers autoload.php de Symfony/Yaml
 
@@ -14,7 +15,7 @@ function insererDonneesDepuisYAML($fichier){
         // Récupération des données de l'album
         $by = $album['by'];
         $entryId = $album['entryId'];
-        $img = $album['img'];
+        $img = NULL;
         $parent = $album['parent'];
         $releaseYear = $album['releaseYear'];
         $title = $album['title'];
@@ -64,7 +65,7 @@ function insererDonneesDepuisYAML($fichier){
     // Fermeture de la connexion à la base de données
     $bd = null;
 }
-
+creerbd();
 // Appel de la fonction pour insérer les données du fichier YAML dans la base de données
 insererDonneesDepuisYAML('./BD/data.yml');
 ?>
