@@ -16,14 +16,13 @@ function creerBd(){
     creerNoteAlbum($bd);
     creerTheme($bd);
     $bd = null;
-
 }
 
 function creerTableAlbums($bd){
     $requete = "CREATE TABLE IF NOT EXISTS ALBUMS(
         by TEXT,
         entryId INTEGER PRIMARY KEY,
-        img TEXT,
+        img MEDIUMBLOB,
         parent TEXT,
         releaseYear INTEGER,
         title TEXT

@@ -57,7 +57,9 @@ class Dataloader {
             $by = $donnee['by'];
             $entryId = $donnee['entryId'];
             $genre = $donnee['genre'];
-            $img = $donnee['img'];
+            $img_path = $donnee['img'];
+            $img_content = file_get_contents($img_path);
+            $img = base64_encode($img_content);
             $parent = $donnee['parent'];
             $releaseYear = $donnee['releaseYear'];
             $title = $donnee['title'];

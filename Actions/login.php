@@ -17,8 +17,9 @@ class Login {
         // Si les mots de passes ne correspondent pas
         if ($_POST['passwordRegister'] != $_POST['passwordConfirmRegister']) {
             $_REQUEST['warning-message'] = "Les mots de passe doivent correspondre";
-            header('Location: index.php?action=register');
-            exit();
+            echo "erreur";
+            // header('Location: index.php?action=register');
+            // exit();
         } 
 
         // Insertion

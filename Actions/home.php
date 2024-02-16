@@ -41,6 +41,7 @@
     // $data = $dataloader->getData();
 
     // Importation des données de la base de données
+    $dataloader->insererData(); // temp
     $data = $dataloader->getDataBd();
 
     // Tableau d'objet Album
