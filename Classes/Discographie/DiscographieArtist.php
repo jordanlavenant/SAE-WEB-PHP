@@ -14,7 +14,7 @@ class DiscographieArtist {
 
     function render(): void {
         $displayAlbums = new DisplayFilteteredAlbums($this->artistData);
-        echo "<h2>discographie compositeur</h2>";
+        echo "<h2>discographie du compositeur</h2>";
         echo "<section class='discographie'>";
             $displayAlbums->buildAlbums();
         echo "</section>";
