@@ -44,7 +44,7 @@ class FormEdit {
 
                     <svg href='javascript:void(0)' onclick='togglePopup()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:".$_SESSION['hexa'].";transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
                     <div class='choices'>
-                        <input type='submit' form='myform' value=Confirmer>
+                        <input type='submit' form='myform' value=confirmer>
                         <a class='genericButton' onclick='togglePopup()'>Annuler</a>
                     </div>
                 </div>
@@ -101,6 +101,9 @@ class FormEdit {
                                 <input type='text' name='releaseYear' value='".$this->singleData->getReleaseYear()."'>
                                 <label for='genre'>genre</label>
                                 <input type='text' name='genre' value='".$this->singleData->getGenreString()."'>
+                                
+                                <label for='image'>choisissez une image</label>
+                                <input type='file' name='image' id='image' accept='image/*'>
                             </div>
                         </div>
                         <div class='right-part'>

@@ -1,6 +1,6 @@
 <?php
 
-require_once('BD/deletetBd.php');
+require_once('BD/deleteBd.php');
 session_start();
 
 $idP = $_REQUEST['idP'];
