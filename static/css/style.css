@@ -577,7 +577,8 @@ main {
 
 #search-props,
 #playlist-props,
-#favoris-props {
+#favoris-props,
+#compositeur-props {
     margin: 30px 0;
     font-family: medium-italic;
     font-size: 20px;
@@ -1427,6 +1428,61 @@ table {
             color: var(--accent);
         }
     }
+}
+
+.compositeurs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 50px 0;
+
+    & .compositeur {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        position: relative;
+        width: 250px;
+        height: 250px;
+        border: 1px solid var(--accent);
+        transition: .2s;
+
+        & p {
+            text-align: center;
+            font-family: black-italic;
+            font-size: 20px;
+            color: var(--text);
+        }
+
+        & #countProps {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: -15px;
+            right: 20px;  
+            font-size: 20px; 
+            color: var(--accent);
+            padding: 0 20px;
+            background-color: var(--background);
+            transition: .2s;
+            border-radius: 20px;
+            border: var(--accent) 1px solid;
+        }
+
+        &:hover {
+            background-color: var(--accent);
+            transition: .2s;
+
+            & p {
+                color: var(--background);
+                transition: .2s;
+            }
+        }
+    }
+}
+
+.compositeur-album {
+    margin-top: 50px;
 }
 
 #pagination {

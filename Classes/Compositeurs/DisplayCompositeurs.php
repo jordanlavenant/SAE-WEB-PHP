@@ -13,10 +13,6 @@ class DisplayCompositeurs {
 
     function __construct(array $data) {
         $this->artists = getAllArtist();    
-        $this->artistData = array();
-        // foreach($this->artists as $artist) {
-        //     array_push($this->artistData, getAlbumByArtist($artist));
-        // }
     }
 
     function render(): void {
@@ -27,10 +23,20 @@ class DisplayCompositeurs {
             </a>
             <h1>compositeurs</h1>
         </div>
-        <section class='compositeurs'>
-            
-        </section>
-        ";
+        <section class='compositeurs'>";
+            foreach($this->artists as $artist) {
+                echo "
+                <a class='compositeur' href='index.php?action=compositeur&parent=".$artist['parent']."'>
+                    <p>".$artist['parent']."</p>";
+                    $size = count(getAlbumWithParent($artist['parent']));
+                    if ($size > 1) {
+                        echo "<p id='countProps'>".$size." albums</p>";
+                    } else {
+                        echo "<p id='countProps'>".$size." album</p>";
+                    }
+                echo "</a>";
+            }
+        echo "</section>";
         
     }
 }

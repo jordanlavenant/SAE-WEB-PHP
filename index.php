@@ -61,8 +61,6 @@
                     $playlist = new Playlist($_REQUEST['idP']);
                     $playlist->buildPlaylist();
                     break;
-                case "compositeurs":
-                    require 'Actions/compositeurs.php';
                 case "favoris":
                     require 'Actions/favoris.php';
                     $favoris = new Favoris();
@@ -112,6 +110,11 @@
                     break;
                 case "notation":
                     require 'Actions/notation.php';
+                    break;
+                case "compositeur":
+                    require 'Actions/compositeur.php';
+                    $compositeur = new Compositeur($_REQUEST['parent']);
+                    $compositeur->buildCompositeur();
                     break;
                 default:
                     require 'Actions/home.php';
