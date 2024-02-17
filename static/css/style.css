@@ -1086,7 +1086,7 @@ table {
     }
 }
 
-#popup-overlay, #popup-overlay-delete, #popup-overlay-playlist {
+#popup-overlay, #popup-overlay-delete, #popup-overlay-playlist, #popup-overlay-edit {
     position: fixed;
     top: 0;
     left: 0;
