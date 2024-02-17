@@ -127,8 +127,16 @@
                     $groupe = new Groupe($_REQUEST['by']);
                     $groupe->buildGroupe();
                     break;
+                case "compositeur":
+                    require 'Actions/compositeur.php';
+                    $compositeur = new Compositeur($_REQUEST['parent']);
+                    $compositeur->buildCompositeur();
+                    break;
                 case "modifierArtiste":
                     require 'Actions/modifierGroupe.php';
+                    break;
+                case "modifierCompositeur":
+                    require 'Actions/modifierCompositeur.php';
                     break;
                 default:
                     require 'Actions/home.php';
