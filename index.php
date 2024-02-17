@@ -119,6 +119,17 @@
                 case "supprimerCompositeur":
                     require 'Actions/supprimerCompositeur.php';
                     break;
+                case "supprimerGroupe":
+                    require 'Actions/supprimerGroupe.php';
+                    break;
+                case "groupe":
+                    require 'Actions/groupe.php';
+                    $groupe = new Groupe($_REQUEST['by']);
+                    $groupe->buildGroupe();
+                    break;
+                case "modifierArtiste":
+                    require 'Actions/modifierGroupe.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }
