@@ -341,9 +341,10 @@ function getAllGenres() {
 }
 
 function getAlbumWithParent($parent){
-    $requete = "SELECT * FROM ALBUMS WHERE parent = :parent";
+    $requete = "SELECT * FROM ALBUMS WHERE parent LIKE :parent";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
+    $parent = '%' . $parent . '%';
     $stm -> bindParam(":parent", $parent, PDO::PARAM_STR);
     $stm-> execute();
     $data = $stm->fetchAll();
