@@ -48,7 +48,7 @@ class ImportDataForm {
                         <p onclick="toggleEntry(this)">manuel</p>
                     </div>
                     <select name="by" id="by">';
-                        $allGroupes = getAllGroupe();
+                        $allGroupes = getAllBy();
                         $randomIndexBy = array_rand($allGroupes);
                         foreach($allGroupes as $index => $groupe) {
                             $selected = ($index == $randomIndexBy) ? 'selected' : '';

@@ -1,5 +1,6 @@
 <?php
 require_once("BD/connexionBd.php");
+require_once('BD/insertBd.php');
 
 function getIdGenre($nomG){
     try{
@@ -300,7 +301,7 @@ function countAlbumsPlaylist($idP)  {
     return $count;
 }
 
-function getAllGroupe() {
+function getAllBy() {
     $requete = "SELECT by from ALBUMS GROUP BY by";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
@@ -308,7 +309,7 @@ function getAllGroupe() {
     $data = $stm->fetchAll();
     $bd = null;
     return $data;
-}   
+}
 
 function getAllArtist() {
     $requete = "SELECT parent from ALBUMS GROUP BY parent";
@@ -320,10 +321,21 @@ function getAllArtist() {
     return $data;
 }
 
-function getAlbumWithParent($parent){
-    $requete = "SELECT * FROM ALBUMS WHERE parent = :parent";
+function getAllGenres() {
+    $requete = "SELECT nomG from GENRES";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getAlbumWithParent($parent){
+    $requete = "SELECT * FROM ALBUMS WHERE parent LIKE :parent";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $parent = '%' . $parent . '%';
     $stm -> bindParam(":parent", $parent, PDO::PARAM_STR);
     $stm-> execute();
     $data = $stm->fetchAll();
@@ -331,15 +343,25 @@ function getAlbumWithParent($parent){
     return $data;
 }
 
-function getAlbumWithBy($by){
-    $requete = "SELECT * FROM ALBUMS WHERE by = :by";
-    $bd = getConnexion();
-    $stm = $bd->prepare($requete);
-    $stm -> bindParam(":by", $by, PDO::PARAM_STR);
-    $stm-> execute();
-    $data = $stm->fetchAll();
-    $bd = null;
-    return $data;
+function getAlbumWithBy($artiste){
+    try {
+        $requete = "SELECT * FROM ALBUMS WHERE by LIKE :artiste";
+        
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+
+        $artiste = '%' . $artiste . '%';
+        $stm->bindParam(":artiste", $artiste, PDO::PARAM_STR);
+        
+        $stm->execute();
+        $data = $stm->fetchAll();
+        $bd = null;
+        return $data;
+    }
+    catch(PDOException $ex) {
+        echo "Erreur lors de la récupération des albums de l'artiste";
+        echo $ex->getMessage();
+    }    
 }
 
 function getCompositeur($idC)   {

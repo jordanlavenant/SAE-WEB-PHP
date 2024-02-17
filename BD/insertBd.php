@@ -16,6 +16,7 @@ function insererGenre($genre){
 
 function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title){
     try{
+        insertGroupe($by);
         $requete = "INSERT INTO ALBUMS (by, entryId, img, parent, releaseYear, title) VALUES (:by, :entryId, :img, :parent, :releaseYear, :title)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);

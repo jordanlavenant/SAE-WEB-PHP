@@ -70,3 +70,91 @@ function modifierTheme($idU, $theme){
         echo $e->getMessage();
     }
 }
+
+function modifierArtiste($by, $nouveauNom) {
+    try {
+        modifierCompositeurWhereBy($by, $nouveauNom);
+        modifierGroupeWhereBy($by, $nouveauNom);        
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom de l'artiste";
+        echo $e->getMessage();
+    }
+}
+
+function modifierCompositeurWhereBy($by, $nouveauNom) {
+    try {
+        $requete = "UPDATE ALBUMS SET parent = :nouveauNom WHERE parent LIKE :by";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $nouveauNom =  $nouveauNom;
+        $stm->bindParam(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
+        $by = '%' . $by . '%';
+        $stm->bindParam(':by', $by , PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom du compositeur";
+        echo $e->getMessage();
+    }
+}
+
+function modifierGroupeWhereBy($by, $nouveauNom) {
+    try {
+        $requete = "UPDATE ALBUMS SET by = :nouveauNom WHERE by LIKE :by";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $nouveauNom =  $nouveauNom;
+        $stm->bindParam(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
+        $by = '%' . $by . '%';
+        $stm->bindParam(':by', $by , PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom du groupe";
+        echo $e->getMessage();
+    }
+}
+
+
+function modifierCompositeur($parent, $nouveauNom) {
+    try {
+        modifierCompositeurWhereParent($parent, $nouveauNom);
+        modifierGroupeWhereParent($parent, $nouveauNom);        
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom de l'artiste";
+        echo $e->getMessage();
+    }
+}
+
+function modifierCompositeurWhereParent($parent, $nouveauNom) {
+    try {
+        $requete = "UPDATE ALBUMS SET parent = :nouveauNom WHERE parent LIKE :parent";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
+        $parent = '%' . $parent . '%';
+        $stm->bindParam(':parent', $parent , PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom du compositeur";
+        echo $e->getMessage();
+    }
+}
+
+function modifierGroupeWhereParent($parent, $nouveauNom) {
+    try {
+        $requete = "UPDATE ALBUMS SET by = :nouveauNom WHERE by LIKE :parent";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $nouveauNom =  $nouveauNom;
+        $stm->bindParam(':nouveauNom', $nouveauNom, PDO::PARAM_STR);
+        $parent = '%' . $parent . '%';
+        $stm->bindParam(':parent', $parent , PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom du groupe";
+        echo $e->getMessage();
+    }
+}
