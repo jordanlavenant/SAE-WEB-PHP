@@ -320,6 +320,16 @@ function getAllArtist() {
     return $data;
 }
 
+function getAllGenres() {
+    $requete = "SELECT nomG from GENRES";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
 function getAlbumWithParent($parent){
     $requete = "SELECT * FROM ALBUMS WHERE parent = :parent";
     $bd = getConnexion();
