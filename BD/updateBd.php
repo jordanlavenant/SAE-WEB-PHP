@@ -52,7 +52,7 @@ function modifierNoteAlbum($idU, $entryId, $note){
         $bd = null;
     } catch (PDOException $e) {
         echo "Erreur lors de la modification de la note de l'album";
-        echo $ex->getMessage();
+        echo $e->getMessage();
     }
 }
 
@@ -67,6 +67,6 @@ function modifierTheme($idU, $theme){
         $bd = null;
     } catch (PDOException $e) {
         echo "Erreur lors de la modification du theme de l'utilisateur";
-        echo $ex->getMessage();
+        echo $e->getMessage();
     }
 }
