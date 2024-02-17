@@ -20,7 +20,7 @@ class DisplayPlaylists {
         $html = "<div class='playlists-list'>";
         foreach ($this->playlists as $p) {
             if (inPlaylist($this->entryId, $p['idP'])) {
-                $html .= "<a class='playlist' style='background-color: #0066ff;' href='index.php?action=retirerAlbumPlaylist&idP=".$p['idP']."&entryId=".$this->entryId."'>";
+                $html .= "<a class='playlist' style='background-color: ".$_SESSION['hexa'].";' href='index.php?action=retirerAlbumPlaylist&idP=".$p['idP']."&entryId=".$this->entryId."'>";
             } else {
                 $html .= "<a class='playlist' style='background-color: transparent;' href='index.php?action=ajoutAlbumPlaylist&idP=".$p['idP']."&entryId=".$this->entryId."'>";
             }
