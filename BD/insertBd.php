@@ -166,13 +166,13 @@ function insererNoteAlbum($idU, $entryId, $note){
     }
 }
 
-function insererThemeU($idU, $nomT){
+function insererThemeU($idU, $theme){
     try {
-        $requete = "INSERT INTO THEMES (idU, nomT) VALUES (:idU, :nomT)";
+        $requete = "INSERT INTO THEMES (idU, theme) VALUES (:idU, :theme)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
         $stm->bindParam(':idU', $idU, PDO::PARAM_INT);
-        $stm->bindParam(':nomT', $nomT, PDO::PARAM_STR);
+        $stm->bindParam(':theme', $theme, PDO::PARAM_STR);
         $stm->execute();
         $bd = null;
     } catch (PDOException $ex) {

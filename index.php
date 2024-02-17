@@ -61,6 +61,8 @@
                     $playlist = new Playlist($_REQUEST['idP']);
                     $playlist->buildPlaylist();
                     break;
+                case "compositeurs":
+                    require 'Actions/compositeurs.php';
                 case "favoris":
                     require 'Actions/favoris.php';
                     $favoris = new Favoris();
