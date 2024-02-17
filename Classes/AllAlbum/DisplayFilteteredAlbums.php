@@ -21,6 +21,7 @@ class DisplayFilteteredAlbums {
                     <th>artiste / groupe</th>
                     <th>compositeur</th>
                     <th>année</th>
+                    <th>note</th>
                 </tr>
             </thead>
             <tbody>";
