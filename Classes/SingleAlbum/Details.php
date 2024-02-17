@@ -96,7 +96,8 @@ class Details {
                         <img src=' " . $this->singleData->getImg() . " ' alt='" . $this->singleData->getTitle(). "'>
                         <div class='album-info'>
                             <h3> " . $this->singleData->getTitle() . "</h3>
-                            <p>" . $this->singleData->getNomGroupe() . "</p>
+                            <p> Interprété par : " . $this->singleData->getNomGroupe() . "</p>
+                            <p> Compositeur : " . $this->singleData->getParent() . "</p>
                             <div>
                                 <p><span>" . $this->singleData->getGenreString() ."</span></p>
                                 <p><span>" . $this->singleData->getReleaseYear() . "</span></p>
@@ -131,4 +132,3 @@ class Details {
         );
     }
 }
-
