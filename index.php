@@ -137,6 +137,8 @@
                     break;
                 case "modifierCompositeur":
                     require 'Actions/modifierCompositeur.php';
+                case "modifierGenre":
+                    require 'Actions/modifierGenre.php';
                     break;
                 default:
                     require 'Actions/home.php';

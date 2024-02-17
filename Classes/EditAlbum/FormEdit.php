@@ -20,10 +20,15 @@ class FormEdit {
                 let originalImagePath = '" . $this->singleData->getImg() . "';
                 let newImagePath = '';
 
-                function togglePopup(){
-                    let popup = document.querySelector('#popup-overlay');
+                function togglePopupSubmit(){
+                    let popup = document.querySelector('.popup-submit');
                     popup.classList.toggle('open');
                 }     
+
+                function togglePopupGenre(){
+                    let popup = document.querySelector('.popup-genre');
+                    popup.classList.toggle('open');
+                }   
                 
                 function toggleEntry(button){
                     button.textContent = button.textContent === 'manuel' ? 'liste' : 'manuel';
@@ -83,15 +88,41 @@ class FormEdit {
                 }
             </script>
 
-            <div id='popup-overlay' class=''>
+            <div id='popup-overlay' class='popup-submit'>
                 <div class='popup-content'>
                     <h2>voulez-vous vraiment modifier les informations de cet album ?</h2>
 
-                    <svg href='javascript:void(0)' onclick='togglePopup()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:".$_SESSION['hexa'].";transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
+                    <svg href='javascript:void(0)' onclick='togglePopupSubmit()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:".$_SESSION['hexa'].";transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
                     <div class='choices'>
                         <input type='submit' form='myform' value=confirmer>
-                        <a class='genericButton' onclick='togglePopup()'>Annuler</a>
+                        <a class='genericButton' onclick='togglePopupSubmit()'>Annuler</a>
                     </div>
+                </div>
+            </div>
+
+            <div id='popup-overlay' class='popup-genre'>
+                <div class='popup-content'>
+                    <h2>edition des genres</h2>
+                    <svg href='javascript:void(0)' onclick='togglePopupGenre()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:".$_SESSION['hexa'].";transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
+                    <form class='genre-list' action='index.php?action=modifierGenre&id=".$this->singleData->getEntryId()."' method='post'>";
+                        foreach(getAllGenre() as $genre) {
+                            echo "
+                            <div class='genre'>";
+                                if (in_array($genre[1], $this->singleData->getGenre())) {
+                                    echo "<input type='checkbox' id='".$genre[0]."' name='genre[]' value='".$genre[0]."' checked>
+                                    <label for='".$genre[0]."'>".$genre[1]."</label>
+                                </div>";
+                                }
+                                else
+                                    echo "<input type='checkbox' id='".$genre[0]."' name='genre[]' value='".$genre[0]."'>
+                                    <label for='".$genre[0]."'>".$genre[1]."</label>
+                            </div>";
+                        }
+                        echo "
+                        <div id='container-submit'>
+                            <input type='submit' value='confirmer'>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -105,7 +136,8 @@ class FormEdit {
             <form class= 'editAlbumForm' id='myform' action='index.php?action=modifierAlbum&id=".$this->singleData->getEntryId()."' method='post' enctype='multipart/form-data'>
                 <input type='hidden' id='hidden-image-path' name='hiddenImagePath' value='".$this->singleData->getImg()."'>
                 <div class='content'>
-                    <div class='left-part'>                            
+                    <div class='left-part'>        
+                        <label id='label-file' for='' onclick='togglePopupGenre()'>éditer les genres</label>                    
                         <label for='title'>titre</label>
                         <input type='text' name='title' value='".$this->singleData->getTitle()."'>
 
@@ -143,9 +175,7 @@ class FormEdit {
 
                         <label for='releaseYear'>date de sortie</label>
                         <input type='text' name='releaseYear' value='".$this->singleData->getReleaseYear()."'>
-                        <label for='genre'>genre</label>
-                        <input type='text' name='genre' value='".$this->singleData->getGenreString()."'>
-                        
+
                         <div>
                             <label id='label-file' for='image'>choisissez une image</label>
                             <input type='file' name='image' id='image' accept='image/*' onchange='chargeImage(event)'>
@@ -154,7 +184,7 @@ class FormEdit {
                     </div>
                     <div class='right-part'>
                         <img id='album-image' src='".$this->singleData->getImg()."' alt='".$this->singleData->getTitle()."'>
-                        <a class='genericButton' onclick='togglePopup()'>modifier</a>
+                        <a class='genericButton' onclick='togglePopupSubmit()'>modifier</a>
                     </div>
                 </div>
             </form>

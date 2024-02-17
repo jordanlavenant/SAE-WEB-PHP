@@ -136,3 +136,22 @@ function supprimerGroupe($by) {
         echo $ex->getMessage();
     }
 }
+
+function supprimerNoteAlbum($idU, $entryId) {
+    $requete = "DELETE FROM NOTEALBUM WHERE idU = :idU AND entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":idU", $idU, PDO::PARAM_INT);
+    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
+
+function supprimerGenres($entryId) {
+    $requete = "DELETE FROM GENRESALBUM WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
