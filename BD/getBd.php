@@ -1,5 +1,6 @@
 <?php
 require_once("BD/connexionBd.php");
+require_once('BD/insertBd.php');
 
 function getIdGenre($nomG){
     try{
@@ -299,16 +300,6 @@ function countAlbumsPlaylist($idP)  {
     $bd = null;
     return $count;
 }
-
-function getAllGroupe() {
-    $requete = "SELECT by from ALBUMS GROUP BY by";
-    $bd = getConnexion();
-    $stm = $bd->prepare($requete);
-    $stm->execute();
-    $data = $stm->fetchAll();
-    $bd = null;
-    return $data;
-}   
 
 function getAllBy() {
     $requete = "SELECT by from ALBUMS GROUP BY by";

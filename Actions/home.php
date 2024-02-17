@@ -2,6 +2,8 @@
 
     require_once('Classes/Provider/Dataloader.php');
     require_once('BD/getBd.php');    
+    // require_once('BD/bd.php');
+    // creerBd();
     
     require 'Classes/Autoloader.php';
     Autoloader::register();

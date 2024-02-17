@@ -11,7 +11,7 @@ function creerBd(){
     creerPlaylists($bd);
     creerAlbumsPlaylist($bd);
     creerGroupes($bd);
-    creerCompisteurGroupe($bd);
+    creerCompositeurGroupe($bd);
     creerCompositeurAlbum($bd);
     creerNoteAlbum($bd);
     creerTheme($bd);
@@ -72,7 +72,7 @@ function creerTheme($bd){
 function creerCompositeurs($bd){
     $requete = "CREATE TABLE IF NOT EXISTS COMPOSITEURS(
         idC INTEGER PRIMARY KEY AUTOINCREMENT,
-        nomC TEXT
+        nomC TEXT UNIQUE
         )";
     $bd->exec($requete);
 }
@@ -111,12 +111,12 @@ function creerAlbumsPlaylist($bd){
 function creerGroupes($bd){
     $requete = "CREATE TABLE IF NOT EXISTS GROUPES(
         idG INTEGER PRIMARY KEY AUTOINCREMENT,
-        nomG TEXT
+        nomG TEXT UNIQUE
         )";
     $bd->exec($requete);
 }
 
-function creerCompisteurGroupe($bd){
+function creerCompositeurGroupe($bd){
     $requete = "CREATE TABLE IF NOT EXISTS COMPOSITEURGROUPE(
         idG INTEGER,
         idC INTEGER,

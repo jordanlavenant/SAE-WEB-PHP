@@ -97,14 +97,16 @@ function removePlaylist($entryId, $idP) {
 function supprimerCompositeur($parent) {
     try {
         #récupérer tous les id des albums associés à ce compositeur
-        $requete = "SELECT entryId FROM ALBUMS WHERE parent = :parent";
+        $requete = "SELECT entryId FROM ALBUMS WHERE parent LIKE :parent";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
+        $parent = '%' . $parent . '%';
         $stm->bindParam(":parent", $parent, PDO::PARAM_STR);
         $stm->execute();
         $albums = $stm->fetchAll(PDO::FETCH_ASSOC);
         $bd = null;
         #appeller la fonction supprimerAlbum pour chaque album
+        print_r($albums);
         foreach ($albums as $album) {
             supprimerAlbum($album['entryId']);
         }
@@ -117,9 +119,10 @@ function supprimerCompositeur($parent) {
 function supprimerGroupe($by) {
     try {
         #récupérer tous les id des albums associés à ce groupe
-        $requete = "SELECT entryId FROM ALBUMS WHERE by = :by";
+        $requete = "SELECT entryId FROM ALBUMS WHERE by LIKE :by";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
+        $by = '%' . $by . '%';
         $stm->bindParam(":by", $by, PDO::PARAM_STR);
         $stm->execute();
         $albums = $stm->fetchAll(PDO::FETCH_ASSOC);

@@ -191,6 +191,10 @@ aside {
                     scale: 1.05;
                 }
 
+                &.current {
+                    color: var(--accent);
+                }
+
                 &.child {
                     text-decoration: none;
                     color: var(--text);
@@ -204,6 +208,10 @@ aside {
                         color: var(--accent);
                         transition: .2s;
                         scale: 1.05;
+                    }
+
+                    &.current {
+                        color: var(--accent);
                     }
                 }
             }
@@ -391,7 +399,7 @@ main {
     
             &:hover {
                 cursor: pointer;
-                scale: 1.1;
+                scale: 1.05;
                 transition: .2s;
             }
         }
@@ -434,7 +442,7 @@ main {
         
                 &:hover {
                     cursor: pointer;
-                    scale: 1.1;
+                    scale: 1.05;
                     transition: .2s;
                 }
             }
@@ -980,7 +988,7 @@ table {
         }
 
         & svg:hover {
-            scale: 1.1;
+            scale: 1.05;
             cursor: pointer;
             transition: .2s;
         }
@@ -1481,8 +1489,62 @@ table {
     }
 }
 
-.compositeur-album {
+.compositeur-album,
+.groupe-album {
     margin-top: 50px;
+
+    & .tools {
+        display: flex;
+        gap: 50px;
+
+        & a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: .2s;
+
+            & p {
+                font-family: black-italic;
+                font-size: 25px;
+                color: var(--accent);
+                margin: 0;
+                padding: 0;
+            }
+
+            &:hover {
+                cursor: pointer;
+                scale: 1.05;
+                transition: .2s;
+            }
+        }
+    }
+}
+
+.editCompositeurForm,
+.editGroupeForm {
+
+    margin-top: 30px;
+
+    & input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        background-color: transparent;
+        border: 1px var(--text) solid;
+        outline: .125rem solid transparent;
+        outline-offset: 0;   
+        font-size: 20px;
+        color: var(--text);
+        font-weight: 700;
+        transition: all .2s;
+
+        &:hover, &:focus-visible, &:active {
+            border-color: transparent;
+            outline: .125rem solid currentColor;
+            outline-offset: .1rem;
+            transition: all .2s;
+        }
+    }
 }
 
 #pagination {

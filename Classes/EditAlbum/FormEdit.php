@@ -114,7 +114,7 @@ class FormEdit {
                             <p onclick='toggleEntry(this)'>manuel</p>
                         </div>
                         <select name='by' id='by'>";
-                            foreach(getAllGroupe() as $groupe) {
+                            foreach(getAllBy() as $groupe) {
                                 if ($groupe[0] == $this->singleData->getNomGroupe())
                                     echo "<option value='".$groupe[0]."' selected>".$groupe[0]."</option>";
                                 else

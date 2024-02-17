@@ -16,6 +16,7 @@ function insererGenre($genre){
 
 function insererAlbum($by, $entryId, $genre, $img, $parent, $releaseYear, $title){
     try{
+        insertGroupe($by);
         $requete = "INSERT INTO ALBUMS (by, entryId, img, parent, releaseYear, title) VALUES (:by, :entryId, :img, :parent, :releaseYear, :title)";
         $bd = getConnexion();
         $stm = $bd->prepare($requete);
@@ -176,6 +177,19 @@ function insererThemeU($idU, $theme){
         $stm->execute();
         $bd = null;
     } catch (PDOException $ex) {
+        echo $ex;
+    }
+}
+
+function insertGroupe($nomG){
+    try{
+        $requete = "INSERT INTO GROUPES (idG, nomG) VALUES (NULL, :nomG)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':nomG', $nomG, PDO::PARAM_STR);
+        $stm->execute();
+        $bd = null;
+    } catch(PDOException $ex){
         echo $ex;
     }
 }
