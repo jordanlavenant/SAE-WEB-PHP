@@ -9,7 +9,7 @@ use AllAlbum\DisplayFilteteredAlbums;
 
 class DisplayCompositeurs {
 
-    private array $artistData;
+    private array $artists;
 
     function __construct(array $data) {
         $this->artists = getAllArtist();    
