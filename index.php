@@ -116,6 +116,9 @@
                     $compositeur = new Compositeur($_REQUEST['parent']);
                     $compositeur->buildCompositeur();
                     break;
+                case "supprimerCompositeur":
+                    require 'Actions/supprimerCompositeur.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }
