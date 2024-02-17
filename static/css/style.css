@@ -834,6 +834,14 @@ table {
                 display: block;
             }
         }
+
+        &#genre-input {
+            display: none;
+
+            &.visible {
+                display: block;
+            }
+        }
     }
 
     & select {
