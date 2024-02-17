@@ -93,3 +93,23 @@ function removePlaylist($entryId, $idP) {
         return false;
     }
 }
+
+function supprimerCompositeur($parent) {
+    try {
+        #récupérer tous les id des albums associés à ce compositeur
+        $requete = "SELECT entryId FROM ALBUMS WHERE parent = :parent";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(":parent", $parent, PDO::PARAM_STR);
+        $stm->execute();
+        $albums = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $bd = null;
+        #appeller la fonction supprimerAlbum pour chaque album
+        foreach ($albums as $album) {
+            supprimerAlbum($album['entryId']);
+        }
+    }
+    catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }    
+}
