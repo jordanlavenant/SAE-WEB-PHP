@@ -98,7 +98,7 @@ class Details {
                             <h3> " . $this->singleData->getTitle() . "</h3>
                             <p>interprété par : " . $this->singleData->getNomGroupe() . "</p>
                             <p>compositeur : " . $this->singleData->getParent() . "</p>
-                            <div>
+                            <div>                            
                                 <p><span>" . $this->singleData->getGenreString() ."</span></p>
                                 <p><span>" . $this->singleData->getReleaseYear() . "</span></p>
                             </div>

@@ -119,6 +119,9 @@
                 case "supprimerCompositeur":
                     require 'Actions/supprimerCompositeur.php';
                     break;
+                case "modifierGenre":
+                    require 'Actions/modifierGenre.php';
+                    break;
                 default:
                     require 'Actions/home.php';
             }

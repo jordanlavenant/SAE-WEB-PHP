@@ -253,6 +253,7 @@ h1 {
 main {
     flex-basis: 80%;
     margin-left: 300px;
+    margin-bottom: 100px;
     overflow-y: auto;
     width: min(100%, 80rem);
     padding: 0 5rem;
@@ -999,6 +1000,7 @@ table {
     background-color: var(--background-secondary);
     margin: 50px 0;
     border-radius: 20px;
+    /* border: 1px solid var(--accent); */
 
     & .content {
         display: flex;
@@ -1020,7 +1022,7 @@ table {
             }
 
             & img {
-                border-radius: 20px 0 0 0;
+                border-radius: 20px 0 20px 0;
                 box-shadow: 0px 0px 24px 5px var(--background-secondary);
                 min-width: 220px;
             }
@@ -1103,7 +1105,7 @@ table {
     display: none;
 
     & .popup-content {
-        max-width: 600px;
+        max-width: 800px;
         width: 100%;
         padding: 30px;
         background-color: var(--background);
@@ -1169,6 +1171,63 @@ table {
             }
         }
 
+        & .genre-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            & .genre {
+                width: 300px;
+
+                & input[type="checkbox"] {
+                    visibility: hidden;
+
+                    &:checked + label {
+                        background-color: var(--accent);
+                        transition: .2s;
+                    }
+                }
+
+                & label {
+                    font-family: black-italic;
+                    font-size: 20px;
+                    color: var(--text);
+                    margin: 0;
+                    padding: 0 5px;
+                    transition: .2s;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: var(--accent);
+                    }
+                }
+            }
+
+            & #container-submit {
+                margin-top: 30px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+
+                & input[type="submit"] {
+                    padding: 1%;
+                    background-color: var(--accent);
+                    color: var(--background);
+                    border: 1px var(--accent) solid;
+                    font-size: 25px;
+                    padding: 10px 50px;
+                    outline: none;
+                    cursor: pointer;
+                    transition: .2s;
+            
+                    &:hover {
+                        background-color: var(--accent-hover);  
+                        color: var(--accent);
+                    }
+                }
+            }
+        }
+
         & h2 {
             font-family: black-italic;
             font-size: 45px;
@@ -1203,6 +1262,7 @@ table {
     box-shadow: 0px 0px 24px 5px var(--background-secondary);
     border-radius: 20px;
     padding: 20px;
+    /* border: 1px solid var(--accent); */
 }
 
 .playlist-container {

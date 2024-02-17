@@ -179,3 +179,17 @@ function insererThemeU($idU, $theme){
         echo $ex;
     }
 }
+
+function insererGenresAlbum($entryId, $idG){
+    try{
+        $requete = "INSERT INTO GENRESALBUM (entryId, idG) VALUES (:entryId, :idG)";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':entryId', $entryId, PDO::PARAM_INT);
+        $stm->bindParam(':idG', $idG, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+    } catch(PDOException $ex){
+        echo $ex;
+    }
+}

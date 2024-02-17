@@ -408,3 +408,13 @@ function getThemeUser($idU) {
     $bd = null;
     return $theme;
 }
+
+function getAllGenre() {
+    $requete = "SELECT idG,nomG from GENRES";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
