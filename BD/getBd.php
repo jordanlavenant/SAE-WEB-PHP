@@ -310,8 +310,28 @@ function getAllGroupe() {
     return $data;
 }   
 
+function getAllBy() {
+    $requete = "SELECT by from ALBUMS GROUP BY by";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
 function getAllArtist() {
     $requete = "SELECT parent from ALBUMS GROUP BY parent";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->execute();
+    $data = $stm->fetchAll();
+    $bd = null;
+    return $data;
+}
+
+function getAllGenres() {
+    $requete = "SELECT nomG from GENRES";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm->execute();
@@ -331,15 +351,25 @@ function getAlbumWithParent($parent){
     return $data;
 }
 
-function getAlbumWithBy($by){
-    $requete = "SELECT * FROM ALBUMS WHERE by = :by";
-    $bd = getConnexion();
-    $stm = $bd->prepare($requete);
-    $stm -> bindParam(":by", $by, PDO::PARAM_STR);
-    $stm-> execute();
-    $data = $stm->fetchAll();
-    $bd = null;
-    return $data;
+function getAlbumWithBy($artiste){
+    try {
+        $requete = "SELECT * FROM ALBUMS WHERE by LIKE :artiste";
+        
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+
+        $artiste = '%' . $artiste . '%';
+        $stm->bindParam(":artiste", $artiste, PDO::PARAM_STR);
+        
+        $stm->execute();
+        $data = $stm->fetchAll();
+        $bd = null;
+        return $data;
+    }
+    catch(PDOException $ex) {
+        echo "Erreur lors de la récupération des albums de l'artiste";
+        echo $ex->getMessage();
+    }    
 }
 
 function getCompositeur($idC)   {
