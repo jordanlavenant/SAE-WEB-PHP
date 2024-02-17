@@ -35,6 +35,10 @@ class FormEdit {
                         input.classList.toggle('visible');
                         input.name = input.name === 'by-input' ? 'by' : 'by-input';
                     }
+                    else if (select.id === 'genre') {
+                        input.classList.toggle('visible');
+                        input.name = input.name === 'genre-input' ? 'genre' : 'genre-input';
+                    }
                     else {
                         input.classList.toggle('visible');
                         input.name = input.name === 'parent-input' ? 'parent' : 'parent-input';
@@ -140,11 +144,25 @@ class FormEdit {
                             echo "
                         </select>
                         <input id='parent-input' type='text' name='parent-input' value='".$this->singleData->getParent()."'>
-
+                            
                         <label for='releaseYear'>date de sortie</label>
                         <input type='text' name='releaseYear' value='".$this->singleData->getReleaseYear()."'>
-                        <label for='genre'>genre</label>
-                        <input type='text' name='genre' value='".$this->singleData->getGenreString()."'>
+                        
+                        <div>
+                            <label for='genre'>genre</label>
+                            <p onclick='toggleEntry(this)'>manuel</p>
+                        </div>
+                        <select name='genre' id='genre'>";
+                            foreach(getAllGenres() as $genre) {
+                                if ($genre[0] == $this->singleData->getGenre()[0]) 
+                                    echo "<option value='".$genre[0]."' selected>".$genre[0]."</option>";
+                                else 
+                                    echo "<option value='".$genre[0]."'>".$genre[0]."</option>";
+                            }
+                            echo "
+                        </select>
+                        <input id='genre-input' type='text' name='genre-input' value='".$this->singleData->getGenre()[0]."'>
+                        
                         
                         <div>
                             <label id='label-file' for='image'>choisissez une image</label>
