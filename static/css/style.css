@@ -218,7 +218,7 @@ aside {
         }
 
         & .playlists-aside {
-            max-height: 300px;
+            max-height: 200px;
             overflow-y: auto;
             list-style-type: none;
             padding: 10px 0;
@@ -233,6 +233,10 @@ aside {
                 border-radius: 10px;
                 transition: .2s;
 
+                & a {
+                    justify-content: center;
+                }
+
                 &:hover {
                     cursor: pointer;
                     background-color: var(--secondary);
@@ -243,11 +247,24 @@ aside {
     }
 
     & a {
-        margin: 30px 0;
+        display: flex;
         text-decoration: none;
         color: var(--text);
         font-size: 25px;
         transition: .2s;
+    }
+
+    & #disconnect {
+        display: flex;
+        justify-content: center;
+        scale: 1;
+        transition: .2s;
+        margin: 50px 0;
+
+        & :hover {
+            scale: 1.05;
+            transition: .2s;
+        }
     }
 }
 
@@ -587,7 +604,10 @@ main {
 #search-props,
 #playlist-props,
 #favoris-props,
-#compositeur-props {
+#compositeur-props,
+#genre-props,
+#groupe-props,
+#playlist-props {
     margin: 30px 0;
     font-family: medium-italic;
     font-size: 20px;
@@ -1102,7 +1122,10 @@ table {
     }
 }
 
-#popup-overlay, #popup-overlay-delete, #popup-overlay-playlist, #popup-overlay-edit {
+#popup-overlay, 
+#popup-overlay-delete, 
+#popup-overlay-playlist, 
+#popup-overlay-edit {
     position: fixed;
     top: 0;
     left: 0;
@@ -1182,6 +1205,8 @@ table {
         & .genre-list-album {
             display: flex;
             flex-wrap: wrap;
+            height: 300px;
+            overflow-y: scroll;
             justify-content: space-between;
 
             & .genre {
@@ -1232,6 +1257,30 @@ table {
                         background-color: var(--accent-hover);  
                         color: var(--accent);
                     }
+                }
+            }
+        }
+
+        & #container-submit {
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+
+            & input[type="submit"] {
+                padding: 1%;
+                background-color: var(--accent);
+                color: var(--background);
+                border: 1px var(--accent) solid;
+                font-size: 25px;
+                padding: 10px 50px;
+                outline: none;
+                cursor: pointer;
+                transition: .2s;
+        
+                &:hover {
+                    background-color: var(--accent-hover);  
+                    color: var(--accent);
                 }
             }
         }
@@ -1504,13 +1553,15 @@ table {
     }
 }
 
-.compositeurs {
+.compositeurs,
+.groupes {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     margin: 50px 0;
 
-    & .compositeur {
+    & .compositeur,
+    & .groupe {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1719,3 +1770,9 @@ table {
         color: var(--accent);
     }
 }
+
+@media screen and (min-width: 900px) {
+    aside {
+        overflow-y: scroll;
+    }
+  }

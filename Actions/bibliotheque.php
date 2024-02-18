@@ -30,8 +30,14 @@ class Bibliotheque {
                     <input type='text' id='nomP' name='nomP' required placeholder='playlist'/>
                     <input type='submit' value='ajouter'/>
                 </form>
-            </div>";            
-        echo "<section class='playlist-container'>";
+            </div>         
+            <div id='playlist-props'>";
+                $size = count($playlists);
+                if ($size == 1) echo "<h3>vous possédez <span>1</span> playlist</h3>";
+                else if ($size > 1) echo "<h3>vous possédez <span>".$size."</span> playlists</h3>";
+                else echo "<h3>vous ne possédez pas de playlist</h3>";
+        echo "</div> 
+        <section class='playlist-container'>";
             foreach ($playlists as $p) {
                 echo "
                 <a class='playlist-content' href=index.php?action=playlist&idP=" . $p['idP'] . ">

@@ -14,11 +14,11 @@ class DisplayPlaylistsCompact {
         $this->playlists = getPlaylistsU($idU);
     }
 
-    function buildPlaylists(): string {
+    function buildPlaylists(): void {
         $html = "";
         foreach ($this->playlists as $p) {
             $html .= "<li><a href='index.php?action=playlist&idP=".$p['idP']."'>".$p['nomP']."</a></li>";
         }
-        return $html;        
+        echo $html;
     }
 }

@@ -104,7 +104,7 @@ class FormEdit {
                 <div class='popup-content'>
                     <h2>edition des genres</h2>
                     <svg href='javascript:void(0)' onclick='togglePopupGenre()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:".$_SESSION['hexa'].";transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
-                    <form class='genre-list-album' action='index.php?action=modifierGenreAlbum&id=".$this->singleData->getEntryId()."' method='post'>";
+                    <form class='genre-list-album' id='genre-list-album' action='index.php?action=modifierGenreAlbum&id=".$this->singleData->getEntryId()."' method='post'>";
                         foreach(getAllGenre() as $genre) {
                             echo "
                             <div class='genre'>";
@@ -119,10 +119,10 @@ class FormEdit {
                             </div>";
                         }
                         echo "
-                        <div id='container-submit'>
-                            <input type='submit' value='confirmer'>
-                        </div>
                     </form>
+                    <div id='container-submit'>
+                        <input form='genre-list-album' type='submit' value='confirmer'>
+                    </div>
                 </div>
             </div>
 
