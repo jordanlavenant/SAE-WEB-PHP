@@ -57,32 +57,32 @@
                     $bibliotheque->buildBibliotheque();
                     break;
                 case "playlist":
-                    require 'Actions/playlist.php';
+                    require 'Actions/CRUD/playlist/playlist.php';
                     $playlist = new Playlist($_REQUEST['idP']);
                     $playlist->buildPlaylist();
                     break;
                 case "favoris":
-                    require 'Actions/favoris.php';
+                    require 'Actions/CRUD/favoris/favoris.php';
                     $favoris = new Favoris();
                     $favoris->buildFavoris();
                     break;
                 case "ajoutFavoris":
-                    require 'Actions/ajoutFavoris.php';
+                    require 'Actions/CRUD/favoris/ajoutFavoris.php';
                     break;
                 case "ajoutPlaylist":
-                    require 'Actions/ajoutPlaylist.php';
+                    require 'Actions/CRUD/playlist/ajoutPlaylist.php';
                     break;
                 case "supprimerPlaylist":
-                    require 'Actions/supprimerPlaylist.php';
+                    require 'Actions/CRUD/playlist/supprimerPlaylist.php';
                     break;
                 case "ajoutAlbumPlaylist":
-                    require 'Actions/ajoutAlbumPlaylist.php';
+                    require 'Actions/CRUD/playlist/ajoutAlbumPlaylist.php';
                     break;
                 case "retirerAlbumPlaylist":
-                    require 'Actions/retirerAlbumPlaylist.php';
+                    require 'Actions/CRUD/playlist/retirerAlbumPlaylist.php';
                     break;
                 case "modifierAlbum":
-                    require 'Actions/modifierAlbum.php';
+                    require 'Actions/CRUD/album/modifierAlbum.php';
                     break;
                 case "import":
                     require 'Actions/importData.php';
@@ -90,18 +90,10 @@
                     $import->buildImportData();
                     break;
                 case "ajouterAlbum":
-                    require 'Actions/ajouterAlbum.php';
+                    require 'Actions/CRUD/album/ajouterAlbum.php';
                     break;
                 case "supprimerAlbum":
-                    require 'Actions/supprimerAlbum.php';
-                    break;
-                case "import":
-                    require 'Actions/importData.php';
-                    $import = new ImportData();
-                    $import->buildImportData();
-                    break;
-                case "ajouterAlbum":
-                    require 'Actions/ajouterAlbum.php';
+                    require 'Actions/CRUD/album/supprimerAlbum.php';
                     break;
                 case "configuration":
                     require 'Actions/configuration.php';
@@ -112,47 +104,42 @@
                     require 'Actions/notation.php';
                     break;
                 case "compositeur":
-                    require 'Actions/compositeur.php';
+                    require 'Actions/CRUD/compositeur/compositeur.php';
                     $compositeur = new Compositeur($_REQUEST['parent']);
                     $compositeur->buildCompositeur();
                     break;
                 case "supprimerCompositeur":
-                    require 'Actions/supprimerCompositeur.php';
+                    require 'Actions/CRUD/compositeur/supprimerCompositeur.php';
                     break;
                 case "supprimerGroupe":
-                    require 'Actions/supprimerGroupe.php';
+                    require 'Actions/CRUD/groupe/supprimerGroupe.php';
                     break;
                 case "groupe":
-                    require 'Actions/groupe.php';
+                    require 'Actions/CRUD/groupe/groupe.php';
                     $groupe = new Groupe($_REQUEST['by']);
                     $groupe->buildGroupe();
                     break;
-                case "compositeur":
-                    require 'Actions/compositeur.php';
-                    $compositeur = new Compositeur($_REQUEST['parent']);
-                    $compositeur->buildCompositeur();
-                    break;
                 case "modifierArtiste":
-                    require 'Actions/modifierGroupe.php';
+                    require 'Actions/CRUD/groupe/modifierGroupe.php';
                     break;
                 case "modifierCompositeur":
-                    require 'Actions/modifierCompositeur.php';
+                    require 'Actions/CRUD/compositeur/modifierCompositeur.php';
                 case "modifierGenreAlbum":
-                    require 'Actions/modifierGenreAlbum.php';
+                    require 'Actions/CRUD/modifierGenreAlbum.php';
                     break;
                 case "genres":
-                    require 'Actions/genres.php';
+                    require 'Actions/CRUD/genre/genres.php';
                     $genres = new Genres();
                     $genres->buildGenres();
                     break;
                 case "ajouterGenre":
-                    require 'Actions/ajouterGenre.php';
+                    require 'Actions/CRUD/genre/ajouterGenre.php';
                     break;
                 case "supprimerGenre":
-                    require 'Actions/supprimerGenre.php';
+                    require 'Actions/CRUD/genre/supprimerGenre.php';
                     break;
                 case "modifierGenre":
-                    require 'Actions/modifierGenre.php';
+                    require 'Actions/CRUD/genre/modifierGenre.php';
                     break;
                 default:
                     require 'Actions/home.php';
