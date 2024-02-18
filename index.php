@@ -125,7 +125,7 @@
                 case "modifierCompositeur":
                     require 'Actions/CRUD/compositeur/modifierCompositeur.php';
                 case "modifierGenreAlbum":
-                    require 'Actions/CRUD/modifierGenreAlbum.php';
+                    require 'Actions/CRUD/album/modifierGenreAlbum.php';
                     break;
                 case "genres":
                     require 'Actions/CRUD/genre/genres.php';
