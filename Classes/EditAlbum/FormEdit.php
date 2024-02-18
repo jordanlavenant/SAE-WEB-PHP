@@ -137,7 +137,6 @@ class FormEdit {
                 <input type='hidden' id='hidden-image-path' name='hiddenImagePath' value='".$this->singleData->getImg()."'>
                 <div class='content'>
                     <div class='left-part'>        
-                        <label id='label-file' for='' onclick='togglePopupGenre()'>éditer les genres</label>                    
                         <label for='title'>titre</label>
                         <input type='text' name='title' value='".$this->singleData->getTitle()."'>
 
@@ -175,7 +174,8 @@ class FormEdit {
 
                         <label for='releaseYear'>date de sortie</label>
                         <input type='text' name='releaseYear' value='".$this->singleData->getReleaseYear()."'>
-
+                        <label id='label-file' for='' onclick='togglePopupGenre()'>éditer les genres</label>                    
+                        
                         <div>
                             <label id='label-file' for='image'>choisissez une image</label>
                             <input type='file' name='image' id='image' accept='image/*' onchange='chargeImage(event)'>
