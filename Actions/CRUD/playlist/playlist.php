@@ -85,9 +85,9 @@ class Playlist {
             </div>";
             echo "
             <div id='playlist-props'>";
-            $size = count($this->playlistData);
-            if ($size > 1) echo "<h3>cette playlist contient <span>".$size." </span>albums</h3>";
-            else echo "<h3>cette playlist contient <span>".$size." </span>album</h3>"; 
+                $size = count($this->playlistData);
+                if ($size > 1) echo "<h3><span>".$size." </span>albums</h3>";
+                else echo "<h3><span>".$size." </span>album</h3>"; 
             echo "</div>";
             $albums = new DisplayFilteteredAlbums($this->playlistData);
             echo $albums->buildAlbums();

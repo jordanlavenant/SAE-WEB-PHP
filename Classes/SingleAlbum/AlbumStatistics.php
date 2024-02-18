@@ -42,7 +42,7 @@ class AlbumStatistics {
                 <div class='content'>
                     <div class='left-part'>
                         <div class='album-info'>
-                            <h3>L'album...</h3>
+                            <h3>L'album...</h3> 
                             <p>- a été enregistré dans " . $this->nombrePlaylists . " " . $textePlaylist . "</p>
                             <p>- est aimé par " . $this->nombreFavoris . " " . $texteFavoris . "</p>
                             <p>- note moyenne : " . $this->moyenneNote . "/5</p>

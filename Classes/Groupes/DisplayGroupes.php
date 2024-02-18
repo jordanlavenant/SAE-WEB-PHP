@@ -23,10 +23,16 @@ class DisplayGroupes {
             </a>
             <h1>artistes x groupes</h1>
         </div>
-        <section class='compositeurs'>";
+        <div id='groupe-props'>";
+                $size = count(getAllBy());
+                if ($size == 1) echo "<h3><span>1</span> groupe</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> groupes</h3>";
+                else echo "<h3>pas de groupe</h3>";
+            echo "</div>
+        <section class='groupes'>";
             foreach($this->artists as $artist) {
                 echo "
-                <a class='compositeur' href='index.php?action=groupe&by=".$artist['by']."'>
+                <a class='groupe' href='index.php?action=groupe&by=".$artist['by']."'>
                     <p>".$artist['by']."</p>";
                     $size = count(getAlbumWithBy($artist['by']));
                     if ($size > 1) {

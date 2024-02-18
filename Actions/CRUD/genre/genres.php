@@ -75,6 +75,12 @@ class Genres {
                     <input type='submit' value='ajouter'>
                 </form>
             </div>
+            <div id='genre-props'>";
+                $size = count(getAllGenre());
+                if ($size == 1) echo "<h3><span>1</span> genre</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> genres</h3>";
+                else echo "<h3>pas de genre</h3>";
+            echo "</div>
             <section class='genre-list'>";
             foreach(getAllGenres() as $genre) {
                 echo "
