@@ -1,4 +1,4 @@
-<?php 
+<?php
 declare(strict_types=1);
 
 namespace ImportData;
@@ -10,15 +10,33 @@ class ImportDataForm {
     function render() {
         echo '
             <script>
+                let newImagePath = "";
+
                 function chargeImage(event) {
-                    let deleteButton = document.getElementById("delete-button");                
+                    let deleteButton = document.getElementById("delete-button");
                     deleteButton.style.display = "block";
+
+                    let input = event.target;
+                    let newAlbumImage = document.getElementById("album-image");
+
+                    let reader = new FileReader();
+
+                    reader.onload = function(){
+                        newImagePath = reader.result;
+                        newAlbumImage.src = newImagePath;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
                 }    
 
                 function deleteImage() {
                     let deleteButton = document.getElementById("delete-button");
                     let image = document.getElementById("image");
+                    let newAlbumImage = document.getElementById("album-image");
+
                     image.value = "";
+                    newImagePath = "";
+                    newAlbumImage.src = "";
                     deleteButton.style.display = "none";
                 }
 
@@ -94,6 +112,9 @@ class ImportDataForm {
                     <label id="label-file" for="image">choisissez une image</label>
                     <input type="file" name="img" id="image" accept="image/*" onchange="chargeImage(event)">
                     <button id="delete-button" style="display: none;" type="button" onclick="deleteImage()">supprimer</button>
+                </div>
+                <div class="right-part">
+                    <img id="album-image" src="">
                 </div>
             </form>
             <div class="importDataFormSubmit"><input type="submit" form="importDataForm" value="ajouter"></div>
