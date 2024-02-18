@@ -220,6 +220,11 @@ aside {
         & .playlists-aside {
             max-height: 200px;
             overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--background);
+            scrollbar-track-color: var(--background);
+            scrollbar-thumb-color: var(--accent);
+            scrollbar-thumb-border-radius: 5px;
             list-style-type: none;
             padding: 10px 0;
             display: flex;
@@ -280,6 +285,11 @@ main {
     margin-left: 300px;
     margin-bottom: 100px;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--background);
+    scrollbar-track-color: var(--background);
+    scrollbar-thumb-color: var(--accent);
+    scrollbar-thumb-border-radius: 5px;
     width: min(100%, 80rem);
     padding: 0 5rem;
 
@@ -1178,6 +1188,11 @@ table {
             gap: 20px;
             max-height: 300px;
             overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--background);
+            scrollbar-track-color: var(--background);
+            scrollbar-thumb-color: var(--accent);
+            scrollbar-thumb-border-radius: 5px;
             transition: .2s;
 
             & .playlist {
@@ -1207,6 +1222,12 @@ table {
             flex-wrap: wrap;
             height: 300px;
             overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--background);
+            scrollbar-track-color: var(--background);
+            scrollbar-thumb-color: var(--accent);
+            scrollbar-thumb-border-radius: 5px;
+            
             justify-content: space-between;
 
             & .genre {
@@ -1315,6 +1336,12 @@ table {
     margin: 50px 0;
     max-height: 300px;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--background);
+    scrollbar-track-color: var(--background);
+    scrollbar-thumb-color: var(--accent);
+    scrollbar-thumb-border-radius: 5px;
+
     background-color: var(--background-secondary);
     box-shadow: 0px 0px 24px 5px var(--background-secondary);
     border-radius: 20px;
@@ -1774,5 +1801,10 @@ table {
 @media screen and (min-width: 900px) {
     aside {
         overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent) var(--background);
+        scrollbar-track-color: var(--background);
+        scrollbar-thumb-color: var(--accent);
+        scrollbar-thumb-border-radius: 5px;
     }
-  }
+}
