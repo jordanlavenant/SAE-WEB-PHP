@@ -25,9 +25,9 @@ class DisplayGroupes {
         </div>
         <div id='groupe-props'>";
                 $size = count(getAllBy());
-                if ($size == 1) echo "<h3>cette base contient <span>1</span> groupe</h3>";
-                else if ($size > 1) echo "<h3>cette base contient <span>".$size."</span> groupes</h3>";
-                else echo "<h3>vous cette base ne contient pas de groupe</h3>";
+                if ($size == 1) echo "<h3><span>1</span> groupe</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> groupes</h3>";
+                else echo "<h3>pas de groupe</h3>";
             echo "</div>
         <section class='groupes'>";
             foreach($this->artists as $artist) {

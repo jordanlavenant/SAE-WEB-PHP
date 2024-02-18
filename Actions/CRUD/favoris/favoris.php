@@ -57,9 +57,9 @@ class Favoris {
             </div>";
             echo "<div id='favoris-props'>";
                 $size = count($this->favoritesData);
-                if ($size == 1) echo "<h3>vous avez <span>1</span> favori</h3>";
-                else if ($size > 1) echo "<h3>vous avez <span>".$size."</span> favoris</h3>";
-                else echo "<h3>vous n'avez pas de favoris</h3>";
+                if ($size == 1) echo "<h3><span>1</span> favori</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> favoris</h3>";
+                else echo "<h3>pas de favoris</h3>";
             echo "</div>";
             $displayFavoris = new DisplayFavoris($this->favoritesData);
             echo $displayFavoris->render();

@@ -25,9 +25,9 @@ class DisplayCompositeurs {
         </div>
         <div id='compositeur-props'>";
                 $size = count(getAllArtist());
-                if ($size == 1) echo "<h3>cette base contient <span>1</span> compositeur</h3>";
-                else if ($size > 1) echo "<h3>cette base contient <span>".$size."</span> compositeurs</h3>";
-                else echo "<h3>vous cette base ne contient pas de compositeur</h3>";
+                if ($size == 1) echo "<h3><span>1</span> compositeur</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> compositeurs</h3>";
+                else echo "<h3>pas de compositeur</h3>";
             echo "</div>
         <section class='compositeurs'>";
             foreach($this->artists as $artist) {

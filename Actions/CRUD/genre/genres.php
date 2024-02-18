@@ -77,9 +77,9 @@ class Genres {
             </div>
             <div id='genre-props'>";
                 $size = count(getAllGenre());
-                if ($size == 1) echo "<h3>cette base contient <span>1</span> genre</h3>";
-                else if ($size > 1) echo "<h3>cette base contient <span>".$size."</span> genres</h3>";
-                else echo "<h3>vous cette base ne contient pas de genre</h3>";
+                if ($size == 1) echo "<h3><span>1</span> genre</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> genres</h3>";
+                else echo "<h3>pas de genre</h3>";
             echo "</div>
             <section class='genre-list'>";
             foreach(getAllGenres() as $genre) {

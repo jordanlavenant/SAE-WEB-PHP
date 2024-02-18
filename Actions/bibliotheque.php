@@ -33,9 +33,9 @@ class Bibliotheque {
             </div>         
             <div id='playlist-props'>";
                 $size = count($playlists);
-                if ($size == 1) echo "<h3>vous possédez <span>1</span> playlist</h3>";
-                else if ($size > 1) echo "<h3>vous possédez <span>".$size."</span> playlists</h3>";
-                else echo "<h3>vous ne possédez pas de playlist</h3>";
+                if ($size == 1) echo "<h3><span>1</span> playlist</h3>";
+                else if ($size > 1) echo "<h3><span>".$size."</span> playlists</h3>";
+                else echo "<h3>pas de playlist</h3>";
         echo "</div> 
         <section class='playlist-container'>";
             foreach ($playlists as $p) {
