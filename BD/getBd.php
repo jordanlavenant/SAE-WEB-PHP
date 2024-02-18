@@ -440,3 +440,36 @@ function getAllGenre() {
     $bd = null;
     return $data;
 }
+
+function getNombreFavorisPourAlbum($entryId){
+    $requete = "SELECT COUNT(idU) FROM FAVORIS WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $nombreFavoris = $stm->fetchColumn();
+    $bd = null;
+    return $nombreFavoris;
+}
+
+function getMoyenneNoteAlbum($entryId){
+    $requete = "SELECT IFNULL(AVG(note), 0) FROM NOTEALBUM WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $moyenneNote = $stm->fetchColumn();
+    $bd = null;
+    return $moyenneNote;
+}
+
+function getNombrePlaylistsPourAlbum($entryId){
+    $requete = "SELECT COUNT(idP) FROM ALBUMSPLAYLIST WHERE entryId = :entryId";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm-> execute();
+    $nombrePlaylists = $stm->fetchColumn();
+    $bd = null;
+    return $nombrePlaylists;
+}

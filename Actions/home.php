@@ -10,6 +10,7 @@
 
     use SingleAlbum\SelectedAlbum;  
     use SingleAlbum\Details;
+    use SingleAlbum\AlbumStatistics;
 
     use Filter\FilterAlbum;
     use Filter\SearchBar;
@@ -83,6 +84,10 @@
             // Détail de la selection
             $displayAlbum = new Details($album);
             echo $displayAlbum->render();
+
+            // Statistiques sur l'album (notation & nombre de favoris & nombre d'ajouts dans playlists)
+            $albumStats = new AlbumStatistics($album);
+            echo $albumStats->render();
 
             // Discographie artiste
             $selectedGroupe = new SelectedGroupe($data_objects);
