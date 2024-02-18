@@ -453,7 +453,7 @@ function getNombreFavorisPourAlbum($entryId){
 }
 
 function getMoyenneNoteAlbum($entryId){
-    $requete = "SELECT IFNULL(AVG(note), 0) FROM NOTEALBUM WHERE entryId = :entryId";
+    $requete = "SELECT ROUND(IFNULL(AVG(note), 0), 1) FROM NOTEALBUM WHERE entryId = :entryId";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm -> bindParam(":entryId", $entryId, PDO::PARAM_INT);
