@@ -1,3 +1,5 @@
+https://github.com/jordanlavenant/SAE-WEB-PHP
+
 ## SAE 4.01 DÉVELOPPEMENT WEB : Musics 2024
 
 Le projet consiste à réaliser une application web en PHP utilisant la bibliothèque PDO pour afficher et gérer les données d'une base de données SQLite contenant des informations sur des albums de musique et des artistes.
