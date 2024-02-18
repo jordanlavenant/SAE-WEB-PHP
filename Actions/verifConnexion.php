@@ -5,6 +5,7 @@ require_once('Classes/Themes/UpdateTheme.php');
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     if (!verifLogin($_POST['email'], $_POST['password'])) {
+        $_SESSION['erreur'] = "email ou mot de passe incorrect";
         header('Location: index.php?action=login');
         exit();
     } else {

@@ -56,6 +56,8 @@ class Login {
                 echo "<input type='password' id='password' name='password' placeholder='' required>";
                 echo "</div>";
 
+                echo "<p id='warning'>".$_SESSION['erreur']."</p>";
+
                 echo "<div class='bottom'>";
                 echo "<input type='submit' value='se connecter'>";
                 echo "<a href='index.php?action=register'>s'inscrire</a>";

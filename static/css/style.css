@@ -1701,8 +1701,10 @@ table {
 #warning {
     font-family: medium-italic;
     font-size: 25px;
-    color: red;
+    color: #a1452e;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 #unkown {
