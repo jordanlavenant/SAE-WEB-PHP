@@ -137,6 +137,20 @@
                     break;
                 case "modifierCompositeur":
                     require 'Actions/modifierCompositeur.php';
+                case "modifierGenreAlbum":
+                    require 'Actions/modifierGenreAlbum.php';
+                    break;
+                case "genres":
+                    require 'Actions/genres.php';
+                    $genres = new Genres();
+                    $genres->buildGenres();
+                    break;
+                case "ajouterGenre":
+                    require 'Actions/ajouterGenre.php';
+                    break;
+                case "supprimerGenre":
+                    require 'Actions/supprimerGenre.php';
+                    break;
                 case "modifierGenre":
                     require 'Actions/modifierGenre.php';
                     break;

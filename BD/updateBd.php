@@ -158,3 +158,18 @@ function modifierGroupeWhereParent($parent, $nouveauNom) {
         echo $e->getMessage();
     }
 }
+
+function modifierGenre($idG, $nouveauNom) {
+    try {
+        $requete = "UPDATE GENRES SET nomG = :nomG WHERE idG = :idG";
+        $bd = getConnexion();
+        $stm = $bd->prepare($requete);
+        $stm->bindParam(':nomG', $nouveauNom, PDO::PARAM_STR);
+        $stm->bindParam(':idG', $idG, PDO::PARAM_INT);
+        $stm->execute();
+        $bd = null;
+    } catch (PDOException $e) {
+        echo "Erreur lors de la modification du nom du genre";
+        echo $e->getMessage();
+    }
+}

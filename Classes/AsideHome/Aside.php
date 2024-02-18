@@ -52,6 +52,11 @@ class Aside {
                     } else {
                         echo '<li><a href="index.php?action=import">importer</a></li>';
                     }
+                    if ($_REQUEST['action'] == 'genres') {
+                        echo '<li><a class="current" href="index.php?action=genres">genres</a></li>';
+                    } else {
+                        echo '<li><a href="index.php?action=genres">genres</a></li>';
+                    }
                     if ($_REQUEST['action'] == 'configuration') {
                         echo '<li><a class="current" href="index.php?action=configuration">configuration</a></li>';
                     } else {

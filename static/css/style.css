@@ -1179,7 +1179,7 @@ table {
             }
         }
 
-        & .genre-list {
+        & .genre-list-album {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -1588,7 +1588,8 @@ table {
 }
 
 .editCompositeurForm,
-.editGroupeForm {
+.editGroupeForm,
+.editGenreForm {
 
     margin-top: 30px;
 
@@ -1609,6 +1610,53 @@ table {
             outline: .125rem solid currentColor;
             outline-offset: .1rem;
             transition: all .2s;
+        }
+    }
+}
+
+.genre-list {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    gap: 20px;
+
+    & .genre {
+        border: 1px solid var(--accent);
+        width: 600px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+
+        & p {
+            font-family: black-italic;
+            font-size: 25px;
+            color: var(--text);
+            padding: 10px;
+            margin: 0;
+        }
+
+        & div {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            & a {
+                text-decoration: none;
+                color: var(--accent);
+                font-size: 25px;
+                scale: 1;
+                transition: .2s;
+
+                &:hover {
+                    scale: 1.05;
+                    transition: .2s;
+                    cursor: pointer;
+                }
+            }
         }
     }
 }

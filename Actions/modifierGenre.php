@@ -1,15 +1,13 @@
 <?php
 
-    require_once('BD/deleteBd.php');
-    require_once('BD/insertBd.php');
+    require_once('BD/updateBd.php');
 
-    $entryId = $_REQUEST['id'];
-    $genres = $_POST['genre'];
+    $idG = $_REQUEST['genre'];
+    $newGenre = $_POST['newGenre'];
 
-    supprimerGenres($entryId);
+    echo $idG;
+    echo $newGenre;
 
-    foreach ($genres as $genre){
-        insererGenresAlbum($entryId,$genre);
-    }
+    modifierGenre($idG, $newGenre);
 
-    header("Location: index.php?action=edit&id=".$entryId);
+    header("Location: index.php?action=genres");

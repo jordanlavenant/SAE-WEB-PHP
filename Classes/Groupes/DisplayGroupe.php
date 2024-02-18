@@ -41,42 +41,42 @@ class DisplayGroupe {
         $displayAlbums = new DisplayFilteteredAlbums($this->artistData);      
         
         echo "
-            <script>
-                function togglePopupDelete(){
-                    let popup = document.querySelector('#popup-overlay-delete');
-                    popup.classList.toggle('open');
-                }  
+        <script>
+            function togglePopupDelete(){
+                let popup = document.querySelector('#popup-overlay-delete');
+                popup.classList.toggle('open');
+            }  
 
-                function togglePopupEdit() {
-                    let popup = document.querySelector('#popup-overlay-edit');
-                    popup.classList.toggle('open');
-                }
-            </script>
-        
-            <div id='popup-overlay-edit' class=''>
-                <div class='popup-content'>
-                    <h2>Modifier le nom de l'artiste</h2>
-                    <form class='editGroupeForm' action='index.php?action=modifierArtiste&by='" . $this->by . "' method='post'>
-                        <input type='hidden' name='by' value='" . $this->by . "'>
-                        <input type='text' name='name' value='" . $this->by . "' required>
-                        <div class='choices'>
-                            <input type='submit' value='modifier'>
-                            <a class='genericButton' onclick='togglePopupEdit()'>annuler</a>
-                        </div>
-                </div>
-            </div>
-
-            <div id='popup-overlay-delete' class=''>
-                <div class='popup-content'>
-                    <h2>voulez-vous vraiment supprimer cet artiste, ainsi que tous les albums qui lui sont associés ?</h2>
-
-                    <svg href='javascript:void(0)' onclick='togglePopupDelete()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:" . $_SESSION['hexa'] . " ;transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
+            function togglePopupEdit() {
+                let popup = document.querySelector('#popup-overlay-edit');
+                popup.classList.toggle('open');
+            }
+        </script>
+    
+        <div id='popup-overlay-edit' class=''>
+            <div class='popup-content'>
+                <h2>Modifier le nom de l'artiste</h2>
+                <form class='editGroupeForm' action='index.php?action=modifierArtiste&by='" . $this->by . "' method='post'>
+                    <input type='hidden' name='by' value='" . $this->by . "'>
+                    <input type='text' name='name' value='" . $this->by . "' required>
                     <div class='choices'>
-                        <a class='genericButton' href='index.php?action=supprimerGroupe&by=" . $this->by .  "'>Confirmer</a>
-                        <a class='genericButton' onclick='togglePopupDelete()'>Annuler</a>
+                        <input type='submit' value='modifier'>
+                        <a class='genericButton' onclick='togglePopupEdit()'>annuler</a>
                     </div>
+            </div>
+        </div>
+
+        <div id='popup-overlay-delete' class=''>
+            <div class='popup-content'>
+                <h2>voulez-vous vraiment supprimer cet artiste, ainsi que tous les albums qui lui sont associés ?</h2>
+
+                <svg href='javascript:void(0)' onclick='togglePopupDelete()' class='popup-exit' xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' style='fill:" . $_SESSION['hexa'] . " ;transform: ;msFilter:;'><path d='m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z'></path></svg>
+                <div class='choices'>
+                    <a class='genericButton' href='index.php?action=supprimerGroupe&by=" . $this->by .  "'>Confirmer</a>
+                    <a class='genericButton' onclick='togglePopupDelete()'>Annuler</a>
                 </div>
             </div>
+        </div>
 
 
         <section class='groupe-album'>

@@ -322,7 +322,7 @@ function getAllArtist() {
 }
 
 function getAllGenres() {
-    $requete = "SELECT nomG from GENRES";
+    $requete = "SELECT * from GENRES";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm->execute();

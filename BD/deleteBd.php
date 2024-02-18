@@ -51,21 +51,12 @@ function retirerAllPlaylist($entryId) {
 function supprimerAlbum($entryId) {
     retirerAllFavori($entryId);
     retirerAllPlaylist($entryId);
-    supprimerAlbumDeGenresAlbum($entryId);
+    supprimerGenreAlbum($entryId);
     supprimerAlbumDeNoteAlbum($entryId);
     $requete = "DELETE FROM ALBUMS WHERE entryId = :id";
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm->bindParam(":id", $entryId, PDO::PARAM_INT);
-    $stm->execute();
-    $bd = null;
-}
-
-function supprimerAlbumDeGenresAlbum($entryId) {
-    $requete = "DELETE FROM GENRESALBUM WHERE entryId = :entryId";
-    $bd = getConnexion();
-    $stm = $bd->prepare($requete);
-    $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
     $stm->execute();
     $bd = null;
 }
@@ -152,6 +143,24 @@ function supprimerGenres($entryId) {
     $bd = getConnexion();
     $stm = $bd->prepare($requete);
     $stm->bindParam(":entryId", $entryId, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
+
+function supprimerGenreAlbum($idGenre) {
+    $requete = "DELETE FROM GENRESALBUM WHERE idG = :idG";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":idG", $idGenre, PDO::PARAM_INT);
+    $stm->execute();
+    $bd = null;
+}
+
+function supprimerGenre($idGenre) {
+    $requete = "DELETE FROM GENRES WHERE idG = :idG";
+    $bd = getConnexion();
+    $stm = $bd->prepare($requete);
+    $stm->bindParam(":idG", $idGenre, PDO::PARAM_INT);
     $stm->execute();
     $bd = null;
 }
